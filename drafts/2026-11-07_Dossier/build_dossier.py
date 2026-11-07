@@ -141,14 +141,15 @@ story = [PageBreak()]
 story += [P("VUE D'ENSEMBLE", "kick"), P("Ordre de publication", "h1"),
           P("L'ordre suit la règle de rotation des thèmes : on commence par l'actualité et le pratique, "
             "et les contenus sur les relevés de travail passent en dernier, car 3 des 4 vidéos déjà publiées "
-            "portent déjà sur ce thème. Espacez les publications pour pouvoir comparer leurs résultats.")]
+            "portent déjà sur ce thème. Espacez les publications pour pouvoir comparer leurs résultats. "
+            "Heure d'Adélaïde ; 18 h 30 est une heure suggérée à tester. Rappels : Eazy88_Calendrier_Nov2026.ics.")]
 order = [
     ["#", "Publication", "Plateforme", "Objectif", "Quand", "Statut"],
-    ["1", "Visa ballot: what's confirmed", "TikTok · vidéo 34 s", "Partages", "Jour 1", "Prêt"],
-    ["2", "Car checks before you pay", "TikTok · vidéo 30 s", "Sauvegardes", "Jour 4", "Prêt"],
-    ["3", "Record-keeping checklist", "Instagram · carrousel 5 visuels", "Sauvegardes", "Jour 7", "Prêt"],
-    ["4", "Work records question", "Instagram · 3 Stories", "Réponses + clics", "Jour 8", "Prêt"],
-    ["5", "88 days. Lost count?", "Reel 20 s (Instagram / TikTok)", "Visites App Store", "Après réception de l'enregistrement", "Bloqué"],
+    ["1", "Visa ballot: what's confirmed", "TikTok · vidéo 34 s", "Partages", "Sam. 7 nov. 18 h 30", "Prêt"],
+    ["2", "Car checks before you pay", "TikTok · vidéo 30 s", "Sauvegardes", "Mar. 10 nov. 18 h 30", "Prêt"],
+    ["3", "Record-keeping checklist", "Instagram · carrousel 5 visuels", "Sauvegardes", "Ven. 13 nov. 18 h 30", "Prêt"],
+    ["4", "Work records question", "Instagram · 3 Stories", "Réponses + clics", "Sam. 14 nov. 18 h 30", "Prêt"],
+    ["5", "88 days. Lost count?", "Reel 20 s (Instagram / TikTok)", "Visites App Store", "Mer. 18 nov. 18 h 30, si l'enregistrement est reçu le 15", "Bloqué"],
 ]
 t = Table([[P(c, "cellb" if r == 0 else "cell") for c in row] for r, row in enumerate(order)],
           colWidths=[8 * mm, 46 * mm, 42 * mm, 27 * mm, 30 * mm, 21 * mm])
@@ -167,7 +168,7 @@ story += [Spacer(1, 6), t, Spacer(1, 10),
 
 # ---------------------------------------------------------------- 1 VisaBallot
 vb = json.load(open("drafts/2026-11-07_VisaBallot/audio/vo_timings.json"))
-story += [PageBreak(), P("PUBLICATION 1 · TIKTOK · JOUR 1", "kick"), P("Visa ballot: what's confirmed", "h1"), badge("PRÊT À PUBLIER", True), Spacer(1, 6),
+story += [PageBreak(), P("PUBLICATION 1 · TIKTOK · SAMEDI 7 NOV. · 18 H 30", "kick"), P("Visa ballot: what's confirmed", "h1"), badge("PRÊT À PUBLIER", True), Spacer(1, 6),
           facts([("Fichier", "exports/2026-11-07_VisaBallot/Eazy88_TikTok_VisaBallot_A.mp4 · 1080×1920 · 34 s · voix + sous-titres incrustés"),
                  ("Pour qui", "Titulaires d'un visa 417 ou 462 qui font leurs 88 jours et ont entendu parler du ballot"),
                  ("Objectif · CTA", "Partages · « Send this to a mate doing their 88 days. »"),
@@ -179,7 +180,7 @@ story += [PageBreak(), P("PUBLICATION 1 · TIKTOK · JOUR 1", "kick"), P("Visa b
 
 # ---------------------------------------------------------------- 2 CarChecks
 cc = json.load(open("drafts/2026-11-07_CarChecks/audio/vo_timings.json"))
-story += [PageBreak(), P("PUBLICATION 2 · TIKTOK · JOUR 4", "kick"), P("Car checks before you pay", "h1"), badge("PRÊT À PUBLIER", True), Spacer(1, 6),
+story += [PageBreak(), P("PUBLICATION 2 · TIKTOK · MARDI 10 NOV. · 18 H 30", "kick"), P("Car checks before you pay", "h1"), badge("PRÊT À PUBLIER", True), Spacer(1, 6),
           facts([("Fichier", "exports/2026-11-07_CarChecks/Eazy88_TikTok_CarChecks_A.mp4 · 1080×1920 · 30 s · voix + sous-titres incrustés"),
                  ("Pour qui", "Backpackers qui achètent une voiture ou un van d'occasion pour un road trip"),
                  ("Objectif · CTA", "Sauvegardes · « Save this for when you're car shopping. »"),
@@ -195,7 +196,7 @@ car_cap = cap.split("=== INSTAGRAM CAROUSEL (5 slides) ===")[1].split("===")[0].
 st_cap = cap.split("=== INSTAGRAM STORIES (3 frames, no caption field) ===")[1].split("===")[0].strip()
 reel_cap = cap.split("=== REEL")[1].split("===", 1)[1].split("Note: hashtags")[0].strip()
 slides = [f"exports/2026-11-07_LostCount/carousel/Eazy88_Carousel_RecordsChecklist_0{i}.png" for i in range(1, 6)]
-story += [PageBreak(), P("PUBLICATION 3 · INSTAGRAM · JOUR 7", "kick"), P("Record-keeping checklist (carrousel)", "h1"), badge("PRÊT À PUBLIER", True), Spacer(1, 6),
+story += [PageBreak(), P("PUBLICATION 3 · INSTAGRAM · VENDREDI 13 NOV. · 18 H 30", "kick"), P("Record-keeping checklist (carrousel)", "h1"), badge("PRÊT À PUBLIER", True), Spacer(1, 6),
           facts([("Fichiers", "exports/2026-11-07_LostCount/carousel/ · 5 PNG 1080×1350, à publier dans l'ordre 1 → 5"),
                  ("Objectif · CTA", "Sauvegardes · « Save this for your next job » (visuel 5)"),
                  ("Sources", "Home Affairs (417, preuves du travail spécifié) · Fair Work Ombudsman · vérifiées le 7 nov. 2026")]),
@@ -207,7 +208,7 @@ story += [PageBreak(), P("PUBLICATION 3 · INSTAGRAM · JOUR 7", "kick"), P("Rec
 # ---------------------------------------------------------------- 4 Stories
 stories = [f"exports/2026-11-07_LostCount/stories/{n}.png" for n in
            ["Eazy88_Story_RecordsQuestion_01", "Eazy88_Story_RecordsAction_02", "Eazy88_Story_RecordsCTA_03"]]
-story += [Spacer(1, 10), P("PUBLICATION 4 · INSTAGRAM · JOUR 8", "kick"), P("Work records (3 Stories)", "h1"), badge("PRÊT À PUBLIER", True), Spacer(1, 6),
+story += [Spacer(1, 10), P("PUBLICATION 4 · INSTAGRAM · SAMEDI 14 NOV. · 18 H 30", "kick"), P("Work records (3 Stories)", "h1"), badge("PRÊT À PUBLIER", True), Spacer(1, 6),
           facts([("Fichiers", "exports/2026-11-07_LostCount/stories/ · 3 PNG 1080×1920, à publier dans l'ordre 1 → 3"),
                  ("Objectif · CTA", "Réponses au sondage, puis un seul CTA : le lien App Store (Story 3)"),
                  ("Attention", "Story 3 : l'écran d'accueil officiel affiche « 7 validated ». Remplacez-le par votre capture si le mot vous gêne.")]),
@@ -216,7 +217,7 @@ story += [Spacer(1, 10), P("PUBLICATION 4 · INSTAGRAM · JOUR 8", "kick"), P("W
 
 # ---------------------------------------------------------------- 5 Reel (blocked)
 lc = json.load(open("drafts/2026-11-07_LostCount/reel/audio/vo_timings.json"))
-story += [PageBreak(), P("PUBLICATION 5 · REEL · APRÈS L'ENREGISTREMENT", "kick"), P("88 days. Lost count?", "h1"),
+story += [PageBreak(), P("PUBLICATION 5 · REEL · MERCREDI 18 NOV. (SI PRÊT)", "kick"), P("88 days. Lost count?", "h1"),
           badge("BLOQUÉ · BROUILLON NON PUBLIABLE", False), Spacer(1, 6),
           facts([("Blocage", "Le Reel doit montrer le vrai parcours dans l'app (Add › Read › Check › Save › Track). "
                              "Aucun enregistrement d'écran réel n'existe : les images ci-dessous viennent de l'<b>aperçu de travail</b> "
