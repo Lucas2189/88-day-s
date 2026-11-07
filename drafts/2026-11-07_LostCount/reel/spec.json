@@ -1,0 +1,23 @@
+{
+ "base": "Eazy88_Reel_LostCount",
+ "header": "EAZY88 · BACKPACKER TIPS",
+ "draft": "DRAFT · PLACEHOLDER SCREENS · NOT FOR POSTING",
+ "section_gap": 0.3,
+ "end_hold": 1.2,
+ "sections": [
+  {"id": "hook", "kind": "hook", "cues": ["r01", "r02"], "y": 330, "title_size": 170,
+   "title": ["88 DAYS.", "*LOST COUNT?*"],
+   "props": ["Screenshots", "Emails", "Notes app"]},
+  {"id": "demo", "kind": "demo", "cues": ["r03", "r04", "r05", "r06", "r07"], "y": 300,
+   "clip": "footage/eazy88_add-payslip_demo.mp4", "clip_in": 0.0,
+   "steps": [
+     {"label": "Add", "at": "r04", "placeholder": "Add a payslip → Photo or PDF"},
+     {"label": "Read", "at": "r05", "placeholder": "Reading your payslip"},
+     {"label": "Check", "at": "r06", "placeholder": "Check the details"},
+     {"label": "Save", "at": "r06+1.0", "placeholder": "Confirm & Save"},
+     {"label": "Track", "at": "r07", "placeholder": "Home: progress ring"}]},
+  {"id": "cta", "kind": "cta", "cues": ["r08"], "y": 330, "glyph": "download",
+   "title": ["TRY EAZY88", "*FREE ON THE*", "*APP STORE*"],
+   "foot": "Eazy88 helps you keep your records. Home Affairs decides what counts as specified work."}
+ ]
+}

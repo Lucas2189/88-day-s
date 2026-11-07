@@ -10,3 +10,4 @@ __pycache__/
 
 # Packaged deliverables (sent directly, rebuilt from exports/)
 *.zip
+__pycache__/

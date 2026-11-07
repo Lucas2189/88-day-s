@@ -1,0 +1,47 @@
+{
+ "format": "carousel",
+ "slides": [
+  {"name": "Eazy88_Carousel_RecordsChecklist_01", "blocks": [
+    {"type": "header", "counter": "1/5", "after": 150},
+    {"type": "title", "lines": ["DOING YOUR 88 DAYS?", "YOUR *RECORD-KEEPING*", "*CHECKLIST*"], "size": 118, "after": 40},
+    {"type": "text", "text": "What Home Affairs lists as proof of specified work, and how to keep it organised.", "size": 42, "after": 50},
+    {"type": "chip", "text": "SAVE IT FOR LATER", "color": "muted", "after": 150},
+    {"type": "text", "text": "Swipe →", "size": 36, "weight": "Bold", "color": "orange"}]},
+  {"name": "Eazy88_Carousel_RecordsChecklist_02", "blocks": [
+    {"type": "header", "counter": "2/5"},
+    {"type": "numtitle", "num": "1", "lines": ["KEEP EVERY", "*PAYSLIP*"]},
+    {"type": "card", "items": [
+      {"text": "Your employer must give you a payslip within *1 working day* of pay day.", "icon": "check"},
+      {"text": "Save it the same day, as a photo or PDF.", "icon": "check"},
+      {"text": "No payslip? Fair Work explains what to do.", "icon": "dot", "icon_color": "orange"}]},
+    {"type": "foot", "text": "Source: Fair Work Ombudsman, record-keeping and pay slips (fairwork.gov.au). Checked 7 Nov 2026."}]},
+  {"name": "Eazy88_Carousel_RecordsChecklist_03", "blocks": [
+    {"type": "header", "counter": "3/5"},
+    {"type": "numtitle", "num": "2", "lines": ["BACK THEM", "*UP*"]},
+    {"type": "text", "text": "Home Affairs also lists:", "size": 38, "weight": "SemiBold", "color": "muted", "after": 20},
+    {"type": "card", "items": [
+      {"text": "Australian bank statements covering the work period", "icon": "check"},
+      {"text": "Payment summaries or group certificates", "icon": "check"},
+      {"text": "Tax returns", "icon": "check"}]},
+    {"type": "foot", "text": "Source: immi.homeaffairs.gov.au, Second Working Holiday visa (417), proof of specified work. Checked 7 Nov 2026. On a 462? Check your visa's page."}]},
+  {"name": "Eazy88_Carousel_RecordsChecklist_04", "blocks": [
+    {"type": "header", "counter": "4/5"},
+    {"type": "numtitle", "num": "3", "lines": ["GET IT", "*IN WRITING*"]},
+    {"type": "card", "size": 40, "items": [
+      {"text": "Employer references", "icon": "check"},
+      {"text": "Paid piece rates? Your agreement: rate per piece and how it's measured", "icon": "check"},
+      {"text": "A signed agreement for any lawful pay deductions", "icon": "check"}]},
+    {"type": "note", "text": "Home Affairs might contact your employers to check your work claims."},
+    {"type": "foot", "text": "Source: immi.homeaffairs.gov.au (417, proof of specified work). Checked 7 Nov 2026."}]},
+  {"name": "Eazy88_Carousel_RecordsChecklist_05", "blocks": [
+    {"type": "header", "counter": "5/5"},
+    {"type": "numtitle", "num": "4", "lines": ["COVER EVERY", "*PERIOD*"]},
+    {"type": "text", "text": "Your proof must cover *all periods you worked*.", "size": 42, "weight": "SemiBold", "after": 26},
+    {"type": "card", "size": 40, "items": [
+      {"text": "One folder per job", "icon": "check"},
+      {"text": "Note the employer, dates and postcode", "icon": "check"},
+      {"text": "Specified work must be in an eligible postcode", "icon": "dot", "icon_color": "orange"}]},
+    {"type": "foot", "text": "Source: immi.homeaffairs.gov.au (417 specified work). Checked 7 Nov 2026.", "after": 40},
+    {"type": "cta", "glyph": "bookmark", "text": "SAVE THIS FOR *YOUR NEXT JOB*", "size": 60}]}
+ ]
+}

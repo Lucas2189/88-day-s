@@ -145,6 +145,17 @@ def icon_bookmark(draw, cx, cy, s, color, alpha):
     draw.polygon([(x0, y0), (x1, y0), (x1, y1), (cx, y1 - s * 0.3), (x0, y1)], fill=col)
 
 
+def icon_download(draw, cx, cy, s, color, alpha):
+    if alpha <= 0:
+        return
+    draw.ellipse((cx - s, cy - s, cx + s, cy + s), fill=color + (alpha,))
+    col = C["bg"] + (alpha,)
+    w = int(s * 0.2)
+    draw.line([(cx, cy - s * 0.5), (cx, cy + s * 0.1)], fill=col, width=w)
+    draw.polygon([(cx, cy + s * 0.45), (cx - s * 0.4, cy + s * 0.02), (cx + s * 0.4, cy + s * 0.02)], fill=col)
+    draw.line([(cx - s * 0.45, cy + s * 0.62), (cx + s * 0.45, cy + s * 0.62)], fill=col, width=int(w * 0.8))
+
+
 ICONS = {"check": icon_check, "warn": icon_warn, "dot": icon_dot}
 CHIP_COL = {"orange": ("orange", "bg"), "green": ("green_l", "bg"), "muted": ("line2", "cream")}
 
@@ -186,6 +197,52 @@ def brand_icon(size):
     return _icon_cache[size]
 
 
+def payslip_card(label, w=300, h=380, f_lab=None):
+    """Original illustration of a generic payslip marked EXAMPLE (no real data)."""
+    im = Image.new("RGBA", (w + 40, h + 40), (0, 0, 0, 0))
+    d = BlendDraw(im, "RGBA")
+    d.rounded_rectangle((20, 20, 20 + w, 20 + h), 22, fill=C["cream"] + (255,))
+    fb = jakarta(26, "Bold")
+    d.text((44, 44), "PAYSLIP", font=fb, fill=C["bg"] + (255,))
+    n_lines = max(2, int((h - 170) / 30))
+    for i, frac in enumerate([0.8, 0.55, 0.7, 0.45, 0.62, 0.5, 0.66, 0.4][:n_lines]):
+        y = 92 + i * 30
+        d.rounded_rectangle((44, y, 44 + (w - 48) * frac, y + 14), 7, fill=C["neutral"] + (255,))
+    stamp = jakarta(30, "ExtraBold")
+    sw = stamp.getlength("EXAMPLE")
+    d.rounded_rectangle((44, h - 52, 44 + sw + 28, h - 4), 10, outline=C["primary"] + (255,), width=4)
+    d.text((58, h - 48), "EXAMPLE", font=stamp, fill=C["primary"] + (255,))
+    if label:
+        lw = f_lab.getlength(label)
+        cy = 92 + (n_lines * 30) / 2 - 25
+        d.rounded_rectangle((20 + w / 2 - lw / 2 - 22, cy, 20 + w / 2 + lw / 2 + 22, cy + 50), 25, fill=C["bg"] + (240,))
+        d.text((20 + w / 2 - lw / 2, cy + 7), label, font=f_lab, fill=C["cream"] + (255,))
+    return im
+
+
+C["neutral"] = (0xDD, 0xD4, 0xC5)
+
+
+class ClipReader:
+    """Sequential frame reader for a real screen recording, scaled to the phone screen."""
+
+    def __init__(self, path, w, h, start=0.0):
+        self.w, self.h = w, h
+        self.p = subprocess.Popen(["ffmpeg", "-loglevel", "error", "-ss", str(start), "-i", path, "-vf",
+                                   f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps={FPS}",
+                                   "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
+        self.t, self.frame = -1.0, Image.new("RGB", (w, h), C["bg"])
+
+    def at(self, t):
+        while self.t + 1e-6 < t:
+            buf = self.p.stdout.read(self.w * self.h * 3)
+            if len(buf) < self.w * self.h * 3:
+                break  # hold last frame
+            self.frame = Image.frombytes("RGB", (self.w, self.h), buf)
+            self.t = max(self.t, 0) + 1 / FPS if self.t >= 0 else 0.0
+        return self.frame
+
+
 # ---------------------------------------------------------------- scene renderer
 class Reel:
     def __init__(self, spec, timings, cue_times):
@@ -199,12 +256,18 @@ class Reel:
         self.f_cap = jakarta(46, "SemiBold")
         self.f_brand = anton(64)
         self.layout_log = []
+        self.spec_dir = spec.get("_dir", ".")
+        self.clips = {}
+        self.props = {}
 
     def t_of(self, ref, sec_start):
         if ref is None:
             return sec_start
         if isinstance(ref, (int, float)):
             return ref
+        if "+" in ref:  # "cue+seconds": a moment inside a voice line
+            key, off = ref.split("+")
+            return self.cue[key][0] + float(off)
         return self.cue[ref][0]
 
     def header(self, d, img, sec, t):
@@ -274,6 +337,73 @@ class Reel:
                     draw_rich(d, (SAFE_X0, y + dy), ln, self.f_item, C["cream"], C["orange"], alpha=a)
                     y += 60
                 y += 10
+            if sec.get("props"):
+                key = sec["id"]
+                if key not in self.props:
+                    fl = jakarta(28, "Bold")
+                    self.props[key] = [payslip_card(pp, w=250, h=310, f_lab=fl).rotate(r, resample=Image.BICUBIC, expand=True)
+                                       for pp, r in zip(sec["props"], [8, -4, 6])]
+                xs = [SAFE_X0 - 14, 380, 670]
+                top = y + 10
+                for k, im in enumerate(self.props[key]):
+                    layer.alpha_composite(im, (int(xs[k]), int(top + (k % 2) * 40)))
+                y = top + max(im.height for im in self.props[key]) + 40
+            if sec.get("foot"):
+                a, dy = appear(sec.get("foot_at"))
+                y = self.footnote(d, y + 10, sec["foot"], a)
+
+        elif sec["kind"] == "demo":
+            steps = sec["steps"]
+            cur = 0
+            for k, st in enumerate(steps):
+                if t >= self.t_of(st.get("at"), s0) - 0.05:
+                    cur = k
+            fs = jakarta(30, "Bold")
+            widths = [fs.getlength(st["label"]) + 40 for st in steps]
+            gap = 14
+            x = (W - (sum(widths) + gap * (len(steps) - 1))) / 2
+            for k, st in enumerate(steps):
+                on = k == cur
+                rounded(d, (x, y, x + widths[k], y + 56), 28, (C["orange"] if on else C["surface"]) + (255,),
+                        outline=(C["orange"] if on else C["line2"]) + (255,))
+                d.text((x + 20, y + 10), st["label"], font=fs, fill=(C["bg"] if on else C["muted"]) + (255,))
+                x += widths[k] + gap
+            y += 80
+            ph_h = sec.get("phone_h", 1172 - y)
+            ph_w = int(ph_h / 2.174)
+            px = (W - ph_w) // 2
+            bez = 14
+            rounded(d, (px - bez, y - bez, px + ph_w + bez, y + ph_h + bez), 58, C["ink_deep"] + (255,), outline=C["line2"] + (255,), width=3)
+            clip = sec.get("clip")
+            clip_path = os.path.join(self.spec_dir, clip) if clip else None
+            if clip_path and os.path.exists(clip_path):
+                if sec["id"] not in self.clips:
+                    self.clips[sec["id"]] = ClipReader(clip_path, ph_w, ph_h, sec.get("clip_in", 0.0))
+                scr = self.clips[sec["id"]].at(max(0.0, t - s0)).convert("RGBA")
+                mask = Image.new("L", (ph_w, ph_h), 0)
+                ImageDraw.Draw(mask).rounded_rectangle((0, 0, ph_w, ph_h), 46, fill=255)
+                layer.paste(scr, (px, int(y)), mask)
+                lab = sec.get("label", "Real app screens · demo data")
+            else:
+                rounded(d, (px, y, px + ph_w, y + ph_h), 46, C["surface"] + (255,))
+                fp, fq = jakarta(34, "ExtraBold"), jakarta(28, "SemiBold")
+                cy = y + ph_h * 0.36
+                for ln in ["PLACEHOLDER"]:
+                    d.text((px + (ph_w - fp.getlength(ln)) / 2, cy), ln, font=fp, fill=C["orange"] + (255,))
+                cy += 60
+                for ln in wrap(fq, "Real screen recording needed:", ph_w - 50) + wrap(fq, steps[cur]["placeholder"], ph_w - 50):
+                    d.text((px + (ph_w - fq.getlength(ln)) / 2, cy), ln, font=fq, fill=C["cream"] + (255,))
+                    cy += 40
+                lab = "Placeholder · not real app footage"
+            fl = jakarta(24, "SemiBold")
+            # vertical label beside the phone (kept inside the safe area)
+            lbl = Image.new("RGBA", (int(fl.getlength(lab)) + 10, 40), (0, 0, 0, 0))
+            BlendDraw(lbl, "RGBA").text((5, 4), lab, font=fl, fill=C["muted"] + (255,))
+            lbl = lbl.rotate(90, expand=True)
+            layer.alpha_composite(lbl, (px + ph_w + bez + 14, int(y + ph_h - lbl.height)))
+            y = y + ph_h + bez
+            log["boxes"].append(("phone", px, y - ph_h, px + ph_w, y))
+            # captions overlap the phone bottom by design? keep the phone above the caption band
             if sec.get("foot"):
                 a, dy = appear(sec.get("foot_at"))
                 y = self.footnote(d, y + 10, sec["foot"], a)
@@ -341,6 +471,8 @@ class Reel:
                 icon_share(d, SAFE_X0 + 70, y + 70 + dy, 70, C["orange"], a)
             elif gi == "bookmark":
                 icon_bookmark(d, SAFE_X0 + 70, y + 70 + dy, 70, C["orange"], a)
+            elif gi == "download":
+                icon_download(d, SAFE_X0 + 70, y + 70 + dy, 70, C["orange"], a)
             y += 170
             f = fit_font(sec["title"], sec.get("title_size", 116))
             for ln in sec["title"]:
@@ -458,6 +590,15 @@ def loudnorm(inp, out, extra=None):
 
 
 # ---------------------------------------------------------------- main
+def draft_band(img, text):
+    """Visible marker on previews (above the safe area, never on finals)."""
+    d = BlendDraw(img, "RGBA")
+    f = jakarta(28, "ExtraBold")
+    tw = f.getlength(text)
+    d.rounded_rectangle(((W - tw) / 2 - 24, 96, (W + tw) / 2 + 24, 150), 14, fill=C["primary"] + (255,))
+    d.text(((W - tw) / 2, 104), text, font=f, fill=C["cream"] + (255,))
+
+
 def srt_time(x):
     ms = int(round(x * 1000))
     return f"{ms // 3600000:02d}:{ms // 60000 % 60:02d}:{ms // 1000 % 60:02d},{ms % 1000:03d}"
@@ -467,6 +608,7 @@ def main():
     spec_path, audio_dir, out_dir = sys.argv[1:4]
     use_music = "--music" in sys.argv
     spec = json.load(open(spec_path))
+    spec["_dir"] = os.path.dirname(os.path.abspath(spec_path))
     timings = json.load(open(os.path.join(audio_dir, "vo_timings.json")))
     os.makedirs(out_dir, exist_ok=True)
     tmp = os.path.join(out_dir, "_tmp")
@@ -478,7 +620,7 @@ def main():
     t = 0.15
     for i, sec in enumerate(spec["sections"]):
         if i:
-            t += 0.40
+            t += spec.get("section_gap", 0.40)
         starts[sec["id"]] = t
         for j, k in enumerate(sec["cues"]):
             if j:
@@ -486,7 +628,7 @@ def main():
             clips[k] = load48(os.path.join(audio_dir, f"{k}.wav"), tmp)
             cue[k] = [t, t + len(clips[k]) / SR]
             t = cue[k][1]
-    dur = t + 1.5
+    dur = t + spec.get("end_hold", 1.5)
     keys = list(cue)
     for a, b in zip(keys, keys[1:]):  # caption stays until next cue starts
         cue[a][1] = cue[b][0]
@@ -539,9 +681,13 @@ def main():
             frame = Image.blend(prev, frame, ease((tt - sec_start[i]) / 0.22))
         cb = reel.caption(frame, tt)
         cap_log.append(cb)
+        if spec.get("draft"):
+            draft_band(frame, spec["draft"])
         ff.stdin.write(frame.convert("RGB").tobytes())
         if fi == 0:
             cover = reel.draw_section(secs[0], 0.0, 0)
+            if spec.get("draft"):
+                draft_band(cover, spec["draft"])
             cover.convert("RGB").save(os.path.join(out_dir, f"{base}_Cover.png"))
     ff.stdin.close()
     ff.wait()
