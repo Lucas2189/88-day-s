@@ -11,7 +11,7 @@ Ce fichier contient les instructions **permanentes**. Elles s'appliquent à chaq
 ## Instructions permanentes
 
 1. **Audience.** Eazy88 cible les backpackers et les voyageurs en Working Holiday (visas 417 et 462) en Australie. Ne pas confondre avec les randonneurs ni avec les voyageurs internationaux en général.
-2. **Identité de marque.** Préserver l'identité réelle de la marque (voir `brand/brand-identity.md`). Ne jamais inventer de logo, de couleur ni de police. Si deux sources se contredisent, demander à Lucas au lieu de choisir à sa place.
+2. **Identité de marque.** Préserver l'identité réelle de la marque : celle de l'app et du site (palette orange / crème / vert sur fond sombre, polices Anton et Plus Jakarta Sans, icône PNG officielle), validée par Lucas le 7 nov. 2026. Détails : `brand/brand-identity.md`. Ne jamais inventer de logo, de couleur ni de police. Si deux sources se contredisent, demander à Lucas au lieu de choisir à sa place.
 3. **Fonctionnalités vérifiées uniquement.** Avant toute affirmation sur le produit, vérifier `product/product-facts.md`, puis revérifier sur https://eazy88.com/en et https://apps.apple.com/au/app/eazy88/id6759782986. Une fonctionnalité *listée* n'est pas forcément *active* : confirmer qu'elle contient du vrai contenu avant de la promouvoir.
 4. **Problème ou bénéfice immédiat.** Chaque contenu rend le problème ou le résultat utile évident tout de suite.
 5. **Reels compréhensibles sans le son, dès la première image.** Le titre du hook est visible sur la toute première frame ; les sous-titres sont incrustés et reprennent la voix mot pour mot.
@@ -34,6 +34,9 @@ Source complète : `references/marketing-instructions/eazy88-tiktok-trend-video_
 - Écrans : uniquement de vrais écrans ou enregistrements de l'app avec des données de démo, étiquetés « Real app screens · demo data ». Ne jamais modifier une valeur ni inventer un tap. Graphismes originaux uniquement (illustrations, carte Natural Earth, fiche de paie marquée « EXAMPLE » sans vrais chiffres).
 - Musique : originale ou licenciée pour l'usage prévu. Ne jamais supposer qu'un son tendance est libre de droits.
 - App Store seulement : la fiche Google Play est introuvable (404 au 7 nov. 2026), ne pas mentionner Android.
+- Marketplace (Jobs, Housing, Cars, Road trips, Insurance, Map) : **pas encore de vraies annonces** (Lucas, 7 nov. 2026). Ne pas les promouvoir.
+
+**Compte et canal.** TikTok : @eazy88llc. Statistiques de référence dans `analytics/`.
 
 **Recherche avant tout choix d'angle.** Priorité aux 30 derniers jours (7 jours pour les tendances rapides). Tableau de 5 angles : angle · source (URL, date, lieu) · signal observable · problème de l'audience · lien avec une fonctionnalité confirmée · statut (*verified emerging trend* / *ongoing audience need* / *creative hypothesis*). Ne pas forcer les 88 jours ni le produit : une vidéo utile sans l'app vaut mieux qu'un pont forcé. Faire tourner les thèmes ; jamais deux vidéos fiches de paie / relevés de travail d'affilée ; démo app au maximum une fois toutes les deux semaines.
 

@@ -29,8 +29,8 @@ Copies datées : `references/official-sources/`.
 
 ## 2. Informations non confirmées (ne pas utiliser en public sans vérification)
 
-### Contenu réel des rubriques
-- **Jobs, Housing, Cars, Road trips, Insurance, Map** : volume et fraîcheur des annonces inconnus aujourd'hui. L'écran carte du site (date inconnue) affichait pour Sydney : Jobs 8 · Stays 172 · Cars 0. Ce n'est pas une donnée actuelle, ne pas la citer.
+### Contenu réel des rubriques — **confirmé vide par Lucas le 7 nov. 2026**
+- **Jobs, Housing, Cars, Road trips, Insurance, Map** : « Il n'y a pas encore de vraies annonces (on travaille dessus) ». → **Ne pas promouvoir ces rubriques ni montrer d'annonces** tant que Lucas n'a pas confirmé un vrai contenu. Ne pas montrer l'écran carte du site (« Stays 172 » n'est pas du contenu réel).
 - **Road trips** : l'App Store parle de « routes, stops and estimated costs », l'écran montre « Find travel buddies ». Fonction exacte à confirmer.
 - **Insurance** : « Compare providers by country » — fournisseurs, pays couverts et éventuels partenariats commerciaux inconnus.
 - **Phone Operators**, **Tax & Super** : contenu à confirmer.
@@ -58,6 +58,9 @@ Ces formulations contredisent la règle « pas d'affirmation d'éligibilité ».
 - Note App Store : 2,0/5 sur 4 évaluations. Un avis (16 juin) signale un mauvais calcul des jours pour une semaine de 48 h. → Prudence sur toute promesse de précision du décompte ; formuler « track » plutôt que « calculate for you ».
 - Vendeur sur l'App Store : Mattheo Roffi. À garder en tête pour les mentions légales et l'attribution (store, liens de campagne).
 
+### Bio TikTok actuelle (@eazy88llc)
+- « The ultimate app for backpackers in Australia » : superlatif invérifiable. « Track your 88 days » est conforme. Suggestion à valider par Lucas : "Free app to track your 88 days in Australia 🇦🇺" (App Store uniquement).
+
 ### Actualité visa
 - L'exemple d'octobre 2026 des instructions cite un tirage au sort de visas « annoncé le 17 sept. 2026, pas encore en vigueur ». À revérifier sur immi.homeaffairs.gov.au avant toute utilisation.
 
@@ -68,14 +71,15 @@ Ces formulations contredisent la règle « pas d'affirmation d'éligibilité ».
 | Asset | Nécessaire pour | Statut |
 |---|---|---|
 | **Enregistrement d'écran iPhone de l'app v1.1 avec données de démo** (ex. ajout d'une fiche de paie : Add › Read › Check › Save) | Toute vidéo à objectif « visite App Store » | **Manquant.** Les écrans `d3_picker`, `d3_reading`, `d3_check`, `d3_confirm` cités dans les instructions ne sont pas dans ce dossier. |
-| Décision sur l'identité visuelle des vidéos (voir `brand/brand-identity.md`) | Toutes les vidéos | **Décision à prendre par Lucas.** |
-| Logo / wordmark en vectoriel (SVG ou PDF) | Covers, en-têtes nets | Manquant (seulement l'icône PNG 994 px du site). |
-| Fichiers de polices de marque | Rendu des textes | Non téléchargés. Gratuits (Google Fonts, licence OFL) une fois l'identité choisie. |
+| Identité visuelle des vidéos | Toutes les vidéos | ✅ Décidé le 7 nov. : identité officielle de l'app et du site (`brand/brand-identity.md`). |
+| Logo / wordmark en vectoriel (SVG ou PDF) | Covers, en-têtes nets | Non bloquant : Lucas a validé l'icône PNG 994 px pour l'instant. |
+| Fichiers de polices de marque (Anton, Plus Jakarta Sans) | Rendu des textes | Non téléchargés. Gratuits (Google Fonts, licence OFL), à récupérer au moment du rendu. |
 | Charte graphique officielle (si elle existe) | Cohérence | Non fournie. |
 | Graphique de fiche de paie « EXAMPLE » | Vidéos fiches de paie | À créer (original, gratuit). |
 | Images ou vidéos australiennes dont Eazy88 détient les droits | Plans d'ambiance (facultatif) | Non fournies. Alternative : illustrations et carte Natural Earth (domaine public). |
 | Musique | Fond sonore (facultatif) | Aucune. Option gratuite : fond original généré en code, ou pas de musique. |
 | Modèle de voix Kokoro-82M (Apache-2.0) | Voix off IA | Non téléchargé ; gratuit, accessible (testé le 7 nov.). Pas d'accent australien disponible. |
-| Compte TikTok, lien en bio, lien de campagne App Store Connect | Publication et mesure | Non fournis. |
-| Statistiques des posts précédents | Point de comparaison | Aucune dans `analytics/`. |
+| Compte TikTok | Publication | ✅ @eazy88llc (Lucas, 7 nov.). |
+| Lien en bio, lien de campagne App Store Connect | Mesure de l'objectif App Store | Non fournis (inutile pour le premier test, qui se fait sans l'app). |
+| Statistiques des posts précédents | Point de comparaison | ✅ Instantané du 7 nov. : `analytics/2026-11-07_baseline.md` (vues seulement). |
 | Événement d'activation dans l'app (ex. `payslip_saved`) et outil d'attribution | Mesure de l'objectif App Store | Existence inconnue — à demander au développeur. |

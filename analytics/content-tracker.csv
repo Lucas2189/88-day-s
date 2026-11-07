@@ -1,1 +1,5 @@
 content_id,publish_date,platform,channel(organic/paid),topic,theme,objective,version(A/B),checkpoint(72h/7d),accounts_reached,views,views_2s,views_6s,avg_watch_time_s,completion_rate,likes,comments_meaningful,shares,saves,profile_visits,follows_attributed,link_clicks,app_store_clicks,installs_attributed,activations,spend_aud,production_time_h,notes
+tt-001,before 2026-11-03,TikTok,organic,Melbourne Cup Day public holiday,AU news / work,,A,snapshot 2026-11-07,,260,,,,,,,,,,,,,,,,,views from profile grid only
+tt-002,,TikTok,organic,How many days have you logged? (conversation),work records,,A,snapshot 2026-11-07,,121,,,,,,,,,,,,,,,,,views from profile grid only
+tt-003,,TikTok,organic,When someone asks how many days you've done,work records,,A,snapshot 2026-11-07,,103,,,,,,,,,,,,,,,,,views from profile grid only
+tt-004,,TikTok,organic,Before I forget this week's shifts,work records,,A,snapshot 2026-11-07,,95,,,,,,,,,,,,,,,,,views from profile grid only
