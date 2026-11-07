@@ -5,7 +5,7 @@ Produit le 7 nov. 2026. Brief : `briefs/2026-11-07_car-checks.md`. **Non publié
 ## Fichiers
 | Fichier | Contenu |
 |---|---|
-| `Eazy88_TikTok_CarChecks_A.mp4` | Vidéo 1080×1920, 30 fps, 30,1 s, H.264 + AAC, voix + musique originale |
+| `Eazy88_TikTok_CarChecks_A.mp4` | Vidéo 1080×1920, 30 fps, 30,1 s, H.264 + AAC stéréo, voix + musique originale |
 | `Eazy88_TikTok_CarChecks.srt` | Sous-titres (11 repères), identiques à la voix |
 | `Eazy88_TikTok_CarChecks_Voiceover.wav` | Voix seule, −16 LUFS |
 | `Eazy88_TikTok_CarChecks_Cover.png` | Cover 1080×1920 (= première image) |

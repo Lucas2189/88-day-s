@@ -5,7 +5,7 @@ Produit le 7 nov. 2026. Brief : `briefs/2026-11-07_visa-ballot-whats-confirmed.m
 ## Fichiers
 | Fichier | Contenu |
 |---|---|
-| `Eazy88_TikTok_VisaBallot_A.mp4` | Vidéo 1080×1920, 30 fps, 34,0 s, H.264 + AAC, voix + musique originale |
+| `Eazy88_TikTok_VisaBallot_A.mp4` | Vidéo 1080×1920, 30 fps, 34,0 s, H.264 + AAC stéréo, voix + musique originale |
 | `Eazy88_TikTok_VisaBallot.srt` | Sous-titres (12 repères), identiques à la voix |
 | `Eazy88_TikTok_VisaBallot_Voiceover.wav` | Voix seule, −16 LUFS |
 | `Eazy88_TikTok_VisaBallot_Cover.png` | Cover 1080×1920 (= première image) |

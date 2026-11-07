@@ -553,7 +553,7 @@ def main():
     json.dump({"max_content_bottom": worst, "caption_top": CAP_Y}, open(os.path.join(out_dir, "layout_qc.json"), "w"))
 
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", silent, "-i", os.path.join(tmp, "mix.wav"), "-c:v", "copy",
-                    "-c:a", "aac", "-b:a", "192k", "-ar", str(SR), "-shortest", "-movflags", "+faststart",
+                    "-c:a", "aac", "-b:a", "192k", "-ar", str(SR), "-ac", "2", "-shortest", "-movflags", "+faststart",
                     os.path.join(out_dir, f"{base}_A.mp4")], check=True)
     with open(os.path.join(out_dir, f"{base}.srt"), "w") as f:
         for i, k in enumerate(keys, 1):
