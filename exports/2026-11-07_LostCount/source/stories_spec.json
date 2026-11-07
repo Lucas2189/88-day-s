@@ -1,0 +1,109 @@
+{
+ "format": "story",
+ "slides": [
+  {
+   "name": "Eazy88_Story_RecordsQuestion_01",
+   "blocks": [
+    {
+     "type": "header",
+     "after": 120
+    },
+    {
+     "type": "title",
+     "lines": [
+      "DOING YOUR 88 DAYS?",
+      "HOW DO YOU KEEP",
+      "YOUR *WORK RECORDS*?"
+     ],
+     "size": 116,
+     "after": 50
+    },
+    {
+     "type": "text",
+     "text": "Vote below. We'll share the most useful tips.",
+     "size": 40,
+     "after": 40
+    },
+    {
+     "type": "guide",
+     "h": 420,
+     "text": "Add an Instagram POLL sticker here: Phone photos · Notes app · Paper folder · Nothing yet"
+    }
+   ]
+  },
+  {
+   "name": "Eazy88_Story_RecordsAction_02",
+   "blocks": [
+    {
+     "type": "header",
+     "after": 300
+    },
+    {
+     "type": "title",
+     "lines": [
+      "ONE THING",
+      "TO DO *TODAY*"
+     ],
+     "size": 150,
+     "after": 50
+    },
+    {
+     "type": "card",
+     "size": 46,
+     "items": [
+      {
+       "text": "Save your latest payslip as a *photo or PDF*.",
+       "icon": "check"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "text": "Employers must give you a payslip within 1 working day of pay day.",
+     "size": 36,
+     "color": "muted",
+     "after": 16
+    },
+    {
+     "type": "foot",
+     "text": "Source: Fair Work Ombudsman (fairwork.gov.au). Checked 7 Nov 2026."
+    }
+   ]
+  },
+  {
+   "name": "Eazy88_Story_RecordsCTA_03",
+   "blocks": [
+    {
+     "type": "header",
+     "after": 60
+    },
+    {
+     "type": "title",
+     "lines": [
+      "KEEP YOUR PAYSLIPS",
+      "*IN ONE PLACE*"
+     ],
+     "size": 110,
+     "after": 30
+    },
+    {
+     "type": "phone",
+     "src": "props/app-home_from-eazy88-website_2026-11-07.png",
+     "h": 600,
+     "label": "Real app screen · eazy88.com",
+     "after": 30
+    },
+    {
+     "type": "brand",
+     "sub": "Free on the App Store",
+     "after": 24
+    },
+    {
+     "type": "guide",
+     "h": 120,
+     "text": "Add the LINK sticker here (App Store link)"
+    }
+   ]
+  }
+ ]
+}
