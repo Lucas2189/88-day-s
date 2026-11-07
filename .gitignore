@@ -1,0 +1,9 @@
+# Heavy or re-downloadable working files (free sources, see CLAUDE.md)
+*.onnx
+voices-*.bin
+.cache/
+**/_downloads/
+**/frames/
+**/render_tmp/
+__pycache__/
+.DS_Store
