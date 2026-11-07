@@ -1,6 +1,6 @@
 # Brief — Visa ballot: what's confirmed (test n° 1)
 
-> **Statut : en attente de validation par Lucas.** Aucune production avant son accord.
+> **Statut : validé par Lucas le 7 nov. 2026 (hook A) et produit.** Livrables : `exports/2026-11-07_VisaBallot/`.
 > Recherche : `references/research/2026-11-07_research-angles.md`.
 
 | Champ | Valeur |
@@ -47,7 +47,7 @@ Pas de chiffres de plafond (45 000 / 5 000) dans la voix : une seule idée. Opti
 | 5 | Specified work toujours exigé : 88 jours calendaires (2e visa), 179 jours (3e visa) | Page officielle 417 specified work, lue le 7 nov. 2026 (`references/official-sources/2026-11-07_home-affairs_specified-work-417_notes.md`) | 417, hors passeports UK pour le 2e visa | **En vigueur** | ✅ officiel (417) ; ⚠️ vérifier la page 462 avant le rendu |
 | 6 | Les passeports britanniques ont déjà des règles différentes | Page officielle second 417 : pas de specified work exigé pour un 2e visa demandé depuis le 1er juil. 2024 avec un passeport UK | Passeports UK | **En vigueur** | ✅ officiel |
 
-**Avant le rendu :** confirmer les durées (88 / 179 jours) sur la page specified work du 462. Si elles diffèrent, préciser « on a 417 ».
+✅ Durées 88 / 179 jours confirmées aussi sur la page specified work du 462 (7 nov. 2026).
 
 ## Assets nécessaires
 

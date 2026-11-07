@@ -1,0 +1,137 @@
+{
+ "base": "Eazy88_TikTok_VisaBallot",
+ "header": "EAZY88 · BACKPACKER TIPS",
+ "sections": [
+  {
+   "id": "hook",
+   "kind": "hook",
+   "cues": [
+    "b01",
+    "b02"
+   ],
+   "y": 470,
+   "title_size": 128,
+   "title": [
+    "2ND-YEAR VISA BALLOT:",
+    "WHAT'S ACTUALLY",
+    "*CONFIRMED*"
+   ],
+   "chip": {
+    "text": "WORKING HOLIDAY · 417 / 462",
+    "color": "muted"
+   },
+   "foot": "Checked 7 Nov 2026"
+  },
+  {
+   "id": "s1",
+   "kind": "point",
+   "num": "1",
+   "cues": [
+    "b03",
+    "b04",
+    "b05",
+    "b06"
+   ],
+   "title": "ANNOUNCED,\n*NOT IN FORCE*",
+   "chip": {
+    "text": "ANNOUNCED",
+    "color": "orange"
+   },
+   "items": [
+    {
+     "text": "Reported start: by the end of 2026",
+     "at": "b04",
+     "icon": "dot",
+     "icon_color": "orange"
+    },
+    {
+     "text": "Not on Home Affairs' Working Holiday news page yet",
+     "at": "b05",
+     "icon": "dot",
+     "icon_color": "orange"
+    }
+   ],
+   "foot": "Sources: Time Out, 24 Sep 2026 · immi.homeaffairs.gov.au (WHM latest news), checked 7 Nov 2026",
+   "foot_at": "b04",
+   "y": 410,
+   "title_size": 84
+  },
+  {
+   "id": "s2",
+   "kind": "stats",
+   "num": "2",
+   "cues": [
+    "b07",
+    "b08",
+    "b09"
+   ],
+   "title": "SPECIFIED WORK\n*STILL REQUIRED*",
+   "chip": {
+    "text": "IN FORCE TODAY",
+    "color": "green"
+   },
+   "stats": [
+    {
+     "big": "88",
+     "label": "days for a 2nd visa",
+     "at": "b08"
+    },
+    {
+     "big": "179",
+     "label": "days for a 3rd visa",
+     "at": "b09"
+    }
+   ],
+   "foot": "Calendar days, including weekends or rest days. 417 and 462 visas.\nSource: immi.homeaffairs.gov.au (specified work), checked 7 Nov 2026",
+   "foot_at": "b08",
+   "y": 410,
+   "title_size": 84
+  },
+  {
+   "id": "s3",
+   "kind": "point",
+   "num": "3",
+   "cues": [
+    "b10",
+    "b11"
+   ],
+   "title": "UK PASSPORTS:\n*DIFFERENT RULES*",
+   "chip": {
+    "text": "IN FORCE TODAY",
+    "color": "green"
+   },
+   "items": [
+    {
+     "text": "No specified work needed for a 2nd visa if you apply with a UK passport (since 1 Jul 2024)",
+     "at": "b10",
+     "icon": "check"
+    },
+    {
+     "text": "Check what applies to *your* passport",
+     "at": "b11",
+     "icon": "dot",
+     "icon_color": "orange"
+    }
+   ],
+   "foot": "Source: immi.homeaffairs.gov.au, checked 7 Nov 2026",
+   "foot_at": "b10",
+   "y": 410,
+   "title_size": 84
+  },
+  {
+   "id": "cta",
+   "kind": "cta",
+   "cues": [
+    "b12"
+   ],
+   "y": 330,
+   "glyph": "share",
+   "title": [
+    "SEND THIS",
+    "TO A MATE DOING",
+    "THEIR *88 DAYS*"
+   ],
+   "foot": "Updates: immi.homeaffairs.gov.au · General information, not migration advice"
+  }
+ ]
+}

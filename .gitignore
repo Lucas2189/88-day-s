@@ -7,3 +7,6 @@ voices-*.bin
 **/render_tmp/
 __pycache__/
 .DS_Store
+
+# Packaged deliverables (sent directly, rebuilt from exports/)
+*.zip

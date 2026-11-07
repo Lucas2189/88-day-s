@@ -1,0 +1,130 @@
+{
+ "base": "Eazy88_TikTok_CarChecks",
+ "header": "EAZY88 · BACKPACKER TIPS",
+ "sections": [
+  {
+   "id": "hook",
+   "kind": "hook",
+   "cues": [
+    "c01",
+    "c02"
+   ],
+   "y": 470,
+   "title_size": 132,
+   "title": [
+    "BUYING A CAR",
+    "OR VAN? *3 CHECKS*",
+    "BEFORE YOU PAY"
+   ],
+   "chip": {
+    "text": "WORKING HOLIDAY · ROAD TRIPS",
+    "color": "muted"
+   }
+  },
+  {
+   "id": "s1",
+   "kind": "point",
+   "num": "1",
+   "cues": [
+    "c03",
+    "c04",
+    "c05",
+    "c06"
+   ],
+   "title": "RUN A *PPSR CHECK*",
+   "chip": {
+    "text": "ASK THE SELLER FOR THE VIN",
+    "color": "orange"
+   },
+   "items": [
+    {
+     "text": "$2 online at ppsr.gov.au",
+     "at": "c04",
+     "icon": "dot",
+     "icon_color": "orange"
+    },
+    {
+     "text": "Money that may still be owed",
+     "at": "c05",
+     "icon": "check"
+    },
+    {
+     "text": "Stolen or written-off record",
+     "at": "c06",
+     "icon": "check"
+    }
+   ],
+   "foot": "Results depend on the data available. Source: ppsr.gov.au, checked 7 Nov 2026",
+   "foot_at": "c04",
+   "y": 410,
+   "title_size": 84
+  },
+  {
+   "id": "s2",
+   "kind": "point",
+   "num": "2",
+   "cues": [
+    "c07",
+    "c08",
+    "c09"
+   ],
+   "title": "NO MONEY\n*BEFORE YOU SEE IT*",
+   "chip": {
+    "text": "RED FLAGS",
+    "color": "orange"
+   },
+   "items": [
+    {
+     "text": "Price much lower than expected",
+     "at": "c08",
+     "icon": "warn",
+     "icon_color": "orange"
+    },
+    {
+     "text": "Seller can't meet in person",
+     "at": "c09",
+     "icon": "warn",
+     "icon_color": "orange"
+    }
+   ],
+   "foot": "Source: scamwatch.gov.au (car ad scams)",
+   "foot_at": "c08",
+   "y": 410,
+   "title_size": 84
+  },
+  {
+   "id": "s3",
+   "kind": "point",
+   "num": "3",
+   "cues": [
+    "c10"
+   ],
+   "title": "INDEPENDENT\n*MECHANIC CHECK*",
+   "items": [
+    {
+     "text": "Book an inspection *before* you hand over money",
+     "at": "c10",
+     "icon": "check"
+    }
+   ],
+   "foot": "Transfer and roadworthy rules depend on the state: check your state's transport website.\nSource: SA Government, My Licence (buying a car)",
+   "foot_at": "c10",
+   "y": 410,
+   "title_size": 84
+  },
+  {
+   "id": "cta",
+   "kind": "cta",
+   "cues": [
+    "c11"
+   ],
+   "y": 330,
+   "glyph": "bookmark",
+   "title": [
+    "SAVE THIS",
+    "FOR WHEN YOU'RE",
+    "*CAR SHOPPING*"
+   ]
+  }
+ ]
+}

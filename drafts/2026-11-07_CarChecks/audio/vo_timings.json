@@ -1,0 +1,46 @@
+{
+ "c01": {
+  "text": "Buying a car or van for a summer road trip?",
+  "seconds": 2.6
+ },
+ "c02": {
+  "text": "Do these three checks before you pay.",
+  "seconds": 1.97
+ },
+ "c03": {
+  "text": "One. Ask for the VIN and run a PPSR check.",
+  "seconds": 3.06
+ },
+ "c04": {
+  "text": "It's two dollars online,",
+  "seconds": 1.45
+ },
+ "c05": {
+  "text": "and it can flag money that may still be owed,",
+  "seconds": 2.42
+ },
+ "c06": {
+  "text": "or a stolen or written-off record.",
+  "seconds": 1.99
+ },
+ "c07": {
+  "text": "Two. Never send money before you've seen the car.",
+  "seconds": 2.68
+ },
+ "c08": {
+  "text": "Fake ads often have a low price,",
+  "seconds": 1.87
+ },
+ "c09": {
+  "text": "and a seller who can't meet in person.",
+  "seconds": 1.88
+ },
+ "c10": {
+  "text": "Three. Get an independent mechanic to inspect it before you buy.",
+  "seconds": 3.92
+ },
+ "c11": {
+  "text": "Save this for when you're car shopping.",
+  "seconds": 1.76
+ }
+}
