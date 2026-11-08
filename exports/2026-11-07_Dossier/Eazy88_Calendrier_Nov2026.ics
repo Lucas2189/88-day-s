@@ -10,26 +10,39 @@ UID:eazy88-2026-11-07-0@eazy88-marketing
 DTSTAMP:20261107T000000Z
 DTSTART:20261107T080000Z
 DTEND:20261107T083000Z
-SUMMARY:Eazy88 · TikTok · Visa ballot
-DESCRIPTION:Fichier : 1_TikTok_VisaBallot_PRET.mp4\nAvant : vérifier que l
- a page Home Affairs (WHM latest news) ne publie pas encore le ballot.\nAct
- iver le label AI-generated content. Coller la légende : Eazy88_TikTok_Vis
- aBallot_Caption.txt
+SUMMARY:Eazy88 · Visa ballot (publiée)
+DESCRIPTION:Publiée par Lucas le 7 nov. sur TikTok\, YouTube Shorts et Ins
+ tagram (boostée).
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:TikTok · Visa ballot
+DESCRIPTION:Visa ballot (publiée)
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-10-1@eazy88-marketing
+UID:eazy88-2026-11-09-1@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261109T080000Z
+DTEND:20261109T083000Z
+SUMMARY:Eazy88 · Vidéo · Car checks
+DESCRIPTION:Fichier : exports/2026-11-07_CarChecks/Eazy88_TikTok_CarChecks_
+ A.mp4\nAvant : confirmer le prix de 2 $ sur ppsr.gov.au/carcheck.\nLabel A
+ I-generated content. Légende : Eazy88_TikTok_CarChecks_Caption.txt
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Vidéo · Car checks
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-10-2@eazy88-marketing
 DTSTAMP:20261107T000000Z
 DTSTART:20261110T073000Z
 DTEND:20261110T074500Z
 SUMMARY:Eazy88 · Stats 72 h · Visa ballot
-DESCRIPTION:TikTok Studio : comptes atteints\, partages\, saves\, commentai
- res\, durée moyenne\, complétion. Noter dans analytics/content-tracker.c
- sv.
+DESCRIPTION:TikTok\, YouTube\, Instagram séparés : comptes atteints\, par
+ tages\, saves\, durée moyenne\, complétion. Instagram : montant du boost
+ \, part payant / organique.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Stats 72 h · Visa ballot
@@ -37,41 +50,28 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-10-2@eazy88-marketing
+UID:eazy88-2026-11-10-3@eazy88-marketing
 DTSTAMP:20261107T000000Z
 DTSTART:20261110T080000Z
 DTEND:20261110T083000Z
-SUMMARY:Eazy88 · TikTok · Car checks
-DESCRIPTION:Fichier : 2_TikTok_CarChecks_PRET.mp4\nAvant : confirmer le pri
- x de 2 $ sur ppsr.gov.au/carcheck.\nActiver le label AI-generated content.
-  Légende : Eazy88_TikTok_CarChecks_Caption.txt
+SUMMARY:Eazy88 · Vidéo · 6-month rule
+DESCRIPTION:Fichier : exports/2026-11-08_SixMonthRule/Eazy88_TikTok_SixMont
+ hRule_A.mp4\nAvant : revérifier la page Home Affairs condition 8547.\nLab
+ el AI-generated content. Légende : Eazy88_TikTok_SixMonthRule_Caption.txt
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:TikTok · Car checks
+DESCRIPTION:Vidéo · 6-month rule
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-13-3@eazy88-marketing
+UID:eazy88-2026-11-11-4@eazy88-marketing
 DTSTAMP:20261107T000000Z
-DTSTART:20261113T073000Z
-DTEND:20261113T074500Z
-SUMMARY:Eazy88 · Stats 72 h · Car checks
-DESCRIPTION:Objectif : saves. Noter dans analytics/content-tracker.csv.
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Stats 72 h · Car checks
-TRIGGER:-PT15M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:eazy88-2026-11-13-4@eazy88-marketing
-DTSTAMP:20261107T000000Z
-DTSTART:20261113T080000Z
-DTEND:20261113T083000Z
+DTSTART:20261111T080000Z
+DTEND:20261111T083000Z
 SUMMARY:Eazy88 · Instagram · Carrousel
-DESCRIPTION:Fichiers : 3_Instagram_Carrousel (5 PNG\, dans l'ordre 01 à 05
- ).\nLégende : section CAROUSEL de Eazy88_LostCount_Captions.txt
+DESCRIPTION:Fichiers : exports/2026-11-07_LostCount/carousel (5 PNG\, ordre
+  01 à 05).\nLégende : section CAROUSEL de Eazy88_LostCount_Captions.txt
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Instagram · Carrousel
@@ -79,28 +79,56 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-14-5@eazy88-marketing
+UID:eazy88-2026-11-12-5@eazy88-marketing
 DTSTAMP:20261107T000000Z
-DTSTART:20261114T073000Z
-DTEND:20261114T074500Z
-SUMMARY:Eazy88 · Stats 7 j · Visa ballot
-DESCRIPTION:Relevé à 7 jours. Noter dans analytics/content-tracker.csv.
+DTSTART:20261112T073000Z
+DTEND:20261112T074500Z
+SUMMARY:Eazy88 · Stats 72 h · Car checks
+DESCRIPTION:Objectif : saves.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Stats 7 j · Visa ballot
+DESCRIPTION:Stats 72 h · Car checks
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-14-6@eazy88-marketing
+UID:eazy88-2026-11-12-6@eazy88-marketing
 DTSTAMP:20261107T000000Z
-DTSTART:20261114T080000Z
-DTEND:20261114T082000Z
+DTSTART:20261112T080000Z
+DTEND:20261112T083000Z
+SUMMARY:Eazy88 · Vidéo · Visa location
+DESCRIPTION:Fichier : exports/2026-11-08_VisaGrantLocation/Eazy88_TikTok_Vi
+ saGrantLocation_A.mp4\nAvant : revérifier Home Affairs WHM latest news.\n
+ Label AI-generated content. Légende : Eazy88_TikTok_VisaGrantLocation_Cap
+ tion.txt
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Vidéo · Visa location
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-13-7@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261113T073000Z
+DTEND:20261113T074500Z
+SUMMARY:Eazy88 · Stats 72 h · 6-month rule
+DESCRIPTION:Objectif : saves.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Stats 72 h · 6-month rule
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-13-8@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261113T080000Z
+DTEND:20261113T082000Z
 SUMMARY:Eazy88 · Instagram · 3 Stories
-DESCRIPTION:Fichiers : 4_Instagram_Stories\, dans l'ordre 01\, 02\, 03.\nSt
- ory 1 : sticker sondage (Phone photos · Notes app · Paper folder · Noth
- ing yet).\nStory 3 : sticker lien https://apps.apple.com/au/app/eazy88/id6
- 759782986
+DESCRIPTION:Fichiers : exports/2026-11-07_LostCount/stories\, ordre 01\, 02
+ \, 03.\nStory 1 : sticker sondage. Story 3 : sticker lien https://apps.app
+ le.com/au/app/eazy88/id6759782986
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Instagram · 3 Stories
@@ -108,25 +136,10 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-15-7@eazy88-marketing
+UID:eazy88-2026-11-14-9@eazy88-marketing
 DTSTAMP:20261107T000000Z
-DTSTART:20261114T233000Z
-DTEND:20261115T000000Z
-SUMMARY:Eazy88 · Envoyer l'enregistrement
-DESCRIPTION:Compte de démo\, fiche de paie EXAMPLE\, 15 à 25 s : Add a pa
- yslip > PDF > vérification > Confirm & Save > accueil.\nSans cet enregist
- rement\, le Reel du 18 nov. est décalé.
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Envoyer l'enregistrement
-TRIGGER:-PT60M
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:eazy88-2026-11-15-8@eazy88-marketing
-DTSTAMP:20261107T000000Z
-DTSTART:20261115T073000Z
-DTEND:20261115T074500Z
+DTSTART:20261114T070000Z
+DTEND:20261114T071500Z
 SUMMARY:Eazy88 · Votes du sondage (Stories)
 DESCRIPTION:Les Stories disparaissent à 18 h 30 : noter les résultats ava
  nt.
@@ -137,12 +150,25 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-16-9@eazy88-marketing
+UID:eazy88-2026-11-14-10@eazy88-marketing
 DTSTAMP:20261107T000000Z
-DTSTART:20261116T073000Z
-DTEND:20261116T074500Z
+DTSTART:20261114T073000Z
+DTEND:20261114T074500Z
+SUMMARY:Eazy88 · Stats 7 j · Visa ballot
+DESCRIPTION:Relevé à 7 jours.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Stats 7 j · Visa ballot
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-14-11@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261114T074500Z
+DTEND:20261114T080000Z
 SUMMARY:Eazy88 · Stats 72 h · Carrousel
-DESCRIPTION:Objectif : saves. Noter dans analytics/content-tracker.csv.
+DESCRIPTION:Objectif : saves.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Stats 72 h · Carrousel
@@ -150,10 +176,63 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-17-10@eazy88-marketing
+UID:eazy88-2026-11-14-12@eazy88-marketing
 DTSTAMP:20261107T000000Z
-DTSTART:20261117T073000Z
-DTEND:20261117T074500Z
+DTSTART:20261114T080000Z
+DTEND:20261114T083000Z
+SUMMARY:Eazy88 · Vidéo à produire
+DESCRIPTION:PAS ENCORE PRODUITE : publier seulement si livrée et validée.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Vidéo à produire
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-15-13@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261114T233000Z
+DTEND:20261115T000000Z
+SUMMARY:Eazy88 · Envoyer l'enregistrement
+DESCRIPTION:Compte de démo\, fiche de paie EXAMPLE\, 20 à 30 s : voir dra
+ fts/2026-11-07_LostCount/reel/footage/README.md
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Envoyer l'enregistrement
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-15-14@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261115T073000Z
+DTEND:20261115T074500Z
+SUMMARY:Eazy88 · Stats 72 h · Visa location
+DESCRIPTION:Objectif : partages.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Stats 72 h · Visa location
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-15-15@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261115T080000Z
+DTEND:20261115T081500Z
+SUMMARY:Eazy88 · Story sondage (à produire)
+DESCRIPTION:Uniquement les vrais chiffres du sondage.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Story sondage (à produire)
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-16-16@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261116T073000Z
+DTEND:20261116T074500Z
 SUMMARY:Eazy88 · Stats 7 j · Car checks
 DESCRIPTION:Relevé à 7 jours.
 BEGIN:VALARM
@@ -163,24 +242,49 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-18-11@eazy88-marketing
+UID:eazy88-2026-11-16-17@eazy88-marketing
 DTSTAMP:20261107T000000Z
-DTSTART:20261118T080000Z
-DTEND:20261118T083000Z
-SUMMARY:Eazy88 · Reel · 88 days. Lost count?
-DESCRIPTION:SEULEMENT si l'enregistrement est reçu et le Reel final valid
- é. Sinon : décaler.\nActiver le label AI-generated content.
+DTSTART:20261116T080000Z
+DTEND:20261116T083000Z
+SUMMARY:Eazy88 · Vidéo à produire
+DESCRIPTION:PAS ENCORE PRODUITE : publier seulement si livrée et validée.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Reel · 88 days. Lost count?
+DESCRIPTION:Vidéo à produire
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-17-18@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261117T073000Z
+DTEND:20261117T074500Z
+SUMMARY:Eazy88 · Stats 7 j · 6-month rule
+DESCRIPTION:Relevé à 7 jours.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Stats 7 j · 6-month rule
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-20-12@eazy88-marketing
+UID:eazy88-2026-11-17-19@eazy88-marketing
 DTSTAMP:20261107T000000Z
-DTSTART:20261120T073000Z
-DTEND:20261120T074500Z
+DTSTART:20261117T080000Z
+DTEND:20261117T083000Z
+SUMMARY:Eazy88 · Vidéo à produire
+DESCRIPTION:PAS ENCORE PRODUITE : publier seulement si livrée et validée.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Vidéo à produire
+TRIGGER:-PT60M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-18-20@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261118T073000Z
+DTEND:20261118T074500Z
 SUMMARY:Eazy88 · Stats 7 j · Carrousel
 DESCRIPTION:Relevé à 7 jours.
 BEGIN:VALARM
@@ -190,12 +294,39 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-21-13@eazy88-marketing
+UID:eazy88-2026-11-18-21@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261118T080000Z
+DTEND:20261118T083000Z
+SUMMARY:Eazy88 · Reel · Lost count? (si prêt)
+DESCRIPTION:SEULEMENT si l'enregistrement d'écran est reçu et le Reel fin
+ al validé. Sinon : décaler.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reel · Lost count? (si prêt)
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-19-22@eazy88-marketing
+DTSTAMP:20261107T000000Z
+DTSTART:20261119T073000Z
+DTEND:20261119T074500Z
+SUMMARY:Eazy88 · Stats 7 j · Visa location
+DESCRIPTION:Relevé à 7 jours.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Stats 7 j · Visa location
+TRIGGER:-PT15M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eazy88-2026-11-21-23@eazy88-marketing
 DTSTAMP:20261107T000000Z
 DTSTART:20261121T073000Z
 DTEND:20261121T074500Z
 SUMMARY:Eazy88 · Stats 72 h · Reel
-DESCRIPTION:Objectif : visites App Store. Noter les clics si disponibles.
+DESCRIPTION:Seulement si le Reel a été publié le 18.
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:Stats 72 h · Reel
@@ -203,16 +334,16 @@ TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:eazy88-2026-11-25-14@eazy88-marketing
+UID:eazy88-2026-11-25-24@eazy88-marketing
 DTSTAMP:20261107T000000Z
 DTSTART:20261125T073000Z
 DTEND:20261125T081500Z
-SUMMARY:Eazy88 · Stats 7 j · Reel + bilan du mois
-DESCRIPTION:Comparer les 5 publications et préparer le calendrier de déce
+SUMMARY:Eazy88 · Stats Reel + bilan du mois
+DESCRIPTION:Comparer toutes les publications de novembre et préparer déce
  mbre.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:Stats 7 j · Reel + bilan du mois
+DESCRIPTION:Stats Reel + bilan du mois
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT

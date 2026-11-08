@@ -1,6 +1,6 @@
-# Planning révisé (proposition, non appliqué) · 9 → 18 nov. 2026
+# Planning révisé (validé et appliqué le 8 nov. 2026 dans Google Agenda) · 9 → 18 nov. 2026
 
-Heure d'Adélaïde (ACDT). Publication suggérée à 18 h 30 (à tester). **Google Agenda n'a pas été modifié ; rien n'est programmé sur les plateformes.**
+Heure d'Adélaïde (ACDT). Publication suggérée à 18 h 30 (à tester). **Appliqué dans Google Agenda le 8 nov. Rien n'est programmé sur les plateformes.**
 
 | Date | Publication | Fichiers | Statut |
 |---|---|---|---|
