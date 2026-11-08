@@ -1,0 +1,50 @@
+{
+ "a01": {
+  "text": "Close to six months with one employer?",
+  "seconds": 2.08
+ },
+ "a02": {
+  "text": "On a working holiday visa, your job might be exempt.",
+  "seconds": 3.21
+ },
+ "a03": {
+  "text": "One. The default rule is six months' work with any one employer.",
+  "seconds": 3.66
+ },
+ "a04": {
+  "text": "It counts the months since you started, not your hours.",
+  "seconds": 2.95
+ },
+ "a05": {
+  "text": "Two. Some sectors are exempt right now,",
+  "seconds": 2.28
+ },
+ "a06": {
+  "text": "including tourism and hospitality, agriculture,",
+  "seconds": 3.08
+ },
+ "a07": {
+  "text": "health, aged care and childcare.",
+  "seconds": 1.92
+ },
+ "a08": {
+  "text": "Same employer, different locations?",
+  "seconds": 2.08
+ },
+ "a09": {
+  "text": "You can stay longer if each location is six months or less.",
+  "seconds": 3.29
+ },
+ "a10": {
+  "text": "Three. Not exempt?",
+  "seconds": 1.3
+ },
+ "a10b": {
+  "text": "You'd need permission, and it's only given in limited cases.",
+  "seconds": 3.46
+ },
+ "a11": {
+  "text": "Save this before you sign your next job.",
+  "seconds": 2.06
+ }
+}

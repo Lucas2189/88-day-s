@@ -1,0 +1,128 @@
+{
+ "base": "Eazy88_TikTok_VisaGrantLocation",
+ "header": "EAZY88 · BACKPACKER TIPS",
+ "sections": [
+  {
+   "id": "hook",
+   "kind": "hook",
+   "cues": [
+    "c01",
+    "c02"
+   ],
+   "y": 430,
+   "title_size": 128,
+   "title": [
+    "WAITING ON YOUR",
+    "WORKING HOLIDAY",
+    "VISA? *DON'T BOOK*",
+    "*FLIGHTS YET*"
+   ],
+   "chip": {
+    "text": "WORKING HOLIDAY · 417 / 462",
+    "color": "muted"
+   },
+   "foot": "Home Affairs guidance · Checked 8 Nov 2026"
+  },
+  {
+   "id": "s1",
+   "kind": "stats",
+   "num": "1",
+   "cues": [
+    "c03"
+   ],
+   "y": 410,
+   "title": "PROCESSING\n*TIME*",
+   "chip": {
+    "text": "AVERAGE, EXPECTED",
+    "color": "muted"
+   },
+   "stats": [
+    {
+     "big": "~3 MONTHS",
+     "label": "for most working holiday applications",
+     "at": "c03",
+     "color": "orange"
+    }
+   ],
+   "foot": "Source: immi.homeaffairs.gov.au (WHM latest news), checked 8 Nov 2026",
+   "foot_at": "c03"
+  },
+  {
+   "id": "s2",
+   "kind": "point",
+   "num": "2",
+   "cues": [
+    "c04",
+    "c05",
+    "c06"
+   ],
+   "y": 410,
+   "title": "BE IN THE\n*RIGHT PLACE*",
+   "chip": {
+    "text": "WHEN YOUR VISA IS GRANTED",
+    "color": "orange",
+    "at": "c04"
+   },
+   "items": [
+    {
+     "text": "Applied in Australia: be *in* Australia",
+     "at": "c05",
+     "icon": "check"
+    },
+    {
+     "text": "Applied from overseas: be *outside* Australia",
+     "at": "c06",
+     "icon": "check"
+    }
+   ],
+   "foot": "Source: immi.homeaffairs.gov.au (WHM latest news)",
+   "foot_at": "c05"
+  },
+  {
+   "id": "s3",
+   "kind": "point",
+   "num": "3",
+   "cues": [
+    "c07",
+    "c08"
+   ],
+   "y": 410,
+   "title": "WAIT FOR\n*THE GRANT*",
+   "chip": {
+    "text": "HOME AFFAIRS RECOMMENDS",
+    "color": "muted"
+   },
+   "items": [
+    {
+     "text": "Before booking flights",
+     "at": "c07",
+     "icon": "warn",
+     "icon_color": "orange"
+    },
+    {
+     "text": "Before locking in work or study plans",
+     "at": "c08",
+     "icon": "warn",
+     "icon_color": "orange"
+    }
+   ],
+   "foot": "Source: immi.homeaffairs.gov.au (WHM latest news)",
+   "foot_at": "c07"
+  },
+  {
+   "id": "cta",
+   "kind": "cta",
+   "cues": [
+    "c09"
+   ],
+   "y": 330,
+   "glyph": "share",
+   "title": [
+    "SEND THIS",
+    "TO A MATE",
+    "*WAITING ON A VISA*"
+   ],
+   "foot": "General information, not migration advice."
+  }
+ ]
+}

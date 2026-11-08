@@ -1,0 +1,132 @@
+{
+ "base": "Eazy88_TikTok_SixMonthRule",
+ "header": "EAZY88 · BACKPACKER TIPS",
+ "sections": [
+  {
+   "id": "hook",
+   "kind": "hook",
+   "cues": [
+    "a01",
+    "a02"
+   ],
+   "y": 430,
+   "title_size": 128,
+   "title": [
+    "6 MONTHS WITH",
+    "ONE EMPLOYER?",
+    "*YOUR JOB MAY*",
+    "*BE EXEMPT*"
+   ],
+   "chip": {
+    "text": "WORKING HOLIDAY · 417 / 462",
+    "color": "muted"
+   },
+   "foot": "Visa condition 8547 · Checked 8 Nov 2026"
+  },
+  {
+   "id": "s1",
+   "kind": "stats",
+   "num": "1",
+   "cues": [
+    "a03",
+    "a04"
+   ],
+   "y": 410,
+   "title": "THE DEFAULT\n*RULE*",
+   "chip": {
+    "text": "CONDITION 8547",
+    "color": "muted"
+   },
+   "stats": [
+    {
+     "big": "6 MONTHS",
+     "label": "max with any one employer",
+     "at": "a03",
+     "color": "orange"
+    }
+   ],
+   "foot": "Counted from the day you start, not by hours or days worked.\nSource: immi.homeaffairs.gov.au (page updated 4 Nov 2026)",
+   "foot_at": "a04"
+  },
+  {
+   "id": "s2",
+   "kind": "point",
+   "num": "2",
+   "cues": [
+    "a05",
+    "a06",
+    "a07",
+    "a08",
+    "a09"
+   ],
+   "y": 410,
+   "title": "EXEMPT *RIGHT NOW*",
+   "items": [
+    {
+     "text": "Tourism and hospitality",
+     "at": "a06",
+     "icon": "check"
+    },
+    {
+     "text": "Agriculture",
+     "at": "a06+1.7",
+     "icon": "check"
+    },
+    {
+     "text": "Health, aged care, childcare",
+     "at": "a07",
+     "icon": "check"
+    },
+    {
+     "text": "Different locations: *6 months max each*",
+     "at": "a08",
+     "icon": "check"
+    }
+   ],
+   "foot": "Applies until the Government decides otherwise. Source: immi.homeaffairs.gov.au (condition 8547)",
+   "foot_at": "a06"
+  },
+  {
+   "id": "s3",
+   "kind": "point",
+   "num": "3",
+   "cues": [
+    "a10",
+    "a10b"
+   ],
+   "y": 410,
+   "title": "NOT EXEMPT?\n*ASK FIRST*",
+   "items": [
+    {
+     "text": "You need permission from Home Affairs",
+     "at": "a10b",
+     "icon": "warn",
+     "icon_color": "orange"
+    },
+    {
+     "text": "Only given in *limited cases*",
+     "at": "a10b+1.5",
+     "icon": "dot",
+     "icon_color": "orange"
+    }
+   ],
+   "foot": "Source: immi.homeaffairs.gov.au (requesting permission)",
+   "foot_at": "a10b"
+  },
+  {
+   "id": "cta",
+   "kind": "cta",
+   "cues": [
+    "a11"
+   ],
+   "y": 330,
+   "glyph": "bookmark",
+   "title": [
+    "SAVE THIS",
+    "BEFORE YOU SIGN",
+    "*YOUR NEXT JOB*"
+   ],
+   "foot": "General information, not migration advice."
+  }
+ ]
+}

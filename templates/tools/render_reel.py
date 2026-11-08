@@ -429,7 +429,8 @@ class Reel:
                     lines = wrap(self.f_item, it["text"], SAFE_X1 - SAFE_X0 - pad * 2 - 64)
                     rows.append((it, lines))
                 card_h = pad * 2 + sum(len(l) * 58 + 26 for _, l in rows) - 26
-                rounded(d, (SAFE_X0, card_top, SAFE_X1, card_top + card_h), 30, C["surface"] + (255,), outline=C["line"] + (255,))
+                ca, cdy = appear(rows[0][0].get("at")) if rows else (255, 0)  # card fades in with its first item
+                rounded(d, (SAFE_X0, card_top + cdy, SAFE_X1, card_top + cdy + card_h), 30, C["surface"] + (ca,), outline=C["line"] + (ca,))
                 yy = card_top + pad
                 for it, lines in rows:
                     a, dy = appear(it.get("at"))

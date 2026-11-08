@@ -1,0 +1,38 @@
+{
+ "c01": {
+  "text": "Waiting on your working holiday visa?",
+  "seconds": 2.0
+ },
+ "c02": {
+  "text": "Don't book that flight yet. Here's why.",
+  "seconds": 2.17
+ },
+ "c03": {
+  "text": "One. Average processing is expected to be around three months.",
+  "seconds": 3.84
+ },
+ "c04": {
+  "text": "Two. You must be in the right place when it's granted.",
+  "seconds": 2.63
+ },
+ "c05": {
+  "text": "Applied in Australia? Be in Australia.",
+  "seconds": 2.29
+ },
+ "c06": {
+  "text": "Applied from overseas? Be outside Australia.",
+  "seconds": 2.73
+ },
+ "c07": {
+  "text": "Three. Wait for the grant before booking flights,",
+  "seconds": 2.52
+ },
+ "c08": {
+  "text": "or locking in work or study plans.",
+  "seconds": 2.02
+ },
+ "c09": {
+  "text": "Send this to a mate who's waiting on their visa.",
+  "seconds": 2.51
+ }
+}
