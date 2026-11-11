@@ -1,0 +1,119 @@
+{
+ "base": "Eazy88_Reel_HostelDemo",
+ "header": "EAZY88",
+ "duration": 30.0,
+ "hook_title": [
+  "88 DAYS.",
+  "*LOST COUNT?*"
+ ],
+ "hook_title_B": [
+  "PAYSLIPS EVERYWHERE.",
+  "*HOW MANY DAYS?*"
+ ],
+ "hook_B_cue_replaces": "s1a",
+ "hook_B_cue": "s1a_B",
+ "scenes": [
+  {
+   "id": "problem",
+   "kind": "char",
+   "hook": true,
+   "title_until": 3.4,
+   "start": 0.0,
+   "end": 4.6,
+   "lead": 0.1,
+   "clip": "footage/scene1_problem.mp4",
+   "audio": "clip",
+   "cues": [
+    "s1a",
+    "s1b"
+   ],
+   "shot": "Hostel common room, evening. Backpacker 1 scrolls through work records on their phone, frowning; Backpacker 2 sits across the table. Medium two-shot, no hand close-ups."
+  },
+  {
+   "id": "handover",
+   "kind": "char",
+   "start": 4.6,
+   "end": 7.4,
+   "lead": 0.1,
+   "clip": "footage/scene2_handover.mp4",
+   "audio": "clip",
+   "cues": [
+    "s2a"
+   ],
+   "shot": "Same table. Backpacker 2 picks up their own phone and starts explaining. Medium shot; phone screen not readable (the real screen recording follows)."
+  },
+  {
+   "id": "demo",
+   "kind": "demo",
+   "start": 7.4,
+   "end": 22.2,
+   "clip": "footage/eazy88_demo.mp4",
+   "steps": [
+    {
+     "cue": "d1",
+     "label": "Add",
+     "clip_in": 0.0,
+     "shows": "Home screen, tap 'Add a payslip', pick Photo / PDF",
+     "focus": null,
+     "zoom": 1.3
+    },
+    {
+     "cue": "d2",
+     "label": "Read",
+     "clip_in": 4.0,
+     "shows": "The app reads the payslip: employer, dates, hours, pay",
+     "focus": null,
+     "zoom": 1.35
+    },
+    {
+     "cue": "d3",
+     "label": "Check",
+     "clip_in": 8.0,
+     "shows": "Check screen: the extracted details, then Save",
+     "focus": null,
+     "zoom": 1.35
+    },
+    {
+     "cue": "d4",
+     "label": "Track",
+     "clip_in": 12.0,
+     "shows": "Home screen: days done / 88 and days remaining",
+     "focus": null,
+     "zoom": 1.3
+    }
+   ]
+  },
+  {
+   "id": "reaction",
+   "kind": "char",
+   "start": 22.2,
+   "end": 26.6,
+   "lead": 0.1,
+   "clip": "footage/scene3_reaction.mp4",
+   "audio": "clip",
+   "cues": [
+    "r1",
+    "r2"
+   ],
+   "shot": "Back at the table. Backpacker 1 relaxes, small nod; Backpacker 2 shrugs 'that's it'. Medium two-shot, same framing as scene 1."
+  },
+  {
+   "id": "cta",
+   "kind": "cta",
+   "start": 26.6,
+   "end": 30.0,
+   "lead": 0.2,
+   "cues": [
+    "c1"
+   ],
+   "transition": "blend",
+   "title": [
+    "TRACK YOUR PROGRESS",
+    "*WITH EAZY88*"
+   ],
+   "foot": "Demo data. Eazy88 helps you keep your records. Home Affairs decides what counts as specified work.",
+   "screen_fallback": "references/official-sources/app-screens_website_2026-11-07/home.png",
+   "screen_fallback_label": "Real app screen · eazy88.com"
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 # Eazy88 — Product facts
 
-Dernière vérification : **7 novembre 2026**.
+Dernière vérification : **7 novembre 2026** ; fiche App Store et site relus le **11 novembre 2026** (voir « Revérification du 11 nov. » ci-dessous).
 Sources : fiche App Store Australie (https://apps.apple.com/au/app/eazy88/id6759782986), site officiel (https://eazy88.com/en), écrans d'app publiés sur le site, et les instructions marketing fournies (vérification du 31 oct. 2026).
 Copies datées : `references/official-sources/`.
 
@@ -65,6 +65,12 @@ Ces formulations contredisent la règle « pas d'affirmation d'éligibilité ».
 - L'exemple d'octobre 2026 des instructions cite un tirage au sort de visas « annoncé le 17 sept. 2026, pas encore en vigueur ». À revérifier sur immi.homeaffairs.gov.au avant toute utilisation.
 
 ---
+
+### Revérification du 11 nov. 2026 (App Store AU + eazy88.com/en)
+- App Store : toujours v1.1 (7 oct.), gratuite, note 2,0/5 sur 4 évaluations, vendeur Mattheo Roffi. Formulations officielles utilisables : « Upload your payslips and let AI extract employer, dates, hours and income » ; « Automatically calculate your validated visa days from your payslips » (→ chez nous : *track / keeps the count*, jamais *validated*).
+- **Aucune formule heures → jours n'est documentée** (ni sur le site, ni sur l'App Store). Le site donne un seul exemple (« 1 – 7 Sept · 56 h · $1,365 » → « 7 days validated »). Ne jamais énoncer de règle de conversion dans nos contenus.
+- Le site ne dit pas si les champs lus sont modifiables avant enregistrement : à confirmer sur l'enregistrement d'écran.
+- Outils de production (session du 11 nov.) : Canva « create-video » **bloqué par l'offre Canva actuelle** (mise à niveau payante requise) ; connecteur Runway présent mais sans outil de génération exposé ; invideo : import de timeline seulement. → Aucun générateur de personnages / lip-sync gratuit disponible.
 
 ## 3. Assets manquants
 

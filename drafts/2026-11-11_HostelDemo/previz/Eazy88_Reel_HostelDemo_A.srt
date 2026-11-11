@@ -1,0 +1,40 @@
+1
+00:00:00,100 --> 00:00:02,328
+How many days have I actually done?
+
+2
+00:00:02,328 --> 00:00:04,600
+Let's check in Eazy88.
+
+3
+00:00:04,700 --> 00:00:07,400
+Add your payslips, and it keeps the count for you.
+
+4
+00:00:07,550 --> 00:00:10,914
+Tap Add a payslip. Photo or PDF.
+
+5
+00:00:11,250 --> 00:00:14,950
+It reads the employer, the dates, the hours and the pay.
+
+6
+00:00:14,950 --> 00:00:17,340
+Check the details, then save.
+
+7
+00:00:18,650 --> 00:00:22,200
+Back on the home screen: days done, and days remaining.
+
+8
+00:00:22,300 --> 00:00:24,535
+Okay, now I know where I'm at.
+
+9
+00:00:24,535 --> 00:00:26,600
+Just keep adding your payslips.
+
+10
+00:00:26,800 --> 00:00:29,461
+Track your progress with Eazy88.
+

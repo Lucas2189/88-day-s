@@ -1,0 +1,16 @@
+Eazy88 — character scene prompts (fictional adults, no real person, no text, no logo, no watermark; 9:16, 1080x1920)
+
+SHARED LOOK
+Australian hostel common room at the end of the day. Worn wooden table, soft late-afternoon light from a side window, a backpack and a steel water bottle on the bench, a blurred notice board behind. Natural colours, slightly warm, handheld-steady medium shot at eye level. Ordinary casual clothes, no visible brands. Subtle acting, no exaggerated gestures, no hands in close-up operating a phone.
+
+B1 (the one who lost count): woman, 25-30, light brown hair tied back, faded grey t-shirt, fabric bracelet, slightly sun-tanned, tired but friendly.
+B2 (the one who shows the app): man, 25-30, short dark hair, open linen shirt over a plain t-shirt, three-day stubble, calm and relaxed.
+
+SCENE 1 — scene1_problem.mp4 (>= 4.6 s; hook B version >= 5.0 s)
+Two-shot across the table. B1 scrolls on her phone, frowning slightly, and says: "How many days have I actually done?" B2, across from her, answers with a small smile: "Let's check in Eazy88." Locked-off camera. Lip-sync to audio/s1a.wav then audio/s1b.wav (hook B: audio/s1a_B.wav then s1b.wav).
+
+SCENE 2 — scene2_handover.mp4 (>= 2.8 s)
+Same framing, slightly tighter on B2. He picks up his own phone, glances at it and says: "Add your payslips, and it keeps the count for you." The phone screen is not readable (turned away or out of focus). Lip-sync to audio/s2a.wav.
+
+SCENE 3 — scene3_reaction.mp4 (>= 4.4 s)
+Same two-shot as scene 1. B1 leans back a little, relieved, small nod: "Okay, now I know where I'm at." B2 shrugs lightly: "Just keep adding your payslips." Lip-sync to audio/r1.wav then audio/r2.wav.

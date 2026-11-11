@@ -1,0 +1,79 @@
+{
+ "s1a": {
+  "text": "How many days have I actually done?",
+  "speaker": "B1",
+  "voice": "bf_emma",
+  "phonemes": "hˌW mˈɛni dˈAz hav ˌI ˈakʧʊəli dˈʌn?",
+  "seconds": 1.93
+ },
+ "s1b": {
+  "text": "Let's check in Eazy88.",
+  "speaker": "B2",
+  "voice": "am_michael",
+  "phonemes": "lˈɛts ʧˈɛk ɪn ˈizi ˈAɾi ˈAt.",
+  "seconds": 1.68
+ },
+ "s2a": {
+  "text": "Add your payslips, and it keeps the count for you.",
+  "speaker": "B2",
+  "voice": "am_michael",
+  "phonemes": "ˈæd jʊɹ pˈAslˌɪps, ænd ɪt kˈips ðə kˈWnt fɔɹ ju.",
+  "seconds": 2.68
+ },
+ "d1": {
+  "text": "Tap Add a payslip. Photo or PDF.",
+  "speaker": "B2",
+  "voice": "am_michael",
+  "phonemes": "tˈæp ˈæd ɐ pˈAslˌɪp. fˈOɾO ɔɹ pˌidˌiˈɛf.",
+  "seconds": 2.76
+ },
+ "d2": {
+  "text": "It reads the employer, the dates, the hours and the pay.",
+  "speaker": "B2",
+  "voice": "am_michael",
+  "phonemes": "ˌɪt ɹˈidz ði ɪmplˈYjəɹ, ðə dˈAts, ði ˈWəɹz ænd ðə pˈA.",
+  "seconds": 3.19
+ },
+ "d3": {
+  "text": "Check the details, then save.",
+  "speaker": "B2",
+  "voice": "am_michael",
+  "phonemes": "ʧˈɛk ðə dətˈAlz, ðˈɛn sˈAv.",
+  "seconds": 1.79
+ },
+ "d4": {
+  "text": "Back on the home screen: days done, and days remaining.",
+  "speaker": "B2",
+  "voice": "am_michael",
+  "phonemes": "bˈæk ˌɔn ðə hˈOm skɹˈin: dˈAz dˈʌn, ænd dˈAz ɹəmˈAnɪŋ.",
+  "seconds": 3.46
+ },
+ "r1": {
+  "text": "Okay, now I know where I'm at.",
+  "speaker": "B1",
+  "voice": "bf_emma",
+  "phonemes": "ˌQkˈA, nˈW ˌI nˈQ wˌɛː ˌIm at.",
+  "seconds": 1.93
+ },
+ "r2": {
+  "text": "Just keep adding your payslips.",
+  "speaker": "B2",
+  "voice": "am_michael",
+  "phonemes": "ʤˈʌst kˈip ˈædɪŋ jʊɹ pˈAslˌɪps.",
+  "seconds": 1.7
+ },
+ "c1": {
+  "text": "Track your progress with Eazy88.",
+  "speaker": "B2",
+  "voice": "am_michael",
+  "phonemes": "tɹˈæk jʊɹ pɹˈɑɡɹəs wɪð ˈizi ˈAɾi ˈAt.",
+  "seconds": 2.06
+ },
+ "s1a_B": {
+  "text": "Payslips everywhere. How many days is that?",
+  "speaker": "B1",
+  "voice": "bf_emma",
+  "phonemes": "pˈAslɪps ˈɛvɹɪwɛː. hˌW mˈɛni dˈAz ɪz ðˈat?",
+  "seconds": 2.51
+ }
+}

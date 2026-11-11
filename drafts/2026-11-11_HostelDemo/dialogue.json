@@ -1,0 +1,71 @@
+{
+ "speakers": {
+  "B1": {
+   "name": "Backpacker 1 (confused)",
+   "voice": "bf_emma",
+   "british": true
+  },
+  "B2": {
+   "name": "Backpacker 2 (helper)",
+   "voice": "am_michael",
+   "british": false
+  }
+ },
+ "lines": [
+  [
+   "s1a",
+   "B1",
+   "How many days have I actually done?"
+  ],
+  [
+   "s1b",
+   "B2",
+   "Let's check in Eazy88."
+  ],
+  [
+   "s2a",
+   "B2",
+   "Add your payslips, and it keeps the count for you."
+  ],
+  [
+   "d1",
+   "B2",
+   "Tap Add a payslip. Photo or PDF."
+  ],
+  [
+   "d2",
+   "B2",
+   "It reads the employer, the dates, the hours and the pay."
+  ],
+  [
+   "d3",
+   "B2",
+   "Check the details, then save."
+  ],
+  [
+   "d4",
+   "B2",
+   "Back on the home screen: days done, and days remaining."
+  ],
+  [
+   "r1",
+   "B1",
+   "Okay, now I know where I'm at."
+  ],
+  [
+   "r2",
+   "B2",
+   "Just keep adding your payslips."
+  ],
+  [
+   "c1",
+   "B2",
+   "Track your progress with Eazy88."
+  ],
+  [
+   "s1a_B",
+   "B1",
+   "Payslips everywhere. How many days is that?"
+  ]
+ ]
+}
