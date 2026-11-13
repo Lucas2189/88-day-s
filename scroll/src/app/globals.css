@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #000000;
+  --color-surface: #0d0d0f;
+  --color-surface-2: #18181c;
+  --color-surface-3: #232329;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-fg: #f5f5f7;
+  --color-fg-muted: rgba(245, 245, 247, 0.62);
+  --color-fg-faint: rgba(245, 245, 247, 0.38);
+  --color-accent: #ffffff;
+  --color-like: #ff3b5c;
+  --color-save: #ffd60a;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "SF Pro Text", sans-serif;
+  --font-display: var(--font-display), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --radius-xl: 1.25rem;
+  --shadow-float: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+:root {
+  color-scheme: dark;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --tabbar-h: 64px;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* Fullscreen vertical snap feed */
+.feed-scroller {
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.feed-scroller::-webkit-scrollbar {
+  display: none;
+}
+.feed-slide {
+  height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.safe-top {
+  padding-top: var(--safe-top);
+}
+.safe-bottom {
+  padding-bottom: var(--safe-bottom);
+}
+
+/* Third-party embeds: keep them inside the slide without visual hacks over the player */
+.embed-shell iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+  display: block;
+}
+.embed-shell blockquote {
+  margin: 0 auto !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+.embed-shell .instagram-media,
+.embed-shell .twitter-tweet,
+.embed-shell .reddit-embed-bq {
+  width: 100% !important;
+  max-width: 540px !important;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, #121214 0%, #1c1c20 50%, #121214 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
