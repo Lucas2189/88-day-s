@@ -1,0 +1,32 @@
+{
+ "base": "Eazy88_TikTok_BallotUpdate",
+ "header": "EAZY88 · BACKPACKER TIPS",
+ "sections": [
+  {"id": "hook", "kind": "hook", "cues": ["u01", "u02"], "y": 430, "title_size": 128,
+   "title": ["VISA BALLOT:", "NOW BEING", "*RECONSIDERED*"],
+   "chip": {"text": "WORKING HOLIDAY · 417 / 462", "color": "muted"},
+   "foot": "What's confirmed · Checked 14 Nov 2026"},
+  {"id": "s1", "kind": "point", "num": "1", "cues": ["u03", "u04", "u05"], "y": 410,
+   "title": "ROLLOUT BEING\n*RECONSIDERED*",
+   "chip": {"text": "SAID ON 13 NOV 2026", "color": "muted"},
+   "items": [
+     {"text": "Home Affairs Minister: the government is reconsidering how the changes roll out", "at": "u03", "icon": "dot", "icon_color": "orange"},
+     {"text": "He called them *tweaks*", "at": "u05", "icon": "dot", "icon_color": "orange"}],
+   "foot": "Sources: ABC News and PS News, 13 Nov 2026 (direct quotes)", "foot_at": "u03"},
+  {"id": "s2", "kind": "point", "num": "2", "cues": ["u06", "u07"], "y": 410,
+   "title": "TOTAL PLACES:\n*CAN'T SHIFT*",
+   "items": [
+     {"text": "The total number of working holiday places he announced stays, he says", "at": "u06", "icon": "dot", "icon_color": "orange"}],
+   "foot": "Source: ABC News, 13 Nov 2026", "foot_at": "u06"},
+  {"id": "s3", "kind": "point", "num": "3", "cues": ["u08", "u09", "u10"], "y": 410,
+   "title": "REPORTED,\n*NOT ANNOUNCED*",
+   "items": [
+     {"text": "Reports: ballot could be delayed to early 2027", "at": "u08", "icon": "dot", "icon_color": "orange"},
+     {"text": "Not announced. Not on Home Affairs' WHM news page", "at": "u09", "icon": "warn", "icon_color": "orange"},
+     {"text": "Specified work: *still required today*", "at": "u10", "icon": "check"}],
+   "foot": "Reports: The Australian via ABC, 13 Nov · immi.homeaffairs.gov.au checked 14 Nov 2026", "foot_at": "u08"},
+  {"id": "cta", "kind": "cta", "cues": ["u11"], "y": 330, "glyph": "follow",
+   "title": ["FOLLOW EAZY88", "WE'LL POST WHEN", "*IT'S DECIDED*"],
+   "foot": "General information, not migration advice."}
+ ]
+}

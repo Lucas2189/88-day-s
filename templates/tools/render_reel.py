@@ -156,6 +156,16 @@ def icon_download(draw, cx, cy, s, color, alpha):
     draw.line([(cx - s * 0.45, cy + s * 0.62), (cx + s * 0.45, cy + s * 0.62)], fill=col, width=int(w * 0.8))
 
 
+def icon_follow(draw, cx, cy, s, color, alpha):
+    if alpha <= 0:
+        return
+    draw.ellipse((cx - s, cy - s, cx + s, cy + s), fill=color + (alpha,))
+    col = C["bg"] + (alpha,)
+    w = int(s * 0.2)
+    draw.line([(cx - s * 0.45, cy), (cx + s * 0.45, cy)], fill=col, width=w)
+    draw.line([(cx, cy - s * 0.45), (cx, cy + s * 0.45)], fill=col, width=w)
+
+
 ICONS = {"check": icon_check, "warn": icon_warn, "dot": icon_dot}
 CHIP_COL = {"orange": ("orange", "bg"), "green": ("green_l", "bg"), "muted": ("line2", "cream")}
 
@@ -474,6 +484,8 @@ class Reel:
                 icon_bookmark(d, SAFE_X0 + 70, y + 70 + dy, 70, C["orange"], a)
             elif gi == "download":
                 icon_download(d, SAFE_X0 + 70, y + 70 + dy, 70, C["orange"], a)
+            elif gi == "follow":
+                icon_follow(d, SAFE_X0 + 70, y + 70 + dy, 70, C["orange"], a)
             y += 170
             f = fit_font(sec["title"], sec.get("title_size", 116))
             for ln in sec["title"]:

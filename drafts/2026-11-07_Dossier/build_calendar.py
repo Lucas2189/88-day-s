@@ -40,20 +40,26 @@ EVENTS = [
     (14, "17:30", "stats", "Votes du sondage (Stories)", 15, "Les Stories disparaissent à 18 h 30 : noter les résultats avant."),
     (14, "18:00", "stats", "Stats 7 j · Visa ballot", 15, "Relevé à 7 jours."),
     (14, "18:15", "stats", "Stats 72 h · Carrousel", 15, "Objectif : saves."),
-    (14, "18:30", "todo", "Vidéo à produire", 30, "PAS ENCORE PRODUITE : publier seulement si livrée et validée."),
+    (14, "18:30", "todo", "Créneau libre (vidéo non produite)", 30, "Aucune publication : la vidéo prévue n'a pas été produite."),
     (15, "10:00", "todo", "Envoyer l'enregistrement", 30,
      "Compte de démo, fiche de paie EXAMPLE, 20 à 30 s : voir drafts/2026-11-07_LostCount/reel/footage/README.md"),
     (15, "18:00", "stats", "Stats 72 h · Visa location", 15, "Objectif : partages."),
     (15, "18:30", "todo", "Story sondage (à produire)", 15, "Uniquement les vrais chiffres du sondage."),
     (16, "18:00", "stats", "Stats 7 j · Car checks", 15, "Relevé à 7 jours."),
-    (16, "18:30", "todo", "Vidéo à produire", 30, "PAS ENCORE PRODUITE : publier seulement si livrée et validée."),
+    (16, "18:30", "post_tt", "Vidéo · Ballot update", 30,
+     "Fichier : exports/2026-11-14_BallotUpdate/Eazy88_TikTok_BallotUpdate_A.mp4\nAvant : relire ABC et Home Affairs ; si une décision est annoncée, prévenir pour recouper.\nLabel AI-generated content. Légende : Eazy88_TikTok_BallotUpdate_Caption.txt"),
     (17, "18:00", "stats", "Stats 7 j · 6-month rule", 15, "Relevé à 7 jours."),
-    (17, "18:30", "todo", "Vidéo à produire", 30, "PAS ENCORE PRODUITE : publier seulement si livrée et validée."),
+    (17, "18:30", "post_tt", "Vidéo · First shift setup", 30,
+     "Fichier : exports/2026-11-14_FirstShiftSetup/Eazy88_TikTok_FirstShiftSetup_A.mp4\nLabel AI-generated content. Légende : Eazy88_TikTok_FirstShiftSetup_Caption.txt"),
     (18, "18:00", "stats", "Stats 7 j · Carrousel", 15, "Relevé à 7 jours."),
     (18, "18:30", "post_reel", "Reel · Lost count? (si prêt)", 30,
      "SEULEMENT si l'enregistrement d'écran est reçu et le Reel final validé. Sinon : décaler."),
     (19, "18:00", "stats", "Stats 7 j · Visa location", 15, "Relevé à 7 jours."),
     (21, "18:00", "stats", "Stats 72 h · Reel", 15, "Seulement si le Reel a été publié le 18."),
+    (19, "18:15", "stats", "Stats 72 h · Ballot update", 15, "Objectif : follows (abonnés gagnés attribués au post)."),
+    (20, "18:00", "stats", "Stats 72 h · First shift", 15, "Objectif : saves."),
+    (23, "18:00", "stats", "Stats 7 j · Ballot update", 15, "Relevé à 7 jours."),
+    (24, "18:00", "stats", "Stats 7 j · First shift", 15, "Relevé à 7 jours."),
     (25, "18:00", "stats", "Stats Reel + bilan du mois", 45, "Comparer toutes les publications de novembre et préparer décembre."),
 ]
 KIND = {
@@ -180,7 +186,7 @@ def write_pdf(path):
                 yy -= 6.9 * mm
     c.setFont("PJS-Medium", 7.5)
     c.setFillColor(colors.HexColor("#6B6155"))
-    c.drawString(14 * mm, 8 * mm, "Mis à jour le 8 nov. Jaune = pas encore produit. Le Reel du 18 n'est publié que si l'enregistrement d'écran est reçu le 15 et le Reel validé. "
+    c.drawString(14 * mm, 8 * mm, "Mis à jour le 14 nov. Jaune = pas encore produit. Le Reel du 18 n'est publié que si l'enregistrement d'écran est reçu le 15 et le Reel validé. "
                                   "Importez Eazy88_Calendrier_Nov2026.ics dans votre app Calendrier pour avoir les rappels.")
     c.showPage()
     c.save()

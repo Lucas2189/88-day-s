@@ -9,10 +9,10 @@ Heure d'Adélaïde (ACDT). Publication suggérée à 18 h 30 (à tester). **Appl
 | Mer. 11 | Instagram · Carrousel checklist (5 visuels) | `exports/2026-11-07_LostCount/carousel/` | ✅ prêt |
 | Jeu. 12 | TikTok + Shorts · VisaGrantLocation | `exports/2026-11-08_VisaGrantLocation/Eazy88_TikTok_VisaGrantLocation_A.mp4` | ✅ prêt |
 | Ven. 13 | Instagram · 3 Stories | `exports/2026-11-07_LostCount/stories/` | ✅ prêt |
-| Sam. 14 | Nouvelle vidéo (budget ou vie en hostel) | — | 📝 à produire (recherche à faire) |
+| Sam. 14 | Aucune publication (vidéo non produite : pas de source officielle) | — | — |
 | Dim. 15 | 10 h : envoyer l'enregistrement d'écran · Story légère (résultats du sondage) | — | 📝 à produire |
-| Lun. 16 | Nouvelle vidéo | — | 📝 à produire |
-| Mar. 17 | Nouvelle vidéo | — | 📝 à produire |
+| Lun. 16 | Vidéo · Ballot update (ballot reconsidéré) | `exports/2026-11-14_BallotUpdate/` | ✅ prêt (revérifier le 16) |
+| Mar. 17 | Vidéo · First shift setup (TFN, employeur enregistré, super) | `exports/2026-11-14_FirstShiftSetup/` | ✅ prêt |
 | Mer. 18 | Reel « Lost count? » | `drafts/2026-11-07_LostCount/reel/` | ⛔ bloqué (enregistrement d'écran) |
 
 ## Relevés de statistiques (72 h après chaque post, 18 h 00)

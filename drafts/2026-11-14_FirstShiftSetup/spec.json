@@ -1,0 +1,29 @@
+{
+ "base": "Eazy88_TikTok_FirstShiftSetup",
+ "header": "EAZY88 · BACKPACKER TIPS",
+ "sections": [
+  {"id": "hook", "kind": "hook", "cues": ["f01", "f02"], "y": 430, "title_size": 122,
+   "title": ["JUST LANDED?", "3 THINGS TO SORT", "*BEFORE YOUR*", "*FIRST SHIFT*"],
+   "chip": {"text": "WORKING HOLIDAY · 417 / 462", "color": "muted"},
+   "foot": "Source: ato.gov.au · Checked 14 Nov 2026"},
+  {"id": "s1", "kind": "point", "num": "1", "cues": ["f03", "f04", "f05", "f06"], "y": 410,
+   "title": "GET A\n*TAX FILE NUMBER*",
+   "items": [
+     {"text": "Free · online · about 20 minutes", "at": "f04", "icon": "check"},
+     {"text": "Apply once you're in Australia", "at": "f05", "icon": "check"},
+     {"text": "No TFN? Tax withheld at the *top rate*", "at": "f06", "icon": "warn", "icon_color": "orange"}],
+   "foot": "Allow up to 28 days for it to arrive by post. Source: ato.gov.au (TFN application)", "foot_at": "f04"},
+  {"id": "s2", "kind": "stats", "num": "2", "cues": ["f07", "f08", "f08b"], "y": 410,
+   "title": "EMPLOYER\n*REGISTERED?*",
+   "chip": {"text": "FOR WORKING HOLIDAY MAKERS", "color": "muted"},
+   "stats": [{"big": "15%", "label": "withheld on your first $45,000 with a registered employer", "at": "f08", "color": "orange"}],
+   "foot": "2026–27 rates. Source: ato.gov.au (Schedule 15, working holiday makers)", "foot_at": "f08"},
+  {"id": "s3", "kind": "stats", "num": "3", "cues": ["f09", "f10", "f11", "f12"], "y": 410,
+   "title": "SUPER:\n*ON TOP OF PAY*",
+   "stats": [{"big": "12%", "label": "super your employer must pay, backpackers included (18+)", "at": "f09", "color": "green_l"}],
+   "foot": "Claim it after you leave and your visa ends (DASP). Taxed at 65% for working holiday makers.\nSource: ato.gov.au", "foot_at": "f11"},
+  {"id": "cta", "kind": "cta", "cues": ["f13"], "y": 330, "glyph": "bookmark",
+   "title": ["SAVE THIS", "FOR YOUR", "*FIRST WEEK*"],
+   "foot": "General information, not tax advice."}
+ ]
+}

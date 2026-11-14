@@ -16,16 +16,20 @@ Heure d'Adélaïde (ACDT, UTC+10:30). Heure suggérée à tester : 18 h 30 (pas 
 | samedi 14 nov. | 17 h 30 | Statistiques | Votes du sondage (Stories) | Les Stories disparaissent à 18 h 30 : noter les résultats avant. |
 | samedi 14 nov. | 18 h 00 | Statistiques | Stats 7 j · Visa ballot | Relevé à 7 jours. |
 | samedi 14 nov. | 18 h 15 | Statistiques | Stats 72 h · Carrousel | Objectif : saves. |
-| samedi 14 nov. | 18 h 30 | À faire | Vidéo à produire | PAS ENCORE PRODUITE : publier seulement si livrée et validée. |
+| samedi 14 nov. | 18 h 30 | À faire | Créneau libre (vidéo non produite) | Aucune publication : la vidéo prévue n'a pas été produite. |
 | dimanche 15 nov. | 10 h 00 | À faire | Envoyer l'enregistrement | Compte de démo, fiche de paie EXAMPLE, 20 à 30 s : voir drafts/2026-11-07_LostCount/reel/footage/README.md |
 | dimanche 15 nov. | 18 h 00 | Statistiques | Stats 72 h · Visa location | Objectif : partages. |
 | dimanche 15 nov. | 18 h 30 | À faire | Story sondage (à produire) | Uniquement les vrais chiffres du sondage. |
 | lundi 16 nov. | 18 h 00 | Statistiques | Stats 7 j · Car checks | Relevé à 7 jours. |
-| lundi 16 nov. | 18 h 30 | À faire | Vidéo à produire | PAS ENCORE PRODUITE : publier seulement si livrée et validée. |
+| lundi 16 nov. | 18 h 30 | Vidéo | Vidéo · Ballot update | Fichier : exports/2026-11-14_BallotUpdate/Eazy88_TikTok_BallotUpdate_A.mp4 · Avant : relire ABC et Home Affairs ; si une décision est annoncée, prévenir pour recouper. · Label AI-generated content. Légende : Eazy88_TikTok_BallotUpdate_Caption.txt |
 | mardi 17 nov. | 18 h 00 | Statistiques | Stats 7 j · 6-month rule | Relevé à 7 jours. |
-| mardi 17 nov. | 18 h 30 | À faire | Vidéo à produire | PAS ENCORE PRODUITE : publier seulement si livrée et validée. |
+| mardi 17 nov. | 18 h 30 | Vidéo | Vidéo · First shift setup | Fichier : exports/2026-11-14_FirstShiftSetup/Eazy88_TikTok_FirstShiftSetup_A.mp4 · Label AI-generated content. Légende : Eazy88_TikTok_FirstShiftSetup_Caption.txt |
 | mercredi 18 nov. | 18 h 00 | Statistiques | Stats 7 j · Carrousel | Relevé à 7 jours. |
 | mercredi 18 nov. | 18 h 30 | Reel (si prêt) | Reel · Lost count? (si prêt) | SEULEMENT si l'enregistrement d'écran est reçu et le Reel final validé. Sinon : décaler. |
 | jeudi 19 nov. | 18 h 00 | Statistiques | Stats 7 j · Visa location | Relevé à 7 jours. |
 | samedi 21 nov. | 18 h 00 | Statistiques | Stats 72 h · Reel | Seulement si le Reel a été publié le 18. |
+| jeudi 19 nov. | 18 h 15 | Statistiques | Stats 72 h · Ballot update | Objectif : follows (abonnés gagnés attribués au post). |
+| vendredi 20 nov. | 18 h 00 | Statistiques | Stats 72 h · First shift | Objectif : saves. |
+| lundi 23 nov. | 18 h 00 | Statistiques | Stats 7 j · Ballot update | Relevé à 7 jours. |
+| mardi 24 nov. | 18 h 00 | Statistiques | Stats 7 j · First shift | Relevé à 7 jours. |
 | mercredi 25 nov. | 18 h 00 | Statistiques | Stats Reel + bilan du mois | Comparer toutes les publications de novembre et préparer décembre. |
