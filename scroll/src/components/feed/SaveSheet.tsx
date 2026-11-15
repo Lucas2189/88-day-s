@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Sheet } from "@/components/ui/Sheet";
 import type { ContentItem } from "@/lib/content/types";
 import { useUserStore } from "@/lib/store/user-store";
+import { useT } from "@/lib/i18n";
 
 export function SaveSheet({ item, open, onClose }: { item: ContentItem | null; open: boolean; onClose: () => void }) {
   const collections = useUserStore((s) => s.collections);
@@ -15,6 +16,7 @@ export function SaveSheet({ item, open, onClose }: { item: ContentItem | null; o
   const createCollection = useUserStore((s) => s.createCollection);
   const [newName, setNewName] = useState("");
   const [creating, setCreating] = useState(false);
+  const t = useT();
 
   if (!item) return null;
   const list = Object.values(collections).sort((a, b) => a.name.localeCompare(b.name));
@@ -30,7 +32,7 @@ export function SaveSheet({ item, open, onClose }: { item: ContentItem | null; o
   };
 
   return (
-    <Sheet open={open} onClose={onClose} title="Save to collection">
+    <Sheet open={open} onClose={onClose} title={t("save.title")}>
       <div className="space-y-2">
         <button
           type="button"
@@ -41,8 +43,8 @@ export function SaveSheet({ item, open, onClose }: { item: ContentItem | null; o
           className="flex w-full items-center justify-between rounded-2xl border border-line bg-surface-2 px-4 py-3 text-left"
         >
           <span>
-            <span className="block text-sm font-semibold">{bookmark ? "Saved" : "Save"}</span>
-            <span className="block text-xs text-fg-muted">{bookmark ? "Tap to remove from Saved" : "Add to your universal bookmarks"}</span>
+            <span className="block text-sm font-semibold">{bookmark ? t("save.saved") : t("save.save")}</span>
+            <span className="block text-xs text-fg-muted">{bookmark ? t("save.removeHint") : t("save.addHint")}</span>
           </span>
           {bookmark && <Check size={18} className="text-save" />}
         </button>
@@ -78,17 +80,17 @@ export function SaveSheet({ item, open, onClose }: { item: ContentItem | null; o
               autoFocus
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
-              placeholder="Collection name"
+              placeholder={t("save.collectionName")}
               maxLength={40}
               className="h-11 flex-1 rounded-full border border-line bg-surface-2 px-4 text-sm outline-none focus:border-white/40"
             />
             <Button type="submit" size="md">
-              <Plus size={16} /> Add
+              <Plus size={16} /> {t("common.add")}
             </Button>
           </form>
         ) : (
           <Button variant="secondary" className="w-full" onClick={() => setCreating(true)}>
-            <FolderPlus size={16} /> New collection
+            <FolderPlus size={16} /> {t("save.newCollection")}
           </Button>
         )}
       </div>

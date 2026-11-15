@@ -30,7 +30,8 @@ export async function resolveUrl(input: string, ctx?: ResolveContext): Promise<C
     throw new ProviderError("youtube", "unsupported", "Unsupported or invalid URL. Paste a public YouTube, TikTok, Instagram, X or Reddit link.");
   }
   const adapter = adapters[parsed.provider];
-  return adapter.resolve(parsed.externalId, parsed.canonicalUrl, ctx);
+  const item = await adapter.resolve(parsed.externalId, parsed.canonicalUrl, ctx);
+  return ctx?.regions?.length ? { ...item, regions: ctx.regions } : item;
 }
 
 export { ProviderError };

@@ -9,6 +9,7 @@ controls and an on-device personalization engine.
 > content that is legitimately reachable (demo items, links you add, and provider APIs when configured).
 > Everything unsupported is shown as unavailable in the app (Discover → Sources, Profile → Sources).
 > Full analysis: [`docs/feasibility.md`](docs/feasibility.md). Design: [`docs/architecture.md`](docs/architecture.md).
+> Sale readiness, known limits and Asia market notes: [`docs/sale-readiness.md`](docs/sale-readiness.md).
 
 ## Status of integrations (2026-11-13)
 
@@ -37,7 +38,15 @@ controls and an on-device personalization engine.
   and mute preferences.
 * **Search**: catalog + provider APIs that allow search; the UI states which sources were searched.
 * **Add a link**: paste any public URL from the five platforms; it is resolved server-side and joins the feed.
-* **PWA**: manifest, icons, service worker (app shell + offline page), iOS standalone support.
+* **10 languages**: English, French, Japanese, Korean, Traditional and Simplified Chinese, Indonesian, Thai,
+  Vietnamese, Hindi. Detected from the browser, switchable in Profile. Message catalogs are type-checked
+  for completeness (`src/lib/i18n`).
+* **Content regions**: Japan, Korea, India, Southeast Asia, Chinese-speaking regions or Global. Items tagged
+  for the user's region rank first; the demo catalog includes Asia-tagged items.
+* **Trust pages**: About, Privacy policy and Terms of use, with the notices required by YouTube API Services.
+* **Analytics**: cookieless, anonymous product events (Vercel Web Analytics). Enable it in the Vercel
+  dashboard (Project → Analytics); nothing is sent otherwise.
+* **PWA**: manifest, icons, service worker (app shell + offline page), iOS standalone support, install hint.
 * **Production basics**: loading skeletons, error boundaries, typed API errors, per-IP rate limiting,
   server-side TTL cache, no secrets on the client, keyboard navigation, ARIA labels, reduced-motion support.
 
@@ -62,7 +71,7 @@ Home Screen** to install the PWA (service worker is active in production builds:
 | `npm run lint` | ESLint (Next core-web-vitals + TypeScript) |
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm test` | Vitest unit tests (URL parser, ranking, adapters, store) |
-| `npm run e2e` | Playwright smoke test on an emulated iPhone against `BASE_URL` (default `http://localhost:3100`): tabs, like/save/hide, filters, add-link success & failure, search, manifest. Screenshots in `e2e-shots/` |
+| `npm run e2e` | Playwright smoke test on an emulated iPhone against `BASE_URL` (default `http://localhost:3100`): tabs, like/save/hide, filters, add-link success & failure, search, legal pages, language switch and 6 auto-detected locales. Screenshots in `e2e-shots/` |
 | `npm run seed:demo` | Re-resolves the demo catalog (`src/lib/demo/catalog.json`) from real public URLs through the adapters |
 
 ## Configuration
@@ -71,6 +80,7 @@ All variables are optional; see [`.env.example`](.env.example) for the full list
 
 | Variable | Unlocks |
 |---|---|
+| `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_OPERATOR_NAME`, `NEXT_PUBLIC_CONTACT_EMAIL` | Public identity used by the sitemap, social previews and legal pages |
 | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Magic-link sign-in and cloud sync of preferences, bookmarks, collections, hidden lists, engagement events |
 | `YOUTUBE_API_KEY` (+ `YOUTUBE_FEED_PLAYLIST_IDS`) | Richer YouTube metadata (duration, category, stats), playlist-based discovery feed, search |
 | `META_APP_ID`, `META_CLIENT_TOKEN` | Higher Instagram oEmbed rate limits |
@@ -105,8 +115,9 @@ change after a few interactions, disable a source and check it disappears everyw
 
 ## Deployment
 
-**Vercel (recommended)**: import the repo, set *Root Directory* to `scroll`, add the environment variables,
-deploy. Route handlers run on the Node runtime; the in-memory cache/rate limiter are per instance (swap for
+**Vercel (recommended)**: import the repo, set *Root Directory* to `scroll` (not needed when the repository
+contains only this folder), make sure *Framework Preset* is **Next.js** (`vercel.json` pins it), add the
+environment variables, deploy. Route handlers run on the Node runtime; the in-memory cache/rate limiter are per instance (swap for
 Upstash Redis when scaling, see `docs/architecture.md`).
 
 **Self-hosted / Docker**: `npm run build && npm start` behind any reverse proxy with HTTPS (required for the

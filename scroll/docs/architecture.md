@@ -82,6 +82,7 @@ so the feed component does not know anything platform-specific.
 score = 1.0 · interestMatch        // share of the item's categories in the user's chosen interests (0.5 when none chosen)
       + 1.5 · learnedAffinity      // mean affinity of the item's categories, learned in-app (tanh-squashed, 14-day half-life)
       + 0.6 · sourcePreference     // 1 for enabled sources (0 → removed)
+      + 0.7 · regionMatch          // item tagged for the user's content region
       + 0.3 · recencyBoost         // 1 - ageDays/30 when the publication date is known
       + 0.2 · explorationNoise     // deterministic hash(itemId, sessionSeed) ∈ [0,1)
       - 0.8 · seenPenalty          // already shown in this session
@@ -97,6 +98,19 @@ Everything is in `src/lib/ranking/score.ts` and unit-tested. No external engagem
 Upgrade path: move affinity computation to a Supabase scheduled function writing `recommendations`,
 add collaborative signals (item co-saves), then an embedding model for cold-start only when volume
 justifies the cost.
+
+## Internationalization and regions
+
+* `src/lib/i18n/messages/en.ts` is the source of truth; every other locale is typed as `Messages`, so a
+  missing key fails the build. `tests/i18n.test.ts` also checks placeholder parity.
+* `useT()` returns a translator for the active locale: explicit preference, else the first supported
+  browser language, else English. Rendering starts in English during hydration and switches right after,
+  which keeps static prerendering and avoids hydration mismatches.
+* Server responses carry codes, not sentences (`ApiError.code`, ranking `ReasonCode`, `PlayerErrorCode`);
+  the client maps them to localized text.
+* Content region (`jp | kr | in | sea | zh | global`) is derived from the browser region or the UI
+  language and can be overridden. Items may carry `regions`; a match adds `+0.7` to the score.
+* Legal pages are English only (reference language for legal terms).
 
 ## Data & privacy
 

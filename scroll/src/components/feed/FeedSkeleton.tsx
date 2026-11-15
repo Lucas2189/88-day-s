@@ -1,6 +1,11 @@
+"use client";
+
+import { useT } from "@/lib/i18n";
+
 export function FeedSkeleton() {
+  const t = useT();
   return (
-    <div className="flex h-dvh flex-col" aria-busy="true" aria-label="Loading feed">
+    <div className="flex h-dvh flex-col" aria-busy="true" aria-label={t("feed.loading")}>
       <div style={{ height: "calc(var(--safe-top) + 56px)" }} />
       <div className="flex flex-1 items-center gap-1 px-2">
         <div className="skeleton h-[56%] w-full flex-1 rounded-2xl" />

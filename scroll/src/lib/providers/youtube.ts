@@ -45,6 +45,7 @@ interface YtVideoResource {
     thumbnails?: Record<string, { url: string; width: number; height: number }>;
   };
   contentDetails?: { duration?: string };
+  status?: { embeddable?: boolean; privacyStatus?: string };
   statistics?: { viewCount?: string; likeCount?: string };
 }
 
@@ -134,11 +135,12 @@ export const youtubeAdapter: ProviderAdapter = {
     // Prefer Data API when available (duration, category, stats are allowed to be displayed).
     if (apiKey()) {
       const data = await dataApi<{ items?: YtVideoResource[] }>("videos", {
-        part: "snippet,contentDetails,statistics",
+        part: "snippet,contentDetails,statistics,status",
         id: externalId,
       });
       const v = data.items?.[0];
       if (!v) throw new ProviderError("youtube", "not_found", "Video not found or not public.");
+      if (v.status?.embeddable === false) throw new ProviderError("youtube", "not_found", "The owner does not allow embedded playback for this video.");
       return fromVideoResource(v, ctx?.origin ?? "user-submitted", ctx?.categories);
     }
     const oembed = await fetchOEmbed(
@@ -182,10 +184,11 @@ export const youtubeAdapter: ProviderAdapter = {
     }
     if (ids.length === 0) return [];
     const videos = await dataApi<{ items?: YtVideoResource[] }>("videos", {
-      part: "snippet,contentDetails,statistics",
+      part: "snippet,contentDetails,statistics,status",
       id: ids.slice(0, 50).join(","),
     });
     return (videos.items ?? [])
+      .filter((v) => v.status?.embeddable !== false)
       .map((v) => fromVideoResource(v, "provider-api"))
       .filter((it) => !opts.categories?.length || it.categories.some((c) => opts.categories!.includes(c)))
       .slice(0, opts.limit ?? 50);
@@ -205,9 +208,9 @@ export const youtubeAdapter: ProviderAdapter = {
     const ids = (result.items ?? []).map((i) => i.id?.videoId).filter((v): v is string => Boolean(v));
     if (ids.length === 0) return [];
     const videos = await dataApi<{ items?: YtVideoResource[] }>("videos", {
-      part: "snippet,contentDetails,statistics",
+      part: "snippet,contentDetails,statistics,status",
       id: ids.join(","),
     });
-    return (videos.items ?? []).map((v) => fromVideoResource(v, "provider-api"));
+    return (videos.items ?? []).filter((v) => v.status?.embeddable !== false).map((v) => fromVideoResource(v, "provider-api"));
   },
 };

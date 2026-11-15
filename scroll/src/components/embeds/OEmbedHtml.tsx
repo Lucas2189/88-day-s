@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { PlayerErrorCode } from "./types";
 
 declare global {
   interface Window {
@@ -35,7 +36,7 @@ function stripScripts(html: string): string {
  * Renders official oEmbed HTML (X, Instagram, Reddit) and boots the provider's embed script.
  * The provider script is loaded once; subsequent embeds are processed in place.
  */
-export function OEmbedHtml({ html, scriptSrc, onError }: { html: string; scriptSrc?: string; onError?: (message: string) => void }) {
+export function OEmbedHtml({ html, scriptSrc, onError }: { html: string; scriptSrc?: string; onError?: (code: PlayerErrorCode) => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
 
@@ -70,7 +71,8 @@ export function OEmbedHtml({ html, scriptSrc, onError }: { html: string; scriptS
       } catch (err) {
         if (!cancelled) {
           setStatus("error");
-          onError?.((err as Error).message);
+          console.warn("[embed] loader failed", err);
+          onError?.("generic");
         }
       }
     };

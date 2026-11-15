@@ -63,7 +63,7 @@ export const TikTokPlayer = forwardRef<PlayerHandle, Props>(function TikTokPlaye
           eventsRef.current.onMuteChange?.(Boolean(data.value));
           break;
         case "onError":
-          eventsRef.current.onError?.("TikTok player error.");
+          eventsRef.current.onError?.("generic");
           break;
       }
     };

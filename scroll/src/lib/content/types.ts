@@ -73,6 +73,8 @@ export interface ContentItem {
   durationSeconds?: number;
   publishedAt?: string;
   categories: CategoryId[];
+  /** Regions where this item is especially relevant (see lib/i18n/locales REGION_IDS). Empty = global. */
+  regions?: string[];
   tags?: string[];
   embed: EmbedStrategy;
   origin: ContentOrigin;

@@ -4,17 +4,19 @@ import clsx from "clsx";
 import { Bookmark, Compass, Home, UserRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useT, type MessageKey } from "@/lib/i18n";
 
 const TABS = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/discover", label: "Discover", icon: Compass },
-  { href: "/saved", label: "Saved", icon: Bookmark },
-  { href: "/profile", label: "Profile", icon: UserRound },
-] as const;
+  { href: "/", label: "nav.home", icon: Home },
+  { href: "/discover", label: "nav.discover", icon: Compass },
+  { href: "/saved", label: "nav.saved", icon: Bookmark },
+  { href: "/profile", label: "nav.profile", icon: UserRound },
+] as const satisfies readonly { href: string; label: MessageKey; icon: typeof Home }[];
 
 export function TabBar() {
   const pathname = usePathname();
-  if (pathname.startsWith("/auth") || pathname === "/offline") return null;
+  const t = useT();
+  if (pathname.startsWith("/auth") || pathname === "/offline" || pathname.startsWith("/legal")) return null;
   return (
     <nav
       aria-label="Primary"
@@ -35,7 +37,7 @@ export function TabBar() {
                 )}
               >
                 <Icon size={22} strokeWidth={active ? 2.4 : 1.8} />
-                {label}
+                {t(label)}
               </Link>
             </li>
           );

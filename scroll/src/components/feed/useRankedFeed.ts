@@ -6,6 +6,7 @@ import { api } from "@/lib/api/client";
 import type { ContentItem } from "@/lib/content/types";
 import { learnAffinity, rankItems, type ScoredItem } from "@/lib/ranking/score";
 import { selectRankingProfile, useUserStore } from "@/lib/store/user-store";
+import { useRegion } from "@/lib/i18n";
 
 export type FeedScope = { kind: "home" } | { kind: "saved"; collectionId?: string } | { kind: "items"; items: ContentItem[] };
 
@@ -21,6 +22,7 @@ export function useRankedFeed(scope: FeedScope, opts: { pinFirstId?: string | nu
   const hiddenAuthors = useUserStore((s) => s.hiddenAuthors);
   const sessionSeed = useUserStore((s) => s.sessionSeed);
   const [refreshToken, setRefreshToken] = useState(0);
+  const region = useRegion();
 
   const providers = preferences.feedMode === "mixed" ? preferences.enabledProviders : [preferences.feedMode];
 
@@ -55,7 +57,7 @@ export function useRankedFeed(scope: FeedScope, opts: { pinFirstId?: string | nu
 
   const ranked: ScoredItem[] = useMemo(() => {
     const state = useUserStore.getState();
-    const profile = selectRankingProfile({ ...state, preferences, hiddenContentIds, hiddenAuthors, sessionSeed }, affinity);
+    const profile = selectRankingProfile({ ...state, preferences, hiddenContentIds, hiddenAuthors, sessionSeed }, affinity, region);
     if (scope.kind !== "home") {
       // Saved/explicit lists keep their own order; only hidden filtering applies.
       return pool
@@ -74,7 +76,7 @@ export function useRankedFeed(scope: FeedScope, opts: { pinFirstId?: string | nu
     }
     return result;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pool, affinity, preferences, hiddenContentIds, hiddenAuthors, sessionSeed, scope.kind, refreshToken, opts.pinFirstId]);
+  }, [pool, affinity, preferences, hiddenContentIds, hiddenAuthors, sessionSeed, scope.kind, refreshToken, opts.pinFirstId, region]);
 
   return {
     ranked,

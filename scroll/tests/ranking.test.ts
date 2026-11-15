@@ -76,13 +76,22 @@ describe("scoreItem / rankItems", () => {
   it("ranks interest matches above non-matches", () => {
     const ranked = rankItems([item("1", ["sports"]), item("2", ["music"])], profile({ interests: ["music"] }));
     expect(ranked[0].item.id).toBe("2");
-    expect(ranked[0].reasons).toContain("Matches your interests");
+    expect(ranked[0].reasons).toContain("interests");
   });
 
   it("uses learned affinity and penalises seen/skipped items", () => {
     const p = profile({ affinity: { gaming: 0.9 }, seenContentIds: new Set(["seen"]), skippedContentIds: new Set(["skipped"]) });
     const ranked = rankItems([item("seen", ["gaming"]), item("skipped", ["gaming"]), item("new", ["gaming"]), item("other", ["food"])], p);
     expect(ranked.map((r) => r.item.id)).toEqual(["new", "seen", "skipped", "other"]);
+  });
+
+  it("boosts items tagged for the user's content region, and only for regional users", () => {
+    const items = [item("global", ["music"]), item("korean", ["music"], "youtube", { regions: ["kr"] }), item("japanese", ["music"], "youtube", { regions: ["jp"] })];
+    const kr = rankItems(items, profile({ region: "kr" }));
+    expect(kr[0].item.id).toBe("korean");
+    expect(kr[0].reasons).toContain("region");
+    const global = rankItems(items, profile({ region: "global" }));
+    expect(global.every((r) => !r.reasons.includes("region"))).toBe(true);
   });
 
   it("is deterministic for a given seed and diversifies providers when asked", () => {

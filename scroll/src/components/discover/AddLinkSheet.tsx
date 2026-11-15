@@ -9,7 +9,10 @@ import { Chip } from "@/components/ui/Chip";
 import { Sheet } from "@/components/ui/Sheet";
 import { useToast } from "@/components/ui/Toast";
 import { api, ApiClientError } from "@/lib/api/client";
-import { CATEGORY_IDS, CATEGORY_LABELS, type CategoryId } from "@/lib/content/types";
+import { CATEGORY_IDS, type CategoryId } from "@/lib/content/types";
+import { useT } from "@/lib/i18n";
+import { trackEvent } from "@/lib/analytics";
+import { PROVIDER_NAMES } from "@/components/ui/ProviderBadge";
 import { parseContentUrl } from "@/lib/content/url";
 import { useUserStore } from "@/lib/store/user-store";
 
@@ -20,13 +23,15 @@ export function AddLinkSheet({ open, onClose }: { open: boolean; onClose: () => 
   const addSubmitted = useUserStore((s) => s.addSubmitted);
   const { toast } = useToast();
   const router = useRouter();
+  const t = useT();
   const parsed = url.trim() ? parseContentUrl(url) : null;
 
   const mutation = useMutation({
     mutationFn: () => api.resolve(url.trim(), categories),
     onSuccess: ({ item }) => {
       addSubmitted(item);
-      toast("Added to your feed", "success");
+      toast(t("addLink.added"), "success");
+      trackEvent("add_link", { provider: item.provider });
       setUrl("");
       setCategories([]);
       onClose();
@@ -34,10 +39,10 @@ export function AddLinkSheet({ open, onClose }: { open: boolean; onClose: () => 
     },
   });
 
-  const errorMessage = mutation.error instanceof ApiClientError ? mutation.error.body.error : mutation.error ? (mutation.error as Error).message : null;
+  const errorMessage = mutation.error instanceof ApiClientError ? t(`error.${mutation.error.body.code}`) : mutation.error ? t("error.provider_error") : null;
 
   return (
-    <Sheet open={open} onClose={onClose} title="Add a link">
+    <Sheet open={open} onClose={onClose} title={t("addLink.title")}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -49,22 +54,23 @@ export function AddLinkSheet({ open, onClose }: { open: boolean; onClose: () => 
           <input
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            placeholder="https://www.youtube.com/shorts/… or any public post URL"
+            placeholder={t("addLink.placeholder")}
             inputMode="url"
             autoCapitalize="off"
             autoCorrect="off"
             spellCheck={false}
             className="h-12 min-w-0 flex-1 rounded-2xl border border-line bg-surface-2 px-4 text-sm outline-none focus:border-white/40"
-            aria-label="Public content URL"
+            aria-label={t("addLink.urlLabel")}
+            data-testid="add-link-input"
           />
           <button
             type="button"
-            aria-label="Paste from clipboard"
+            aria-label={t("addLink.paste")}
             onClick={async () => {
               try {
                 setUrl(await navigator.clipboard.readText());
               } catch {
-                toast("Clipboard access denied", "error");
+                toast(t("addLink.clipboardDenied"), "error");
               }
             }}
             className="rounded-2xl border border-line bg-surface-2 px-3 text-fg-muted"
@@ -72,26 +78,26 @@ export function AddLinkSheet({ open, onClose }: { open: boolean; onClose: () => 
             <ClipboardPaste size={18} />
           </button>
         </div>
-        {url.trim() && !parsed && <p className="text-xs text-red-300">Unsupported link. Supported: YouTube videos/Shorts, TikTok videos, Instagram posts/Reels, X posts, Reddit posts.</p>}
-        {parsed && <p className="text-xs text-emerald-200">Detected: {parsed.provider} · {parsed.externalId}</p>}
+        {url.trim() && !parsed && <p className="text-xs text-red-300" data-testid="add-link-unsupported">{t("addLink.unsupported")}</p>}
+        {parsed && <p className="text-xs text-emerald-200">{t("addLink.detected", { provider: PROVIDER_NAMES[parsed.provider] })}</p>}
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-fg-faint">Topics (optional, improves ranking)</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-fg-faint">{t("addLink.topics")}</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {CATEGORY_IDS.map((c) => (
               <Chip key={c} size="sm" active={categories.includes(c)} onClick={() => setCategories((cs) => (cs.includes(c) ? cs.filter((x) => x !== c) : [...cs, c].slice(-3)))}>
-                {CATEGORY_LABELS[c]}
+                {t(`category.${c}`)}
               </Chip>
             ))}
           </div>
         </div>
 
-        {errorMessage && <p className="rounded-2xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-100">{errorMessage}</p>}
+        {errorMessage && <p data-testid="add-link-error" className="rounded-2xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-100">{errorMessage}</p>}
 
-        <Button type="submit" className="w-full" disabled={!parsed} loading={mutation.isPending}>
-          Add to my feed
+        <Button type="submit" className="w-full" data-testid="add-link-submit" disabled={!parsed} loading={mutation.isPending}>
+          {t("addLink.submit")}
         </Button>
-        <p className="text-xs text-fg-faint">Only public content that the platform allows to be embedded can be added. SCROLL stores the link and public metadata, never the media.</p>
+        <p className="text-xs text-fg-faint">{t("addLink.note")}</p>
       </form>
     </Sheet>
   );

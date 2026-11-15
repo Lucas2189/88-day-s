@@ -1,7 +1,7 @@
 "use client";
 
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import type { PlayerEvents, PlayerHandle } from "./types";
+import type { PlayerErrorCode, PlayerEvents, PlayerHandle } from "./types";
 
 /**
  * Official YouTube IFrame Player API. We never overlay UI on top of the player (YouTube API ToS) and
@@ -119,14 +119,14 @@ export const YouTubePlayer = forwardRef<PlayerHandle, Props>(function YouTubePla
             if (e.data === YT.PlayerState.ENDED) eventsRef.current.onEnded?.();
           },
           onError: (e) => {
-            const reasons: Record<number, string> = {
-              2: "Invalid video id.",
-              5: "This video cannot be played in the embedded player.",
-              100: "Video not found or private.",
-              101: "The owner does not allow embedded playback.",
-              150: "The owner does not allow embedded playback.",
+            const codes: Record<number, PlayerErrorCode> = {
+              2: "invalid",
+              5: "cannotPlay",
+              100: "notFound",
+              101: "embedDisabled",
+              150: "embedDisabled",
             };
-            eventsRef.current.onError?.(reasons[e.data] ?? "Playback error.");
+            eventsRef.current.onError?.(codes[e.data] ?? "generic");
           },
         },
       });

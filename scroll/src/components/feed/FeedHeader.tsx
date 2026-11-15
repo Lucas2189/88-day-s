@@ -6,6 +6,7 @@ import { PROVIDER_NAMES } from "@/components/ui/ProviderBadge";
 import { ProviderLogo } from "@/components/ui/ProviderLogo";
 import type { ProviderId } from "@/lib/content/types";
 import { useUserStore } from "@/lib/store/user-store";
+import { useT } from "@/lib/i18n";
 
 interface Props {
   onRefresh: () => void;
@@ -18,6 +19,7 @@ export function FeedHeader({ onRefresh, onOpenTopics, title }: Props) {
   const preferences = useUserStore((s) => s.preferences);
   const setPreferences = useUserStore((s) => s.setPreferences);
   const enabled = preferences.enabledProviders;
+  const t = useT();
 
   return (
     <div className="fixed inset-x-0 top-0 z-40 mx-auto w-full max-w-[560px] bg-gradient-to-b from-black via-black/85 to-transparent pb-4" style={{ paddingTop: "var(--safe-top)" }}>
@@ -26,11 +28,11 @@ export function FeedHeader({ onRefresh, onOpenTopics, title }: Props) {
           <h1 className="font-display text-lg font-semibold">{title}</h1>
         ) : (
           <div className="no-scrollbar flex min-w-0 flex-1 items-center gap-2 overflow-x-auto">
-            <Chip size="sm" active={preferences.feedMode === "mixed"} onClick={() => setPreferences({ feedMode: "mixed" })}>
-              For you
+            <Chip size="sm" active={preferences.feedMode === "mixed"} data-mode="mixed" onClick={() => setPreferences({ feedMode: "mixed" })}>
+              {t("feed.forYou")}
             </Chip>
             {enabled.map((id: ProviderId) => (
-              <Chip key={id} size="sm" active={preferences.feedMode === id} onClick={() => setPreferences({ feedMode: id })} className="flex items-center gap-1.5">
+              <Chip key={id} size="sm" data-mode={id} active={preferences.feedMode === id} onClick={() => setPreferences({ feedMode: id })} className="flex items-center gap-1.5">
                 <ProviderLogo provider={id} size={12} />
                 {PROVIDER_NAMES[id]}
               </Chip>
@@ -38,10 +40,10 @@ export function FeedHeader({ onRefresh, onOpenTopics, title }: Props) {
           </div>
         )}
         <div className="ml-auto flex shrink-0 items-center gap-1">
-          <button type="button" onClick={onOpenTopics} aria-label="Topics" className="rounded-full bg-white/[0.08] p-2 text-fg backdrop-blur-md hover:bg-white/[0.14]">
+          <button type="button" onClick={onOpenTopics} aria-label={t("feed.topics")} className="rounded-full bg-white/[0.08] p-2 text-fg backdrop-blur-md hover:bg-white/[0.14]">
             <SlidersHorizontal size={18} />
           </button>
-          <button type="button" onClick={onRefresh} aria-label="Refresh feed" className="rounded-full bg-white/[0.08] p-2 text-fg backdrop-blur-md hover:bg-white/[0.14]">
+          <button type="button" onClick={onRefresh} aria-label={t("feed.refresh")} className="rounded-full bg-white/[0.08] p-2 text-fg backdrop-blur-md hover:bg-white/[0.14]">
             <RefreshCw size={18} />
           </button>
         </div>

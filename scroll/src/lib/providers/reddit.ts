@@ -100,6 +100,14 @@ const SUBREDDIT_CATEGORIES: Record<string, CategoryId> = {
   music: "music",
 };
 
+/** Derives a readable title from the permalink slug (the only metadata available without API access). */
+function slugTitle(url: string): string | undefined {
+  const slug = url.match(/\/comments\/[a-z0-9]+\/([^/]+)\/?$/i)?.[1];
+  if (!slug) return undefined;
+  const text = decodeURIComponent(slug).replace(/_/g, " ").trim();
+  return text ? text.charAt(0).toUpperCase() + text.slice(1) : undefined;
+}
+
 function embedHtml(url: string): string {
   return `<blockquote class="reddit-embed-bq" data-embed-theme="dark" data-embed-height="560"><a href="${url}">View this post on Reddit</a></blockquote>`;
 }
@@ -173,7 +181,7 @@ export const redditAdapter: ProviderAdapter = {
       externalId,
       kind: "post",
       url: canonicalUrl,
-      title: subMatch ? `Reddit post in r/${subMatch[1]}` : "Reddit post",
+      title: slugTitle(canonicalUrl) ?? (subMatch ? `Reddit post in r/${subMatch[1]}` : "Reddit post"),
       description: "Metadata unavailable without Reddit API credentials. The post renders through Reddit's official embed.",
       authorName: subMatch ? `r/${subMatch[1]}` : undefined,
       authorUrl: subMatch ? `https://www.reddit.com/r/${subMatch[1]}/` : undefined,

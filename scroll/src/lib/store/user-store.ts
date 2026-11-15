@@ -183,6 +183,11 @@ export const useUserStore = create<UserStore>()(
       name: "scroll:user:v1",
       version: 1,
       storage: createJSONStorage(() => localStorage),
+      // Deep-merge preferences so users coming from an older version get defaults for new settings.
+      merge: (persisted, current) => {
+        const saved = (persisted ?? {}) as Partial<UserState>;
+        return { ...current, ...saved, preferences: { ...current.preferences, ...(saved.preferences ?? {}) } };
+      },
       partialize: (s) => ({
         preferences: s.preferences,
         bookmarks: s.bookmarks,
@@ -199,8 +204,9 @@ export const useUserStore = create<UserStore>()(
 );
 
 /** Derives a RankingProfile from the store; memoized by callers via useMemo. */
-export function selectRankingProfile(s: UserState, affinity: Partial<Record<CategoryId, number>>) {
+export function selectRankingProfile(s: UserState, affinity: Partial<Record<CategoryId, number>>, region?: string) {
   return {
+    region,
     interests: s.preferences.interests,
     enabledProviders: s.preferences.feedMode === "mixed" ? s.preferences.enabledProviders : [s.preferences.feedMode],
     hiddenContentIds: new Set(Object.keys(s.hiddenContentIds)),

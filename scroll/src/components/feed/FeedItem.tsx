@@ -8,7 +8,9 @@ import { EmbedRenderer } from "@/components/embeds/EmbedRenderer";
 import type { PlayerHandle } from "@/components/embeds/types";
 import { ProviderBadge } from "@/components/ui/ProviderBadge";
 import { SmartImage } from "@/components/ui/SmartImage";
-import { CATEGORY_LABELS, type ContentItem } from "@/lib/content/types";
+import type { ContentItem } from "@/lib/content/types";
+import { useT } from "@/lib/i18n";
+import type { PlayerErrorCode } from "@/components/embeds/types";
 import { ActionRail } from "./ActionRail";
 
 export interface FeedItemProps {
@@ -43,7 +45,8 @@ function mediaShape(item: ContentItem): { ratio: number | null } {
 export const FeedItem = memo(function FeedItem(p: FeedItemProps) {
   const playerRef = useRef<PlayerHandle>(null);
   const [muted, setMuted] = useState(p.startMuted);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<PlayerErrorCode | null>(null);
+  const t = useT();
   const [ready, setReady] = useState(false);
   const canToggleSound = SUPPORTS_SOUND.has(p.item.embed.type);
   const { ratio } = mediaShape(p.item);
@@ -97,7 +100,7 @@ export const FeedItem = memo(function FeedItem(p: FeedItemProps) {
                   }}
                   onEnded={p.onEnded}
                   onMuteChange={setMuted}
-                  onError={(msg) => setError(msg)}
+                  onError={(code) => setError(code)}
                 />
               </div>
             )}
@@ -106,9 +109,9 @@ export const FeedItem = memo(function FeedItem(p: FeedItemProps) {
             )}
             {error && (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/80 p-6 text-center">
-                <p className="text-sm text-fg-muted">{error}</p>
+                <p className="text-sm text-fg-muted">{t(`player.${error}`)}</p>
                 <a href={p.item.url} target="_blank" rel="noopener noreferrer" className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black">
-                  Watch on the original platform
+                  {t("feed.watchOriginal")}
                 </a>
               </div>
             )}
@@ -134,16 +137,16 @@ export const FeedItem = memo(function FeedItem(p: FeedItemProps) {
         <div className="flex items-center gap-2">
           <ProviderBadge provider={p.item.provider} />
           {p.item.origin === "demo" && (
-            <span className="rounded-full border border-white/10 bg-white/[0.06] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-fg-muted">Demo</span>
+            <span className="rounded-full border border-white/10 bg-white/[0.06] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-fg-muted">{t("feed.demo")}</span>
           )}
           {p.item.origin === "user-submitted" && (
-            <span className="rounded-full border border-white/10 bg-white/[0.06] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-fg-muted">Your link</span>
+            <span className="rounded-full border border-white/10 bg-white/[0.06] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-fg-muted">{t("feed.yourLink")}</span>
           )}
         </div>
         <h2 className="mt-2 line-clamp-2 font-display text-[17px] font-semibold leading-snug">{p.item.title}</h2>
         <p className="mt-1 line-clamp-1 text-sm text-fg-muted">
-          {p.item.authorName ?? "Unknown author"}
-          <span className="text-fg-faint"> · {p.item.categories.map((c) => CATEGORY_LABELS[c]).join(" · ")}</span>
+          {p.item.authorName ?? t("feed.unknownAuthor")}
+          <span className="text-fg-faint"> · {p.item.categories.map((c) => t(`category.${c}`)).join(" · ")}</span>
         </p>
       </div>
     </article>

@@ -4,6 +4,8 @@ export interface ResolveContext {
   /** Optional category hints supplied by the submitting user. */
   categories?: CategoryId[];
   origin?: ContentItem["origin"];
+  /** Regions where the item is especially relevant (curated/demo content). */
+  regions?: string[];
 }
 
 export interface SearchOptions {

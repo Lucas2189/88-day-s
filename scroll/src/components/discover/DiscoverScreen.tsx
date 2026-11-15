@@ -8,7 +8,8 @@ import { Chip } from "@/components/ui/Chip";
 import { PROVIDER_NAMES } from "@/components/ui/ProviderBadge";
 import { ProviderLogo } from "@/components/ui/ProviderLogo";
 import { api } from "@/lib/api/client";
-import { CATEGORY_IDS, CATEGORY_LABELS, type CategoryId, type ContentItem } from "@/lib/content/types";
+import { CATEGORY_IDS, type CategoryId, type ContentItem } from "@/lib/content/types";
+import { useT, type Translate } from "@/lib/i18n";
 import { useUserStore } from "@/lib/store/user-store";
 import { AddLinkSheet } from "./AddLinkSheet";
 import { ContentCard } from "./ContentCard";
@@ -32,6 +33,7 @@ export function DiscoverScreen() {
   const debounced = useDebounced(query.trim());
   const submitted = useUserStore((s) => s.submitted);
   const preferences = useUserStore((s) => s.preferences);
+  const t = useT();
 
   const feed = useQuery({ queryKey: ["feed", "discover"], queryFn: () => api.feed(), staleTime: 5 * 60_000 });
   const search = useQuery({
@@ -57,9 +59,9 @@ export function DiscoverScreen() {
     <div className="min-h-dvh pb-[calc(var(--tabbar-h)+var(--safe-bottom)+24px)]" style={{ paddingTop: "var(--safe-top)" }}>
       <header className="sticky top-0 z-30 bg-black/85 px-4 pb-3 pt-4 backdrop-blur-xl">
         <div className="flex items-center justify-between">
-          <h1 className="font-display text-2xl font-semibold">Discover</h1>
-          <button type="button" onClick={() => setAddOpen(true)} className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-black">
-            <Link2 size={14} /> Add link
+          <h1 className="font-display text-2xl font-semibold">{t("discover.title")}</h1>
+          <button type="button" data-testid="open-add-link" onClick={() => setAddOpen(true)} className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-black">
+            <Link2 size={14} /> {t("discover.addLink")}
           </button>
         </div>
         <label className="mt-3 flex h-11 items-center gap-2 rounded-full border border-line bg-surface-2 px-4">
@@ -67,14 +69,15 @@ export function DiscoverScreen() {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search videos, posts, creators…"
+            placeholder={t("discover.searchPlaceholder")}
             className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-fg-faint"
             type="search"
             inputMode="search"
-            aria-label="Search"
+            aria-label={t("discover.search")}
+            data-testid="discover-search"
           />
           {query && (
-            <button type="button" onClick={() => setQuery("")} aria-label="Clear search" className="text-fg-faint">
+            <button type="button" onClick={() => setQuery("")} aria-label={t("discover.clear")} className="text-fg-faint">
               <X size={16} />
             </button>
           )}
@@ -83,32 +86,32 @@ export function DiscoverScreen() {
 
       {showingSearch ? (
         <section className="px-4">
-          <SearchSources sources={search.data?.sources ?? []} loading={search.isLoading} />
-          {search.isError && <p className="mt-3 text-sm text-red-300">{(search.error as Error).message}</p>}
+          <SearchSources sources={search.data?.sources ?? []} loading={search.isLoading} t={t} />
+          {search.isError && <p className="mt-3 text-sm text-red-300">{t("error.provider_error")}</p>}
           <div className="mt-3 grid grid-cols-2 gap-3">
             {(search.data?.items ?? []).map((it) => (
               <ContentCard key={it.id} item={it} onOpen={() => openInFeed(router, it)} />
             ))}
           </div>
-          {search.isSuccess && search.data.items.length === 0 && <p className="mt-6 text-center text-sm text-fg-muted">No results in the searchable sources. Try adding the link directly.</p>}
+          {search.isSuccess && search.data.items.length === 0 && <p className="mt-6 text-center text-sm text-fg-muted">{t("discover.noResults")}</p>}
         </section>
       ) : (
         <>
           <section className="px-4">
             <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-1">
               <Chip size="sm" active={category === null} onClick={() => setCategory(null)}>
-                All topics
+                {t("discover.allTopics")}
               </Chip>
               {CATEGORY_IDS.map((c) => (
                 <Chip key={c} size="sm" active={category === c} onClick={() => setCategory(c)}>
-                  {CATEGORY_LABELS[c]}
+                  {t(`category.${c}`)}
                 </Chip>
               ))}
             </div>
           </section>
 
           <section className="mt-4 px-4">
-            <h2 className="text-xs font-semibold uppercase tracking-wide text-fg-faint">Browse</h2>
+            <h2 className="text-xs font-semibold uppercase tracking-wide text-fg-faint">{t("discover.browse")}</h2>
             {feed.isLoading ? (
               <div className="mt-3 grid grid-cols-2 gap-3">
                 {Array.from({ length: 6 }).map((_, i) => (
@@ -122,12 +125,12 @@ export function DiscoverScreen() {
                 ))}
               </div>
             )}
-            {feed.isSuccess && browse.length === 0 && <p className="mt-6 text-center text-sm text-fg-muted">Nothing here yet for this topic. Add a link to seed it.</p>}
+            {feed.isSuccess && browse.length === 0 && <p className="mt-6 text-center text-sm text-fg-muted">{t("discover.emptyTopic")}</p>}
           </section>
 
           <section className="mt-8 px-4">
-            <h2 className="text-xs font-semibold uppercase tracking-wide text-fg-faint">Sources</h2>
-            <p className="mt-1 text-sm text-fg-muted">What each platform officially allows. SCROLL never claims more than this.</p>
+            <h2 className="text-xs font-semibold uppercase tracking-wide text-fg-faint">{t("discover.sources")}</h2>
+            <p className="mt-1 text-sm text-fg-muted">{t("discover.sourcesHint")}</p>
             <SourceStatusList providers={feed.data?.providers ?? []} />
           </section>
         </>
@@ -145,16 +148,15 @@ function openInFeed(router: ReturnType<typeof useRouter>, item: ContentItem) {
   router.push(`/?open=${encodeURIComponent(item.id)}`);
 }
 
-function SearchSources({ sources, loading }: { sources: { provider: string; searched: boolean; count: number; reason?: string }[]; loading: boolean }) {
-  if (loading) return <p className="mt-3 text-xs text-fg-faint">Searching…</p>;
+function SearchSources({ sources, loading, t }: { sources: { provider: string; searched: boolean; count: number; reason?: string }[]; loading: boolean; t: Translate }) {
+  if (loading) return <p className="mt-3 text-xs text-fg-faint">{t("discover.searching")}</p>;
   if (!sources.length) return null;
   return (
-    <div className="mt-3 flex flex-wrap gap-1.5">
-      <span className="rounded-full border border-white/10 bg-white/[0.06] px-2.5 py-1 text-[11px] font-medium text-fg-muted">Catalog ✓</span>
+    <div className="mt-3 flex flex-wrap gap-1.5" data-testid="search-sources">
+      <span className="rounded-full border border-white/10 bg-white/[0.06] px-2.5 py-1 text-[11px] font-medium text-fg-muted">{t("discover.catalog")} ✓</span>
       {sources.map((s) => (
         <span
           key={s.provider}
-          title={s.reason}
           className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium ${s.searched ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-100" : "border-white/10 bg-white/[0.04] text-fg-faint line-through"}`}
         >
           <ProviderLogo provider={s.provider as keyof typeof PROVIDER_NAMES} size={11} />

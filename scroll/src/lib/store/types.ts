@@ -1,5 +1,6 @@
 import type { CategoryId, ContentItem, ProviderId } from "@/lib/content/types";
 import type { EngagementEvent } from "@/lib/ranking/score";
+import type { LocalePreference, RegionPreference } from "@/lib/i18n/locales";
 
 export type FeedMode = "mixed" | ProviderId;
 
@@ -13,6 +14,12 @@ export interface Preferences {
   exploration: number;
   reducedMotion: boolean;
   onboardingDone: boolean;
+  /** UI language: "auto" follows the browser. */
+  locale: LocalePreference;
+  /** Content region used to boost local content: "auto" follows the browser/locale. */
+  region: RegionPreference;
+  /** Set when the user dismissed the install hint. */
+  installHintDismissed: boolean;
 }
 
 export interface Bookmark {
@@ -53,4 +60,7 @@ export const DEFAULT_PREFERENCES: Preferences = {
   exploration: 0.4,
   reducedMotion: false,
   onboardingDone: false,
+  locale: "auto",
+  region: "auto",
+  installHintDismissed: false,
 };

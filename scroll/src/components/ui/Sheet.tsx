@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, type ReactNode } from "react";
 import { X } from "lucide-react";
+import { useT } from "@/lib/i18n";
 
 interface SheetProps {
   open: boolean;
@@ -15,6 +16,7 @@ interface SheetProps {
 
 /** Bottom sheet with drag-to-dismiss, dark glass look, safe-area aware. */
 export function Sheet({ open, onClose, title, children, tall }: SheetProps) {
+  const t = useT();
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -27,7 +29,7 @@ export function Sheet({ open, onClose, title, children, tall }: SheetProps) {
       {open && (
         <>
           <motion.button
-            aria-label="Close"
+            aria-label={t("common.close")}
             className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-[2px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -56,7 +58,7 @@ export function Sheet({ open, onClose, title, children, tall }: SheetProps) {
             {title && (
               <div className="flex items-center justify-between px-5 pb-3">
                 <h2 className="font-display text-lg font-semibold">{title}</h2>
-                <button onClick={onClose} className="rounded-full bg-surface-2 p-2 text-fg-muted hover:text-fg" aria-label="Close sheet">
+                <button onClick={onClose} className="rounded-full bg-surface-2 p-2 text-fg-muted hover:text-fg" aria-label={t("common.close")}>
                   <X size={18} />
                 </button>
               </div>

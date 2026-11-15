@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { Sheet } from "@/components/ui/Sheet";
-import { CATEGORY_IDS, CATEGORY_LABELS } from "@/lib/content/types";
+import { CATEGORY_IDS } from "@/lib/content/types";
+import { useT } from "@/lib/i18n";
+import { trackEvent } from "@/lib/analytics";
 import { useUserStore } from "@/lib/store/user-store";
 
 /** First-run interest picker. Shown once; skippable. */
@@ -14,6 +16,7 @@ export function OnboardingSheet() {
   const toggleInterest = useUserStore((s) => s.toggleInterest);
   const setPreferences = useUserStore((s) => s.setPreferences);
   const [open, setOpen] = useState(false);
+  const t = useT();
 
   useEffect(() => {
     // Wait for persisted state to hydrate before deciding.
@@ -24,25 +27,26 @@ export function OnboardingSheet() {
   if (onboardingDone) return null;
   const finish = () => {
     setPreferences({ onboardingDone: true });
+    trackEvent("onboarding_done", { topics: interests.length });
     setOpen(false);
   };
 
   return (
-    <Sheet open={open} onClose={finish} title="Welcome to SCROLL">
-      <p className="text-sm text-fg-muted">One feed, every network. Pick a few topics to start, or skip and let your scrolling shape the feed.</p>
+    <Sheet open={open} onClose={finish} title={t("onboarding.title")}>
+      <p className="text-sm text-fg-muted">{t("onboarding.body")}</p>
       <div className="mt-4 flex flex-wrap gap-2">
         {CATEGORY_IDS.map((c) => (
           <Chip key={c} active={interests.includes(c)} onClick={() => toggleInterest(c)}>
-            {CATEGORY_LABELS[c]}
+            {t(`category.${c}`)}
           </Chip>
         ))}
       </div>
       <div className="mt-6 flex gap-2">
-        <Button className="flex-1" onClick={finish}>
-          {interests.length ? `Start with ${interests.length} topic${interests.length > 1 ? "s" : ""}` : "Start scrolling"}
+        <Button className="flex-1" data-testid="onboarding-start" onClick={finish}>
+          {interests.length ? t("onboarding.startSelected", { count: interests.length }) : t("onboarding.start")}
         </Button>
       </div>
-      <p className="mt-4 text-xs text-fg-faint">Content plays through each platform&apos;s official embed. Your signals (views, saves, skips) stay on this device unless you sign in to sync.</p>
+      <p className="mt-4 text-xs text-fg-faint">{t("onboarding.privacy")}</p>
     </Sheet>
   );
 }

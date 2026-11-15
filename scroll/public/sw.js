@@ -1,6 +1,6 @@
 /* SCROLL service worker: app-shell caching for installability + offline fallback.
    Third-party embeds and API responses are never cached here (provider terms + freshness). */
-const VERSION = "scroll-v1";
+const VERSION = "scroll-v2";
 const APP_SHELL = ["/", "/discover", "/saved", "/profile", "/offline", "/manifest.webmanifest", "/icons/icon.svg"];
 
 self.addEventListener("install", (event) => {

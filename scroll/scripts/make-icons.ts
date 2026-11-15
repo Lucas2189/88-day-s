@@ -17,6 +17,12 @@ async function main() {
   await render(512, "public/icons/icon-512.png");
   await render(512, "public/icons/icon-maskable-512.png", 64);
   await render(180, "public/icons/apple-touch-icon.png");
+  // Social preview image (Open Graph / X card)
+  await page.setViewportSize({ width: 1200, height: 630 });
+  await page.setContent(
+    `<html><body style="margin:0;background:#000;color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif;width:1200px;height:630px;display:flex;align-items:center;gap:64px;padding:0 96px;box-sizing:border-box"><img src="data:image/svg+xml;utf8,${encodeURIComponent(svg)}" style="width:260px;height:260px"/><div><div style="font-size:112px;font-weight:700;letter-spacing:-3px">SCROLL</div><div style="font-size:40px;opacity:.7;margin-top:12px">One app. One feed. Every social network.</div></div></body></html>`,
+  );
+  writeFileSync("public/og.png", await page.screenshot({ type: "png", clip: { x: 0, y: 0, width: 1200, height: 630 } }));
   await browser.close();
   console.log("icons written");
 }

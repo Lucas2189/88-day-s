@@ -7,6 +7,7 @@ import type { CategoryId, ContentItem, ProviderId } from "@/lib/content/types";
  *   score = 1.0 * interestMatch        // explicit interests chosen by the user
  *         + 1.5 * learnedAffinity      // category affinity learned from in-app engagement
  *         + 0.6 * sourcePreference     // provider weight (0 when disabled)
+ *         + 0.7 * regionMatch          // item tagged for the user's content region
  *         + 0.3 * recencyBoost         // newer publications get a small bump
  *         + 0.2 * explorationNoise     // deterministic per-session jitter for variety
  *         - 0.8 * seenPenalty          // already viewed in this session / recently
@@ -28,8 +29,12 @@ export interface EngagementEvent {
   createdAt: string;
 }
 
+export type ReasonCode = "interests" | "affinity" | "skipTendency" | "recent" | "region";
+
 export interface RankingProfile {
   interests: CategoryId[];
+  /** Content region of the user ("global" = no regional boost). */
+  region?: string;
   enabledProviders: ProviderId[];
   hiddenContentIds: Set<string>;
   hiddenAuthors: Set<string>;
@@ -94,7 +99,7 @@ function hash(str: string, seed: number): number {
 export interface ScoredItem {
   item: ContentItem;
   score: number;
-  reasons: string[];
+  reasons: ReasonCode[];
 }
 
 export function scoreItem(item: ContentItem, profile: RankingProfile, now = Date.now()): ScoredItem | null {
@@ -103,24 +108,27 @@ export function scoreItem(item: ContentItem, profile: RankingProfile, now = Date
   if (authorKey && profile.hiddenAuthors.has(authorKey)) return null;
   if (!profile.enabledProviders.includes(item.provider)) return null;
 
-  const reasons: string[] = [];
+  const reasons: ReasonCode[] = [];
   const cats = item.categories.length ? item.categories : (["lifestyle"] as CategoryId[]);
 
   const interestMatch = profile.interests.length ? cats.filter((c) => profile.interests.includes(c)).length / cats.length : 0.5;
-  if (interestMatch > 0 && profile.interests.length) reasons.push("Matches your interests");
+  if (interestMatch > 0 && profile.interests.length) reasons.push("interests");
 
   const affinityValues = cats.map((c) => profile.affinity[c] ?? 0);
   const learnedAffinity = affinityValues.length ? affinityValues.reduce((a, b) => a + b, 0) / affinityValues.length : 0;
-  if (learnedAffinity > 0.25) reasons.push("Similar to what you watched");
-  if (learnedAffinity < -0.25) reasons.push("You tend to skip this");
+  if (learnedAffinity > 0.25) reasons.push("affinity");
+  if (learnedAffinity < -0.25) reasons.push("skipTendency");
 
   const sourcePreference = 1;
+
+  const regionMatch = profile.region && profile.region !== "global" && item.regions?.includes(profile.region) ? 1 : 0;
+  if (regionMatch) reasons.push("region");
 
   let recencyBoost = 0;
   if (item.publishedAt) {
     const ageDays = (now - new Date(item.publishedAt).getTime()) / 86_400_000;
     recencyBoost = Math.max(0, 1 - ageDays / 30);
-    if (recencyBoost > 0.5) reasons.push("Recently published");
+    if (recencyBoost > 0.5) reasons.push("recent");
   }
 
   const explorationNoise = hash(item.id, profile.seed);
@@ -131,6 +139,7 @@ export function scoreItem(item: ContentItem, profile: RankingProfile, now = Date
     1.0 * interestMatch +
     1.5 * learnedAffinity +
     0.6 * sourcePreference +
+    0.7 * regionMatch +
     0.3 * recencyBoost +
     0.2 * explorationNoise -
     0.8 * seenPenalty -

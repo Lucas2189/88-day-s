@@ -4,6 +4,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
 import { ToastProvider } from "@/components/ui/Toast";
 import { CloudSync } from "@/components/providers/CloudSync";
+import { InstallHint } from "@/components/ui/InstallHint";
+import { LocaleEffects } from "@/lib/i18n";
 
 export function AppProviders({ children }: { children: ReactNode }) {
   const [client] = useState(
@@ -28,6 +30,8 @@ export function AppProviders({ children }: { children: ReactNode }) {
       <ToastProvider>
         {children}
         <CloudSync />
+        <LocaleEffects />
+        <InstallHint />
       </ToastProvider>
     </QueryClientProvider>
   );

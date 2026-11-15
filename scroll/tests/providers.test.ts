@@ -4,7 +4,8 @@ import { ProviderError } from "@/lib/providers/types";
 import { splitScript } from "@/lib/providers/oembed";
 
 function mockFetch(status: number, body: unknown) {
-  const fn = vi.fn(async (_input: RequestInfo | URL, _init?: RequestInit) => new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } }));
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const fn = vi.fn(async (..._args: [RequestInfo | URL, RequestInit?]) => new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } }));
   vi.stubGlobal("fetch", fn);
   return fn;
 }
@@ -35,6 +36,12 @@ describe("provider registry", () => {
     await expect(resolveUrl("https://www.tiktok.com/@u/video/123456789")).rejects.toMatchObject({ code: "not_found", provider: "tiktok" } satisfies Partial<ProviderError>);
   });
 
+  it("attaches curated regions to resolved items", async () => {
+    mockFetch(200, { title: "Song", author_name: "Artist" });
+    const item = await resolveUrl("https://youtu.be/gdZLi9oWNZg", { regions: ["kr"] });
+    expect(item.regions).toEqual(["kr"]);
+  });
+
   it("rejects unsupported URLs without any network call", async () => {
     const fetch = mockFetch(200, {});
     await expect(resolveUrl("https://example.com/foo")).rejects.toBeInstanceOf(ProviderError);
@@ -56,6 +63,7 @@ describe("provider registry", () => {
     expect(fetch).not.toHaveBeenCalled();
     expect(item.embed).toMatchObject({ type: "oembed-html", scriptSrc: "https://embed.reddit.com/widgets.js" });
     expect(item.description).toMatch(/credentials/i);
+    expect(item.title).toBe("Title");
   });
 });
 

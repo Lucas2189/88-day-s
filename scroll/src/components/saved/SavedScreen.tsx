@@ -9,6 +9,7 @@ import { SmartImage } from "@/components/ui/SmartImage";
 import { useToast } from "@/components/ui/Toast";
 import { PROVIDER_IDS, type ProviderId } from "@/lib/content/types";
 import { useUserStore } from "@/lib/store/user-store";
+import { useT } from "@/lib/i18n";
 
 export function SavedScreen() {
   const bookmarks = useUserStore((s) => s.bookmarks);
@@ -17,6 +18,7 @@ export function SavedScreen() {
   const deleteCollection = useUserStore((s) => s.deleteCollection);
   const toggleBookmark = useUserStore((s) => s.toggleBookmark);
   const { toast } = useToast();
+  const t = useT();
   const [query, setQuery] = useState("");
   const [collectionId, setCollectionId] = useState<string | null>(null);
   const [provider, setProvider] = useState<ProviderId | null>(null);
@@ -37,28 +39,28 @@ export function SavedScreen() {
     <div className="min-h-dvh pb-[calc(var(--tabbar-h)+var(--safe-bottom)+24px)]" style={{ paddingTop: "var(--safe-top)" }}>
       <header className="sticky top-0 z-30 bg-black/85 px-4 pb-3 pt-4 backdrop-blur-xl">
         <div className="flex items-center justify-between">
-          <h1 className="font-display text-2xl font-semibold">Saved</h1>
+          <h1 className="font-display text-2xl font-semibold">{t("saved.title")}</h1>
           <button
             type="button"
             onClick={() => {
-              const name = window.prompt("Collection name");
+              const name = window.prompt(t("saved.collectionPrompt"));
               if (name?.trim()) {
                 createCollection(name);
-                toast("Collection created", "success");
+                toast(t("saved.collectionCreated"), "success");
               }
             }}
             className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white/[0.08] px-3.5 py-2 text-xs font-semibold"
           >
-            <FolderPlus size={14} /> New
+            <FolderPlus size={14} /> {t("saved.new")}
           </button>
         </div>
         <label className="mt-3 flex h-11 items-center gap-2 rounded-full border border-line bg-surface-2 px-4">
           <Search size={16} className="text-fg-faint" />
-          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search your saves" className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-fg-faint" type="search" aria-label="Search saved" />
+          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t("saved.searchPlaceholder")} className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-fg-faint" type="search" aria-label={t("saved.searchPlaceholder")} />
         </label>
         <div className="no-scrollbar -mx-4 mt-3 flex gap-2 overflow-x-auto px-4">
           <Chip size="sm" active={collectionId === null} onClick={() => setCollectionId(null)}>
-            All ({total})
+            {t("saved.all", { count: total })}
           </Chip>
           {collectionList.map((c) => (
             <Chip key={c.id} size="sm" active={collectionId === c.id} onClick={() => setCollectionId(c.id)}>
@@ -68,7 +70,7 @@ export function SavedScreen() {
         </div>
         <div className="no-scrollbar -mx-4 mt-2 flex gap-2 overflow-x-auto px-4">
           <Chip size="sm" active={provider === null} onClick={() => setProvider(null)}>
-            All platforms
+            {t("saved.allPlatforms")}
           </Chip>
           {PROVIDER_IDS.map((p) => (
             <Chip key={p} size="sm" active={provider === p} onClick={() => setProvider(p)}>
@@ -81,33 +83,33 @@ export function SavedScreen() {
       {collectionId && (
         <div className="flex items-center justify-between px-4 pt-2">
           <Link href={`/?scope=saved&collection=${collectionId}`} className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-black">
-            <Play size={14} fill="currentColor" /> Play collection
+            <Play size={14} fill="currentColor" /> {t("saved.play")}
           </Link>
           <button
             type="button"
             onClick={() => {
-              if (window.confirm("Delete this collection? Saved items are kept.")) {
+              if (window.confirm(t("saved.deleteConfirm"))) {
                 deleteCollection(collectionId);
                 setCollectionId(null);
               }
             }}
             className="inline-flex items-center gap-1 text-xs text-fg-muted"
           >
-            <Trash2 size={14} /> Delete collection
+            <Trash2 size={14} /> {t("saved.deleteCollection")}
           </button>
         </div>
       )}
 
       {total === 0 ? (
         <div className="px-8 pt-24 text-center">
-          <p className="font-display text-xl font-semibold">Nothing saved yet</p>
-          <p className="mt-2 text-sm text-fg-muted">Tap the bookmark on any item to keep it here, across every platform.</p>
+          <p className="font-display text-xl font-semibold">{t("saved.emptyTitle")}</p>
+          <p className="mt-2 text-sm text-fg-muted">{t("saved.emptyBody")}</p>
           <Link href="/" className="mt-5 inline-flex rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black">
-            Go to feed
+            {t("saved.goFeed")}
           </Link>
         </div>
       ) : (
-        <ul className="mt-3 space-y-2 px-4">
+        <ul className="mt-3 space-y-2 px-4" data-testid="saved-list">
           {list.map((b) => (
             <li key={b.contentId} className="flex gap-3 rounded-2xl border border-line bg-surface-2 p-2">
               <Link href={`/?item=${encodeURIComponent(b.contentId)}`} className="relative h-24 w-20 shrink-0 overflow-hidden rounded-xl bg-surface-3">
@@ -123,10 +125,10 @@ export function SavedScreen() {
                 <p className="mt-1 line-clamp-1 text-xs text-fg-muted">{b.item.authorName}</p>
                 <div className="mt-2 flex items-center gap-3 text-xs">
                   <a href={b.item.url} target="_blank" rel="noopener noreferrer" className="text-fg-muted underline-offset-2 hover:underline">
-                    Open original
+                    {t("common.openOriginal")}
                   </a>
                   <button type="button" onClick={() => toggleBookmark(b.item)} className="text-fg-faint hover:text-red-300">
-                    Remove
+                    {t("common.remove")}
                   </button>
                 </div>
                 {b.collectionIds.length > 0 && (
@@ -135,7 +137,7 @@ export function SavedScreen() {
               </div>
             </li>
           ))}
-          {list.length === 0 && <p className="pt-10 text-center text-sm text-fg-muted">No saved items match these filters.</p>}
+          {list.length === 0 && <p className="pt-10 text-center text-sm text-fg-muted">{t("saved.noMatch")}</p>}
         </ul>
       )}
     </div>
