@@ -1,0 +1,22 @@
+{
+ "duration": 11.5,
+ "frames": 345,
+ "title_px": 90,
+ "punch_px": 78,
+ "scale_reveal": 0.5,
+ "tower_top_world": -2060,
+ "impacts": [
+  0.0,
+  1.1,
+  1.8,
+  2.4,
+  2.9,
+  3.33,
+  3.69,
+  4.5,
+  5.4,
+  6.3
+ ],
+ "reveal": 7.25,
+ "cta": 9.25
+}

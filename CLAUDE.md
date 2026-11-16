@@ -47,6 +47,13 @@ Source complète : `references/marketing-instructions/eazy88-tiktok-trend-video_
 - Zone sûre TikTok : éléments essentiels dans x 80–940, y 220–1380. Sous-titres incrustés (max. 2 lignes de ~42 caractères).
 - Son : voix + éventuel fond musical original ; normalisation à −16 LUFS, TP −1,5.
 
+**Format POV (humour, sans voix off).** Demandé par Lucas le 16 nov. 2026, sur le modèle d'une vidéo d'un autre compte.
+- Une situation de backpacker reconnaissable, 8 à 15 s, texte à l'écran en anglais dès la première image, objectif partages, un seul CTA.
+- On reprend le format, jamais le contenu d'un autre créateur : ni son image, ni son texte, ni son son.
+- Visuels : illustration originale (étiquetée « Illustration ») ou images filmées par Lucas. Pas d'image réaliste générée par IA.
+- Musique originale, ou son de la bibliothèque commerciale de l'app choisi par Lucas à la publication.
+- Outil : `drafts/2026-11-16_ParkingSignPOV/render_parking_pov.py` (premier exemple).
+
 **Contrôle qualité avant de dire « terminé ».** ffprobe (h264 + aac, 1080×1920, 30 fps, durée), planches de frames extraites du MP4 final (hook à 0,03 s, chaque scène, la fin), mesure de loudness, relecture de chaque affirmation contre le tableau. Préciser que l'audio n'a été vérifié que par mesure. Un export muet n'est jamais une « vidéo voix off terminée ».
 
 **Mesure.** Publier seulement la version A en organique ; le test A/B propre se fait dans TikTok Ads Manager (avec l'accord de Lucas et un budget validé). Comparer à 72 h et 7 jours avec les posts de même format. Pour l'objectif App Store : vues 2 s / 6 s → clics → installations attribuables → activation (ex. `payslip_saved`). Eazy88 est gratuit : on évalue l'efficacité d'acquisition et d'activation, pas un ROI financier.
