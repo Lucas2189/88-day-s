@@ -1,0 +1,77 @@
+EAZY88 · APP STORE LISTING v2 (draft, 19 Nov 2026) · copy-paste into App Store Connect
+Character counts are in brackets. Fill in [SUPPORT EMAIL] and the What's New lines before submitting.
+
+======================================================================
+APP NAME — option A, recommended (30 max)  [23/30]
+======================================================================
+Eazy88: 88 Days Tracker
+
+======================================================================
+SUBTITLE — option A (30 max)  [24/30]
+======================================================================
+Working holiday payslips
+
+======================================================================
+KEYWORDS — option A (100 max, commas, no spaces)  [100/100]
+======================================================================
+backpacker,farm,work,second,year,visa,whv,417,462,regional,australia,specified,hours,wage,record,log
+
+======================================================================
+APP NAME — option B, name unchanged (30 max)  [6/30]
+======================================================================
+Eazy88
+
+======================================================================
+SUBTITLE — option B (30 max)  [24/30]
+======================================================================
+Track 88 days & payslips
+
+======================================================================
+KEYWORDS — option B (100 max, commas, no spaces)  [97/100]
+======================================================================
+backpacker,farm,work,second,year,visa,whv,417,462,regional,working,holiday,tracker,hours,wage,log
+
+======================================================================
+PROMOTIONAL TEXT (170 max, can be changed any time)  [129/170]
+======================================================================
+Add a payslip from a photo, a PDF or your gallery. Track your 88 days and keep every payslip in one place. Free, no subscription.
+
+======================================================================
+DESCRIPTION (4000 max, needs a new version)  [1169/4000]
+======================================================================
+Eazy88 helps backpackers on a Working Holiday visa (417 or 462) in Australia track their 88 days and keep every payslip in one place.
+
+TRACK YOUR 88 DAYS
+See your progress on a ring and a calendar. No more counting in your notes app or trying to remember which weeks you worked.
+
+ADD A PAYSLIP FROM A PHOTO OR PDF
+Take a photo, pick a PDF or choose from your gallery. The app reads the employer, dates, hours and pay for you, and you check the details before saving.
+
+YOUR WORK DOCUMENTS TOGETHER
+Payslips, CVs and certifications, stored in one place and ready when you need them.
+
+FREE, NO SUBSCRIPTION
+Eazy88 is free to download and use.
+
+COMING SOON
+Community listings for jobs, housing, cars and road trips. We're building them now, so these sections may stay quiet for a while.
+
+GOOD TO KNOW
+Eazy88 is a record-keeping app. It doesn't decide whether your work counts as specified work for a second or third visa: the Department of Home Affairs does. Check the current rules at immi.homeaffairs.gov.au and keep your original payslips.
+
+Built by backpackers, for backpackers. Found a bug or a day that doesn't look right? Tell us at [SUPPORT EMAIL] so we can fix it.
+
+======================================================================
+WHAT'S NEW — next version (template: keep only what is really in the build)  [127/4000]
+======================================================================
+• Fixed: [describe the day-count fix, e.g. how a full-time week with weekend days is counted].
+• [Other changes in this build.]
+
+======================================================================
+SCREENSHOT CAPTIONS (real app screens, demo data; one idea per screenshot)
+======================================================================
+1. Track your 88 days  [18]  ->  Home: progress ring + calendar (demo data)
+2. Payslip from photo or PDF  [25]  ->  The add sheet: photo, PDF, gallery
+3. Check the details, then save  [28]  ->  The check step after the app reads a payslip (EXAMPLE payslip)
+4. Payslips, CVs, certificates  [27]  ->  Work hub
+5. Free. No subscription.  [22]  ->  Any clean screen, e.g. home

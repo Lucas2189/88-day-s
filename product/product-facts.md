@@ -1,6 +1,6 @@
 # Eazy88 — Product facts
 
-Dernière vérification : **7 novembre 2026**.
+Dernière vérification : **7 novembre 2026**. Fiche App Store et site relus le **19 novembre 2026** : inchangés (v1.1, note 2,0/5 sur 4 notes). Proposition de nouvelle fiche : `exports/2026-11-19_AppStoreListing/`.
 Sources : fiche App Store Australie (https://apps.apple.com/au/app/eazy88/id6759782986), site officiel (https://eazy88.com/en), écrans d'app publiés sur le site, et les instructions marketing fournies (vérification du 31 oct. 2026).
 Copies datées : `references/official-sources/`.
 
