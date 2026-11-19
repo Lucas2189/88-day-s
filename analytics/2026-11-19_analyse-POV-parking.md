@@ -16,7 +16,8 @@ Données : captures des grilles de profil envoyées par Lucas le 19 nov. vers 11
 - **TikTok :** 665 vues, soit 4,2 fois la médiane de nos 5 vidéos conseils (160) et 2,6 fois le meilleur post plus ancien du compte (Melbourne Cup, 260).
 - **YouTube :** 246, soit 3,8 fois la médiane (65).
 - **Instagram :** 122, comme la meilleure vidéo conseils (126) : l'écart vient surtout de TikTok et YouTube.
-- Elle a eu **environ 17 heures** pour faire ce score (si publiée le 18 à 18 h 30), contre 3 à 12 jours pour les autres.
+- Elle a eu **environ 2 jours** pour faire ce score (publiée le 17 nov., d'après l'API TikTok), contre 3 à 12 jours pour les autres.
+- **Mise à jour du même jour, avec les données détaillées de TikTok (Windsor.ai) :** `2026-11-19_windsor-tiktok-analyse.md`. Le POV n'a eu **aucun partage** ; son avantage vient de la rétention (69 % encore là à 1 s, 12,7 % jusqu'au bout).
 
 ## Pourquoi (hypothèses, à confirmer)
 1. **Elle parle à tout le monde.** Quiconque conduit en Australie comprend la blague, backpacker ou non, visa ou non. Une vidéo sur le ballot ou la condition 8547 ne parle qu'aux titulaires d'un visa 417/462 concernés à ce moment-là. TikTok peut donc la montrer à beaucoup plus de gens sans qu'ils passent à la suivante.

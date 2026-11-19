@@ -166,6 +166,29 @@ def make_cta(lines, y_icon, size=52, x=80, max_w=860):
     return im, y
 
 
+SIGNATURE = ("Eazy88", " · free app to track your 88 days")   # verified: free iOS app, 88-day tracking
+
+
+def make_signature(y=1296):
+    """Brand end card (not a call to action): app icon + name + what it is, in a pill. Returns (layer, box)."""
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = BlendDraw(im, "RGBA")
+    f1, f2 = jakarta(30, "ExtraBold"), jakarta(30, "SemiBold")
+    ic, pad, gap, h = 44, 22, 14, 64
+    tw = f1.getlength(SIGNATURE[0]) + f2.getlength(SIGNATURE[1])
+    w = pad + ic + gap + tw + pad
+    x0 = (W - w) / 2
+    assert x0 >= SAFE[0] and y + h <= SAFE[3], (x0, y + h)
+    d.rounded_rectangle((x0, y, x0 + w, y + h), h / 2, fill=C["surface"] + (240,), outline=C["line2"] + (255,), width=2)
+    im.alpha_composite(brand_icon(ic), (int(x0 + pad), int(y + (h - ic) / 2)))
+    _, t, _, b = f1.getbbox("Eazy88")
+    ty = y + h / 2 - (t + b) / 2
+    tx = x0 + pad + ic + gap
+    d.text((tx, ty), SIGNATURE[0], font=f1, fill=C["cream"] + (255,))
+    d.text((tx + f1.getlength(SIGNATURE[0]), ty), SIGNATURE[1], font=f2, fill=C["muted"] + (255,))
+    return im, (x0, y, x0 + w, y + h)
+
+
 _masks = {}
 
 

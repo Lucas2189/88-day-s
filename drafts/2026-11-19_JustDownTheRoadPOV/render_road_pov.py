@@ -20,7 +20,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, os.path.join(ROOT, "templates", "tools"))
 from pov_kit import (C, FPS, H, SR, TOK, W, BlendDraw, Encoder, Synth, anton, audio_report, band_mask,  # noqa: E402
                      clamp, comp, contact_sheet, faded, finish, jakarta, lerp, make_background, make_cta,
-                     make_static, probe, scaled, smooth, text_block)
+                     make_signature, make_static, probe, scaled, smooth, text_block)
 
 BASE = "Eazy88_TikTok_JustDownTheRoadPOV"
 OUT = sys.argv[1]
@@ -33,32 +33,36 @@ PUNCH = ["6 HOURS LATER:", "*'NOT FAR, MATE.'*"]
 CTA = ["SEND THIS TO THE MATE", "WHO SAYS IT'S *'NOT FAR'*"]
 
 # ---- signs: (time the sign is read, kind, small line, big line, colour)
+# v2 (19 Nov, after the TikTok retention data): the van is already moving on the first frame, the first joke
+# (the distance goes UP) at 1 s, one sign per second, zoom-out at 5.7 s instead of 9 s, 9.6 s instead of 13 s.
 SIGNS = [
     (0.0, "guide", "NEXT TOWN", "80 km", "g"),
-    (1.6, "guide", "NEXT TOWN", "160 km", "g"),
-    (2.7, "roo", "ROOS", "200 km", None),
-    (3.8, "guide", "NEXT FUEL", "320 km", "g"),
-    (4.9, "guide", "NEXT TOWN", "410 km", "g"),
-    (6.0, "guide", "STILL", "NOT THERE", "r"),
-    (7.1, "guide", "ARE WE THERE YET?", "NO.", "r"),
-    (8.2, "guide", "NEXT TOWN", "'JUST DOWN THE ROAD'", "g"),
+    (1.0, "guide", "NEXT TOWN", "160 km", "g"),
+    (2.0, "guide", "NEXT TOWN", "410 km", "g"),
+    (3.0, "guide", "STILL", "NOT THERE", "r"),
+    (4.0, "guide", "ARE WE THERE YET?", "NO.", "r"),
+    (5.0, "guide", "NEXT TOWN", "'JUST DOWN THE ROAD'", "g"),
 ]
-T_REV, REV_D = 9.0, 0.9
-T_PUNCH = 9.55
-T_CTA = 11.0
-DUR = 13.0
+T_REV, REV_D = 5.7, 0.8
+T_PUNCH = 6.15
+T_CTA = 7.3
+T_SIG = 7.9
+DUR = 9.6
+T_SUNSET = (0.3, 2.1)          # sun goes down
+T_NIGHT = (2.5, 4.5)
+T_SUNRISE = (4.4, 6.2)
 
 # ---- time of day: (t, sky top, sky horizon, darkness)
 SKY = [
-    (0.0, C["sun"], C["cream"], 0.0), (3.4, C["sun"], C["cream"], 0.0), (4.9, TOK["primary_dark"], C["sunset"], 0.15),
-    (5.9, C["bg"], TOK["n800"], 1.0), (7.6, C["bg"], TOK["n800"], 1.0), (8.5, TOK["n800"], C["orange"], 0.35),
-    (9.6, C["sun"], C["cream"], 0.0), (DUR, C["sun"], C["cream"], 0.0),
+    (0.0, C["sun"], C["cream"], 0.0), (1.2, C["sun"], C["cream"], 0.0), (2.0, TOK["primary_dark"], C["sunset"], 0.15),
+    (2.6, C["bg"], TOK["n800"], 1.0), (4.4, C["bg"], TOK["n800"], 1.0), (5.0, TOK["n800"], C["orange"], 0.35),
+    (6.0, C["sun"], C["cream"], 0.0), (DUR, C["sun"], C["cream"], 0.0),
 ]
 
 # ---- geometry (world px; road surface at y = 0, up is negative) and camera
 VX = 190                       # screen x of the van's rear in the close-up
 READ_X = 700                   # screen x of a sign's centre when it is read
-GY_A, GY_B = 1290, 1300        # road line on screen before / after the reveal
+GY_A, GY_B = 1290, 1236        # road line on screen before / after the reveal (above the end card)
 SB = 0.40
 R_TOP_A, R_TOP_B, R_BOT = 660, 812, 1380
 HORIZON = 190
@@ -77,10 +81,9 @@ def sky_at(t):
     return SKY[-1][1], SKY[-1][2], SKY[-1][3]
 
 
-# ---- van speed: starts from a stop, slows down near each sign so it can be read
+# ---- van speed: already rolling on the first frame, slows down near each sign so it can be read
 def speed(t):
-    v = VMAX * (1 - 0.78 * sum(math.exp(-((t - s[0]) / 0.3) ** 2) for s in SIGNS[1:]))
-    v *= smooth(t / 1.1)
+    v = VMAX * (1 - 0.78 * sum(math.exp(-((t - s[0]) / 0.3) ** 2) for s in SIGNS))
     if t > T_REV:
         v *= lerp(1.0, 0.25, smooth((t - T_REV) / 0.6))
     return v
@@ -216,12 +219,12 @@ def draw_scene(t, s, vx_screen, gy, top, van, signs):
         d.rectangle((0, y, W, y + 4), fill=col_mix(sky_top, sky_hor, e ** 1.4) + (255,))
     # sun (day, sunset, sunrise) and moon (night)
     sun_y = None
-    if t < 5.6:
-        e = smooth((t - 1.5) / 3.9)
+    if t < T_SUNSET[1] + 0.3:
+        e = smooth((t - T_SUNSET[0]) / (T_SUNSET[1] - T_SUNSET[0]))
         sun_x, sun_y, rad = lerp(800, 760, e), lerp(top + 120, hz + 10, e), lerp(46, 64, e)
         col = col_mix(C["cream"], C["sunset"], e)
-    elif t > 7.9:
-        e = smooth((t - 7.9) / 2.2)
+    elif t > T_SUNRISE[0]:
+        e = smooth((t - T_SUNRISE[0]) / (T_SUNRISE[1] - T_SUNRISE[0]))
         sun_x, sun_y, rad = 800, lerp(hz + 40, top + 150, e), lerp(66, 50, e)
         col = col_mix(C["orange"], C["cream"], e)
     if sun_y is not None:
@@ -300,7 +303,7 @@ def make_music():
     t, k = 0.0, 0
     while t < DUR - 0.5:
         ch, root = prog[(k // 2) % 4]
-        night = 5.7 <= t < 7.9
+        night = T_NIGHT[0] <= t < T_NIGHT[1]
         g = 0.55 if night else 1.0
         for j, f in enumerate(ch):
             put(m, sy.pluck(f, 0.7, 0.16 * g, decay=0.994), t + j * 0.014)
@@ -321,7 +324,7 @@ def make_music():
         put(m, sy.bell(587.33 * 2 ** (i / 12), 0.08, 0.9), s_[0])
     # night: crickets
     rng = np.random.default_rng(5)
-    for tc in np.arange(5.8, 7.9, 0.33):
+    for tc in np.arange(T_NIGHT[0] + 0.1, T_NIGHT[1], 0.33):
         for p in range(3):
             n2 = int(0.018 * SR)
             tt = np.arange(n2) / SR
@@ -348,6 +351,7 @@ def main():
     cta_im, cta_bottom = make_cta(CTA, punch_bottom + 46)
     assert title_bottom <= R_TOP_A, f"title ends at {title_bottom}"
     assert cta_bottom <= R_TOP_B, f"CTA ends at {cta_bottom}, scene starts at {R_TOP_B}"
+    sig_im, _ = make_signature(1296)
     van = van_art()
     signs = [sign_art(k, a, b, c) for _, k, a, b, c in SIGNS]
 
@@ -374,18 +378,21 @@ def main():
         ca = clamp((t - T_CTA) / 0.3)
         if ca > 0:
             comp(frame, faded(cta_im, ca), 0, 16 * (1 - smooth(ca)))
+        sa = clamp((t - T_SIG) / 0.3)
+        if sa > 0:
+            frame.alpha_composite(faded(sig_im, sa))
         enc.write(frame)
         if fi == 0:
             frame.convert("RGB").save(os.path.join(OUT, f"{BASE}_Cover.png"))
     enc.close()
 
     mp4 = finish(OUT, BASE, os.path.join(tmp, "video.mp4"), make_music(), tmp)
-    times = [0.03, 0.9, 1.6, 2.7, 3.8, 4.4, 4.9, 5.5, 6.0, 7.1, 8.2, 8.9, 9.3, 9.8, 10.5, 11.2, 12.0, 12.8]
+    times = [0.03, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 5.9, 6.4, 7.0, 7.6, 8.3, 9.45]
     contact_sheet(mp4, times, os.path.join(OUT, "contact_sheet.png"), tmp)
     qc = {"probe": probe(mp4), "audio": audio_report(mp4), "title_px": title_size, "punch_px": punch_size,
           "title_bottom": title_bottom, "punch_bottom": punch_bottom, "cta_bottom": cta_bottom,
           "sign_read_times": [s_[0] for s_ in SIGNS], "reveal": [T_REV, T_REV + REV_D], "punch": T_PUNCH, "cta": T_CTA,
-          "end": DUR}
+          "signature": T_SIG, "end": DUR}
     json.dump(qc, open(os.path.join(OUT, "qc.json"), "w"), indent=1)
     print(json.dumps(qc))
 

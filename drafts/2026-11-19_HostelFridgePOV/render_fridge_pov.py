@@ -19,7 +19,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, os.path.join(ROOT, "templates", "tools"))
 from pov_kit import (C, FPS, H, SR, TOK, W, BlendDraw, Encoder, Synth, anton, audio_report, band_mask,  # noqa: E402
                      clamp, comp, contact_sheet, faded, finish, jakarta, lerp, make_background, make_cta,
-                     make_static, place_art, probe, scaled, smooth, spring, text_block)
+                     make_signature, make_static, place_art, probe, scaled, smooth, spring, text_block)
 
 BASE = "Eazy88_TikTok_HostelFridgePOV"
 OUT = sys.argv[1]
@@ -36,7 +36,6 @@ NOTES = [
     dict(kind="sheet", c=(265, 870), w=260, h=190, rot=0, lines=["PLEASE LABEL", "YOUR FOOD"], sub="— Management"),
     dict(c=(150, 735), w=215, h=180, rot=-7, col="sun", lines=["WHO TOOK", "MY MILK??"]),
     dict(c=(380, 690), w=210, h=175, rot=6, col="orange", lines=["LABELLED.", "NOT FREE."]),
-    dict(c=(165, 588), w=235, h=190, rot=4, col="green_l", lines=["MY HUMMUS", "HAD MY NAME", "ON IT"]),
     dict(c=(385, 528), w=215, h=175, rot=-5, col="cream", lines=["I COUNTED", "THE EGGS."]),
     dict(c=(150, 442), w=205, h=170, rot=-3, col="sun", lines=["IT WAS", "ROOM 6."]),
     dict(c=(378, 398), w=235, h=180, rot=7, col="green_l", lines=["ROOM 6 HERE.", "IT WASN'T US."]),
@@ -46,21 +45,25 @@ NOTES = [
 ]
 # more notes on the lower door, added while the camera is at the top (out of frame), seen at the zoom-out
 EXTRAS = [
+    dict(c=(165, 588), w=235, h=190, rot=4, col="green_l", lines=["MY HUMMUS", "HAD MY NAME", "ON IT"]),
     dict(c=(95, 958), w=140, h=100, rot=8, col="green_l", lines=["MINE!!"]),
     dict(c=(440, 952), w=150, h=110, rot=-6, col="orange", lines=["NOT", "YOURS"]),
     dict(c=(468, 822), w=120, h=100, rot=10, col="sun", lines=["WHY"]),
     dict(c=(64, 842), w=118, h=100, rot=-12, col="cream", lines=["ROOM 6??"]),
 ]
 
-# ---- timeline (seconds)
-IMP = [0.0, 1.10, 1.85, 2.55, 3.25, 3.90, 4.50, 5.30, 6.10, 6.90]   # moment each note lands
+# ---- timeline (seconds). v2 (19 Nov, after the TikTok retention data): first note at 0.3 s, a note every
+# ~0.6 s, zoom-out at 5.1 s instead of 7.75 s, 9.4 s instead of 12.4 s, brand end card.
+IMP = [0.0, 0.45, 1.0, 1.55, 2.1, 2.7, 3.35, 3.95, 4.55]   # moment each note lands
+N_PLAIN = len(IMP) - 3                                      # the last three are the escalation
 DROP_D = 0.16
-T_EXTRA = 7.45
-T_REV, REV_D = 7.75, 0.8
-T_PUNCH = T_REV + 0.55
-T_CTA = 10.2
-DUR = 12.4
-OMEGA = 12.0
+T_EXTRA = 4.85
+T_REV, REV_D = 5.1, 0.7
+T_PUNCH = T_REV + 0.45
+T_CTA = 6.8
+T_SIG = 7.4
+DUR = 9.4
+OMEGA = 16.0
 
 # ---- geometry and camera (screen = origin + world * scale)
 FW, FH, FEET = 520, 1010, 16
@@ -163,14 +166,14 @@ def make_music():
         k += 1
     put(m, sy.tick(0.16, 880.0), 0.02)
     # each note landing: a paper slap and a pizzicato step up the scale
-    for i, f in zip(range(1, 7), (440.0, 493.88, 523.25, 587.33, 659.25, 698.46)):
+    for i, f in zip(range(1, N_PLAIN), (440.0, 493.88, 523.25, 587.33, 659.25, 698.46)):
         put(m, sy.slap(0.32), IMP[i])
         put(m, sy.pluck(f, 0.5, 0.3, decay=0.99), IMP[i])
         put(m, sy.bell(f * 2, 0.05, 0.6), IMP[i])
     # the three escalation notes: orchestra stabs, louder each time (Dm, E, E7b9)
     stabs = [(146.83, [293.66, 349.23, 440.0, 587.33]), (164.81, [329.63, 415.30, 493.88, 659.25]),
              (164.81, [329.63, 415.30, 587.33, 698.46])]
-    for (root, ch), i, g in zip(stabs, (7, 8, 9), (0.8, 0.95, 1.15)):
+    for (root, ch), i, g in zip(stabs, range(N_PLAIN, N_PLAIN + 3), (0.8, 0.95, 1.15)):
         put(m, sy.slap(0.38 * g), IMP[i])
         put(m, sy.timp(root, 0.3 * g, 0.8, decay=6), IMP[i])
         for f in ch:
@@ -217,7 +220,8 @@ def main():
     cta_im, cta_bottom = make_cta(CTA, 880, max_w=OXB - 80 - 24)
     assert title_bottom <= R_TOP_A, f"title ends at {title_bottom}, scene starts at {R_TOP_A}"
     assert punch_bottom <= 880 - 36 - 20, f"punchline ends at {punch_bottom}"
-    assert cta_bottom <= 1380 and OYB + (FH + FEET) * SB <= 1380
+    sig_im, sig_box = make_signature(1296)
+    assert cta_bottom <= 1380 and OYB + (FH + FEET) * SB <= sig_box[1] - 10
     fridge = fridge_art()
     arts = [note_art(nd) for nd in NOTES]
     extras = [note_art(nd) for nd in EXTRAS]
@@ -239,7 +243,7 @@ def main():
             cx = lerp(OXA + FW / 2 * SA, OXB + FW / 2 * SB, e)          # fridge centre moves on screen
             ox, oy_now = cx - FW / 2 * s, lerp(oy_rev0, OYB, e)          # top of the fridge only moves up
             rt = lerp(R_TOP_A, R_TOP_B, e)
-        shake = sum((8 if i >= 7 else 4) * math.exp(-(t - IMP[i]) * 16) * math.cos((t - IMP[i]) * 60)
+        shake = sum((8 if i >= N_PLAIN else 4) * math.exp(-(t - IMP[i]) * 16) * math.cos((t - IMP[i]) * 60)
                     for i in range(1, len(NOTES)) if 0 <= t - IMP[i] < 0.35)
         oys = oy_now + shake
 
@@ -277,20 +281,24 @@ def main():
         ca = clamp((t - T_CTA) / 0.3)
         if ca > 0:
             comp(frame, faded(cta_im, ca), 0, 16 * (1 - smooth(ca)))
+        sa = clamp((t - T_SIG) / 0.3)
+        if sa > 0:
+            frame.alpha_composite(faded(sig_im, sa))
         enc.write(frame)
         if fi == 0:
             frame.convert("RGB").save(os.path.join(OUT, f"{BASE}_Cover.png"))
     enc.close()
 
     mp4 = finish(OUT, BASE, os.path.join(tmp, "video.mp4"), make_music(), tmp)
-    times = [0.03, 0.9, 1.25, 2.0, 2.7, 3.4, 4.05, 4.65, 5.45, 6.25, 7.05, 7.6, 8.0, 8.6, 9.3, 10.0, 10.8, 12.2]
+    times = [0.03, 0.35, 0.6, 1.15, 1.7, 2.25, 2.85, 3.5, 4.1, 4.7, 5.0, 5.3, 5.7, 6.2, 6.9, 7.6, 8.4, 9.25]
     contact_sheet(mp4, times, os.path.join(OUT, "contact_sheet.png"), tmp)
     qc = {"probe": probe(mp4), "audio": audio_report(mp4), "title_px": title_size, "punch_px": punch_size,
           "title_bottom": title_bottom, "punch_bottom": punch_bottom, "cta_bottom": cta_bottom,
           "note_text_px_on_screen": {"/".join(nd["lines"]): round(nd.get("font_px_world", 44) * SA)
                                      for nd in NOTES},
           "fridge_box_after_reveal": [round(OXB), OYB, 940, round(OYB + (FH + FEET) * SB)],
-          "timeline": {"impacts": IMP, "reveal": [T_REV, T_REV + REV_D], "punch": T_PUNCH, "cta": T_CTA, "end": DUR}}
+          "timeline": {"impacts": IMP, "reveal": [T_REV, T_REV + REV_D], "punch": T_PUNCH, "cta": T_CTA,
+                       "signature": T_SIG, "end": DUR}}
     json.dump(qc, open(os.path.join(OUT, "qc.json"), "w"), indent=1)
     print(json.dumps(qc))
 

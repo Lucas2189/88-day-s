@@ -36,7 +36,7 @@ Source complète : `references/marketing-instructions/eazy88-tiktok-trend-video_
 - App Store seulement : la fiche Google Play est introuvable (404 au 7 nov. 2026), ne pas mentionner Android.
 - Marketplace (Jobs, Housing, Cars, Road trips, Insurance, Map) : **pas encore de vraies annonces** (Lucas, 7 nov. 2026). Ne pas les promouvoir.
 
-**Compte et canal.** TikTok : @eazy88llc. Statistiques de référence dans `analytics/`.
+**Compte et canal.** TikTok : @eazy88llc (compte personnel, **pas de lien dans la bio** au 19 nov. : ne pas écrire « Link in bio » ; écrire « on the App Store »). Statistiques de référence dans `analytics/`. Données détaillées TikTok via le connecteur Windsor.ai (essai : 30 derniers jours ; Instagram pas encore connecté).
 
 **Recherche avant tout choix d'angle.** Priorité aux 30 derniers jours (7 jours pour les tendances rapides). Tableau de 5 angles : angle · source (URL, date, lieu) · signal observable · problème de l'audience · lien avec une fonctionnalité confirmée · statut (*verified emerging trend* / *ongoing audience need* / *creative hypothesis*). Ne pas forcer les 88 jours ni le produit : une vidéo utile sans l'app vaut mieux qu'un pont forcé. Faire tourner les thèmes ; jamais deux vidéos fiches de paie / relevés de travail d'affilée ; démo app au maximum une fois toutes les deux semaines.
 
@@ -53,7 +53,7 @@ Source complète : `references/marketing-instructions/eazy88-tiktok-trend-video_
 - Visuels : illustration originale (étiquetée « Illustration ») ou images filmées par Lucas. Pas d'image réaliste générée par IA.
 - Musique originale, ou son de la bibliothèque commerciale de l'app choisi par Lucas à la publication.
 - Outil : `templates/tools/pov_kit.py` (dessin, caméra, musique, contrôles communs). Exemples : `drafts/2026-11-19_*POV/render_*.py` ; premier clip : `drafts/2026-11-16_ParkingSignPOV/render_parking_pov.py`.
-- Contrôle propre au format : image fixe et lisible ~0,9 s au début, quelque chose de nouveau toutes les secondes, chute avant 9 s ; musique avec moins de 10 % d'énergie sous 150 Hz (sinon inaudible sur un téléphone) et pic ≤ −1,5 dBTP.
+- Contrôle propre au format (révisé le 19 nov. d'après la rétention TikTok) : titre lisible dès la 1re image mais l'image bouge dès le début, première action vers 0,3–0,5 s, première blague avant 2–3 s, chute vers 3,5–6 s, CTA juste après, 8 à 10 s au total, signature « Eazy88 · free app to track your 88 days » en fin (pas un 2e CTA) ; musique avec moins de 10 % d'énergie sous 150 Hz (sinon inaudible sur un téléphone) et pic ≤ −1,5 dBTP.
 - Premier résultat (19 nov.) : le POV parking a fait 2,6 à 4 fois plus de vues que les vidéos conseils (un seul post, vues seulement) : `analytics/2026-11-19_analyse-POV-parking.md`.
 
 **Contrôle qualité avant de dire « terminé ».** ffprobe (h264 + aac, 1080×1920, 30 fps, durée), planches de frames extraites du MP4 final (hook à 0,03 s, chaque scène, la fin), mesure de loudness, relecture de chaque affirmation contre le tableau. Préciser que l'audio n'a été vérifié que par mesure. Un export muet n'est jamais une « vidéo voix off terminée ».

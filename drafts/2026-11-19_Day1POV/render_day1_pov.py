@@ -19,7 +19,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, os.path.join(ROOT, "templates", "tools"))
 from pov_kit import (C, FPS, H, SR, TOK, W, BlendDraw, Encoder, Synth, aa_layer, anton, audio_report,  # noqa: E402
                      band_mask, clamp, comp, contact_sheet, ease_out_back, ease_out_cubic, faded, finish, jakarta,
-                     lerp, make_background, make_cta, make_static, place_art, probe, smooth, text_block)
+                     lerp, make_background, make_cta, make_signature, make_static, place_art, probe, smooth,
+                     text_block)
 
 BASE = "Eazy88_TikTok_Day1POV"
 OUT = sys.argv[1]
@@ -32,15 +33,17 @@ PUNCH = ["ONLY *87 TO GO.*"]
 HERE = ["YOU ARE", "HERE"]
 CTA = ["SEND THIS TO THE MATE", "*DOING THEIR 88 DAYS*"]
 
-# ---- timeline (seconds)
-T_TICK0, T_TICK1 = 0.95, 1.30   # the marker draws the tick in box 1
-T_POP = 1.30                    # confetti + fanfare
-T_SCRATCH = 2.95                # record scratch: the party stops
-T_REV, REV_D = 3.05, 1.45       # zoom out to the whole chart
-T_PUNCH = 4.55
-T_HERE = 5.25
-T_CTA = 6.6
-DUR = 9.8
+# ---- timeline (seconds). v2 (19 Nov, after the TikTok retention data): the tick is drawn from 0.35 s,
+# zoom-out at 2.1 s instead of 3.05 s, punchline at 3.4 s instead of 4.55 s, 8.2 s instead of 9.8 s, end card.
+T_TICK0, T_TICK1 = 0.35, 0.70   # the marker draws the tick in box 1
+T_POP = 0.70                    # confetti + fanfare
+T_SCRATCH = 2.0                 # record scratch: the party stops
+T_REV, REV_D = 2.1, 1.2         # zoom out to the whole chart
+T_PUNCH = 3.4
+T_HERE = 3.95
+T_CTA = 5.0
+T_SIG = 5.6
+DUR = 8.2
 
 # ---- chart geometry (world units = px at scale 1)
 M, HH, B, G = 18, 86, 46, 6
@@ -53,7 +56,7 @@ RS = 4                           # artwork resolution (px per world unit)
 
 # ---- camera: screen = origin + world * scale
 SA, OA = 3.3, (40.0, 700.0)      # close-up on the first boxes
-SB, OB = 0.92, (335.0, 310.0)    # whole chart, centred
+SB, OB = 0.82, (357.0, 300.0)    # whole chart, centred
 R_TOP_A, R_TOP_B, R_BOT = 660, 250, 1380
 ANCHOR = (M + B / 2, HH + B / 2)  # centre of box 1
 TICK = [(0.2, 0.55), (0.42, 0.78), (0.84, 0.22)]
@@ -245,9 +248,9 @@ def make_music():
     put(party, sy.squeak(0.15, 0.10, 1800, 2300), T_TICK0)
     put(party, sy.squeak(0.19, 0.12, 2000, 2800), T_TICK0 + 0.16)
     # snare roll building to the pop
-    t = 0.45
+    t = 0.05
     while t < T_POP - 0.03:
-        put(party, sy.snare(0.5 * (0.06 + 0.4 * ((t - 0.45) / (T_POP - 0.45)) ** 2)), t)
+        put(party, sy.snare(0.5 * (0.08 + 0.4 * ((t - 0.05) / (T_POP - 0.05)) ** 2)), t)
         t += 0.055
     # "ta-DA!": pickup note, then a bright C major brass chord, timpani and cymbal
     put(party, sy.tone(392.0, 0.1, 0.16, a=0.01, r=0.08, nh=18, tilt=0.9, detune=(-4, 4), bright=6), T_POP - 0.16)
@@ -261,7 +264,7 @@ def make_music():
     for i, tb in enumerate(np.arange(T_POP + 0.25, T_SCRATCH - 0.05, 0.25)):
         if i % 2 == 0:
             put(party, sy.tone(130.81 if i % 4 == 0 else 98.0, 0.12, 0.24, a=0.005, r=0.12, nh=12, tilt=1.0, detune=(0,)), tb)
-            put(party, sy.kick(0.25), tb)
+            put(party, sy.kick(0.14), tb)
         else:
             for f in (329.63, 392.0, 523.25):
                 put(party, sy.tone(f, 0.08, 0.06, a=0.005, r=0.1, nh=14, tilt=0.9, detune=(-4, 4), bright=8), tb)
@@ -288,7 +291,7 @@ def make_music():
         for j, f in enumerate(ch):
             put(after, sy.pluck(f, 0.9, 0.24 * g, decay=0.995), tc + j * 0.016)
             put(after, sy.pluck(f, 0.5, 0.12 * g, decay=0.993), tc + 0.4 + (3 - j) * 0.012)
-        put(after, sy.tone(root, 0.6, 0.1 * g, a=0.02, r=0.3, nh=10, tilt=1.2, detune=(0,)), tc)
+        put(after, sy.tone(root * 2, 0.6, 0.1 * g, a=0.02, r=0.3, nh=10, tilt=1.2, detune=(0,)), tc)
     after = sy.master(after, reverb=0.25, fade=0.6)
     mix = party + 0.6 * after   # each part is mastered to full scale: the party stays the loudest moment
     return 0.9 * mix / np.abs(mix).max()
@@ -298,7 +301,8 @@ def make_music():
 def camera(t):
     if t < T_REV:
         wob = 0.05 * math.exp(-(t - T_POP) * 5) * math.sin((t - T_POP) * 17) if t >= T_POP else 0.0
-        s = SA * (1 + wob)
+        push = -0.04 * (1 - smooth(t / T_POP))      # slow push-in from the very first frame
+        s = SA * (1 + wob + push)
         ax, ay = OA[0] + ANCHOR[0] * SA, OA[1] + ANCHOR[1] * SA
         rt = R_TOP_A
     else:
@@ -318,13 +322,15 @@ def main():
     bg = make_background().convert("RGBA")
     static = make_static(HEADER, LABEL)
     title_im, title_bottom, title_size = text_block(TITLE, 112, 860, 80, 318)
-    punch_im, punch_bottom, punch_size = text_block(PUNCH, 140, 860, 80, 975)
-    cta_im, cta_bottom = make_cta(CTA, 1190)
+    punch_y, cta_y = 885, 1098
+    punch_im, punch_bottom, punch_size = text_block(PUNCH, 140, 860, 80, punch_y)
+    cta_im, cta_bottom = make_cta(CTA, cta_y)
+    sig_im, sig_box = make_signature(1296)
     here_im, here_x_end = make_here()
     chart_bottom = OB[1] + CH * SB
     assert title_bottom <= R_TOP_A, f"title ends at {title_bottom}, scene starts at {R_TOP_A}"
-    assert OB[0] + CW * SB <= 940 and chart_bottom <= 975 - 20, "chart outside the safe area or on the punchline"
-    assert punch_bottom <= 1190 - 40 and cta_bottom <= 1380, (punch_bottom, cta_bottom)
+    assert OB[0] + CW * SB <= 940 and chart_bottom <= punch_y - 20, "chart outside the safe area or on the punchline"
+    assert punch_bottom <= cta_y - 40 and cta_bottom <= sig_box[1] - 8, (punch_bottom, cta_bottom)
     art = chart_art()
     rng = np.random.default_rng(7)
     ox0, oy0, s0, _ = camera(T_POP)
@@ -367,19 +373,23 @@ def main():
         ca = clamp((t - T_CTA) / 0.3)
         if ca > 0:
             comp(frame, faded(cta_im, ca), 0, 16 * (1 - smooth(ca)))
+        sa = clamp((t - T_SIG) / 0.3)
+        if sa > 0:
+            frame.alpha_composite(faded(sig_im, sa))
         enc.write(frame)
         if fi == 0:
             frame.convert("RGB").save(os.path.join(OUT, f"{BASE}_Cover.png"))
     enc.close()
 
     mp4 = finish(OUT, BASE, os.path.join(tmp, "video.mp4"), make_music(), tmp)
-    times = [0.03, 0.9, 1.1, 1.3, 1.5, 1.9, 2.5, 2.9, 3.3, 3.8, 4.3, 4.7, 5.1, 5.6, 6.2, 6.9, 8.0, 9.6]
+    times = [0.03, 0.3, 0.5, 0.7, 0.9, 1.3, 1.7, 2.0, 2.3, 2.7, 3.1, 3.5, 3.9, 4.4, 5.1, 5.7, 6.8, 7.9]
     contact_sheet(mp4, times, os.path.join(OUT, "contact_sheet.png"), tmp)
     qc = {"probe": probe(mp4), "audio": audio_report(mp4), "title_px": title_size, "punch_px": punch_size,
           "title_bottom": title_bottom, "chart_box": [OB[0], OB[1], round(OB[0] + CW * SB), round(chart_bottom)],
           "punch_bottom": punch_bottom, "cta_bottom": cta_bottom,
           "timeline": {"tick": [T_TICK0, T_TICK1], "pop": T_POP, "scratch": T_SCRATCH, "reveal": [T_REV, T_REV + REV_D],
-                       "punch": T_PUNCH, "here": T_HERE, "cta": T_CTA, "end": DUR}}
+                       "punch": T_PUNCH, "here": T_HERE, "cta": T_CTA, "signature": T_SIG,
+                       "end": DUR}}
     json.dump(qc, open(os.path.join(OUT, "qc.json"), "w"), indent=1)
     print(json.dumps(qc))
 

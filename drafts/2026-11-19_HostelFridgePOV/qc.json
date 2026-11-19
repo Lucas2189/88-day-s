@@ -2,15 +2,15 @@
  "probe": {
   "video": "h264 1080x1920 30/1",
   "audio": "aac 48000 Hz 2 ch",
-  "duration_s": 12.4
+  "duration_s": 9.4
  },
  "audio": {
-  "lufs": -15.5,
-  "true_peak_dbfs": -2.3,
-  "share_below_150hz": 0.045,
-  "first_half_s_dbfs": -22.7,
-  "last_half_s_dbfs": -36.2,
-  "duration_s": 12.42
+  "lufs": -15.6,
+  "true_peak_dbfs": -4.4,
+  "share_below_150hz": 0.042,
+  "first_half_s_dbfs": -22.2,
+  "last_half_s_dbfs": -36.8,
+  "duration_s": 9.41
  },
  "title_px": 100,
  "punch_px": 66,
@@ -21,7 +21,6 @@
   "PLEASE LABEL/YOUR FOOD": 70,
   "WHO TOOK/MY MILK??": 51,
   "LABELLED./NOT FREE.": 53,
-  "MY HUMMUS/HAD MY NAME/ON IT": 46,
   "I COUNTED/THE EGGS.": 54,
   "IT WAS/ROOM 6.": 58,
   "ROOM 6 HERE./IT WASN'T US.": 45,
@@ -38,22 +37,22 @@
  "timeline": {
   "impacts": [
    0.0,
-   1.1,
-   1.85,
-   2.55,
-   3.25,
-   3.9,
-   4.5,
-   5.3,
-   6.1,
-   6.9
+   0.45,
+   1.0,
+   1.55,
+   2.1,
+   2.7,
+   3.35,
+   3.95,
+   4.55
   ],
   "reveal": [
-   7.75,
-   8.55
+   5.1,
+   5.8
   ],
-  "punch": 8.3,
-  "cta": 10.2,
-  "end": 12.4
+  "punch": 5.55,
+  "cta": 6.8,
+  "signature": 7.4,
+  "end": 9.4
  }
 }
