@@ -1,0 +1,47 @@
+{
+ "format": "carousel",
+ "slides": [
+  {"name": "Eazy88_Carousel_RoomScams_01", "blocks": [
+    {"type": "header", "counter": "1/5", "after": 130},
+    {"type": "title", "lines": ["FINDING A ROOM", "IN AUSTRALIA?", "*4 RED FLAGS*", "*BEFORE YOU PAY*"], "size": 118, "after": 40},
+    {"type": "text", "text": "What Scamwatch says about fake rental and share-house listings.", "size": 42, "after": 46},
+    {"type": "chip", "text": "SAVE IT FOR YOUR NEXT MOVE", "color": "muted", "after": 110},
+    {"type": "text", "text": "Swipe →", "size": 36, "weight": "Bold", "color": "orange"}]},
+  {"name": "Eazy88_Carousel_RoomScams_02", "blocks": [
+    {"type": "header", "counter": "2/5"},
+    {"type": "numtitle", "num": "1", "lines": ["YOU CAN'T", "*INSPECT IT*"]},
+    {"type": "card", "items": [
+      {"text": "They have an excuse for why you can't see the place", "icon": "warn", "icon_color": "orange"},
+      {"text": "The room may exist, but belong to someone else", "icon": "warn", "icon_color": "orange"},
+      {"text": "*Never pay* for a rental you cannot inspect", "icon": "check"}]},
+    {"type": "foot", "text": "Source: Scamwatch (scamwatch.gov.au), buying and selling scams. Checked 17 Nov 2026."}]},
+  {"name": "Eazy88_Carousel_RoomScams_03", "blocks": [
+    {"type": "header", "counter": "3/5"},
+    {"type": "numtitle", "num": "2", "lines": ["MONEY", "*UP FRONT*"]},
+    {"type": "card", "items": [
+      {"text": "Asked for a bond or rent in advance, before you've seen it", "icon": "warn", "icon_color": "orange"},
+      {"text": "Odd ways to pay: money order, pre-loaded card, several different PayIDs", "icon": "warn", "icon_color": "orange"}]},
+    {"type": "note", "text": "Scamwatch: it is rare to recover money sent by money transfer."},
+    {"type": "foot", "text": "Source: Scamwatch (buying and selling scams; rental listing alerts). Checked 17 Nov 2026."}]},
+  {"name": "Eazy88_Carousel_RoomScams_04", "blocks": [
+    {"type": "header", "counter": "4/5", "after": 50},
+    {"type": "numtitle", "num": "3", "lines": ["THEY WANT", "*YOUR ID*"], "num_size": 130, "size": 76, "after": 6},
+    {"type": "card", "items": [
+      {"text": "Asked to send your passport or licence before you've seen the room", "icon": "warn", "icon_color": "orange"}], "after": 44},
+    {"type": "numtitle", "num": "4", "lines": ["THE PRICE IS", "*TOO GOOD*"], "num_size": 130, "size": 76, "after": 6},
+    {"type": "card", "items": [
+      {"text": "Extremely low rent, made to grab your attention", "icon": "warn", "icon_color": "orange"}]},
+    {"type": "foot", "text": "Source: Scamwatch (scamwatch.gov.au). Checked 17 Nov 2026."}]},
+  {"name": "Eazy88_Carousel_RoomScams_05", "blocks": [
+    {"type": "header", "counter": "5/5", "after": 50},
+    {"type": "title", "lines": ["BEFORE *YOU PAY*"], "size": 120, "after": 24},
+    {"type": "card", "size": 40, "items": [
+      {"text": "Inspect it in person. A drive-by is not enough", "icon": "check"},
+      {"text": "Using an agent? Check they're licensed in your state", "icon": "check"},
+      {"text": "Search the address, the name and the email online", "icon": "check"},
+      {"text": "Keep the listing, the messages and the payment details", "icon": "check"}]},
+    {"type": "note", "text": "Already paid? Contact your bank immediately, then report it to Scamwatch."},
+    {"type": "foot", "text": "Sources: Scamwatch; ACCC (21 Sep 2020). Checked 17 Nov 2026.", "after": 30},
+    {"type": "cta", "glyph": "bookmark", "text": "SAVE THIS FOR *YOUR NEXT MOVE*", "size": 60}]}
+ ]
+}
