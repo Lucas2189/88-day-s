@@ -52,7 +52,9 @@ Source complète : `references/marketing-instructions/eazy88-tiktok-trend-video_
 - On reprend le format, jamais le contenu d'un autre créateur : ni son image, ni son texte, ni son son.
 - Visuels : illustration originale (étiquetée « Illustration ») ou images filmées par Lucas. Pas d'image réaliste générée par IA.
 - Musique originale, ou son de la bibliothèque commerciale de l'app choisi par Lucas à la publication.
-- Outil : `drafts/2026-11-16_ParkingSignPOV/render_parking_pov.py` (premier exemple).
+- Outil : `templates/tools/pov_kit.py` (dessin, caméra, musique, contrôles communs). Exemples : `drafts/2026-11-19_*POV/render_*.py` ; premier clip : `drafts/2026-11-16_ParkingSignPOV/render_parking_pov.py`.
+- Contrôle propre au format : image fixe et lisible ~0,9 s au début, quelque chose de nouveau toutes les secondes, chute avant 9 s ; musique avec moins de 10 % d'énergie sous 150 Hz (sinon inaudible sur un téléphone) et pic ≤ −1,5 dBTP.
+- Premier résultat (19 nov.) : le POV parking a fait 2,6 à 4 fois plus de vues que les vidéos conseils (un seul post, vues seulement) : `analytics/2026-11-19_analyse-POV-parking.md`.
 
 **Contrôle qualité avant de dire « terminé ».** ffprobe (h264 + aac, 1080×1920, 30 fps, durée), planches de frames extraites du MP4 final (hook à 0,03 s, chaque scène, la fin), mesure de loudness, relecture de chaque affirmation contre le tableau. Préciser que l'audio n'a été vérifié que par mesure. Un export muet n'est jamais une « vidéo voix off terminée ».
 
