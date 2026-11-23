@@ -1,0 +1,40 @@
+{
+ "probe": {
+  "video": "h264 1080x1920 30/1",
+  "audio": "aac 48000 Hz 2 ch",
+  "duration_s": 9.4
+ },
+ "audio": {
+  "lufs": -16.0,
+  "true_peak_dbfs": -5.0,
+  "share_below_150hz": 0.0,
+  "first_half_s_dbfs": -18.3,
+  "last_half_s_dbfs": -35.5,
+  "duration_s": 9.41
+ },
+ "title_px": 96,
+ "punch_px": 96,
+ "title_bottom": 633,
+ "punch_bottom": 528,
+ "cta_bottom": 746,
+ "timeline": {
+  "signs": [
+   0.0,
+   0.85,
+   1.7,
+   2.55,
+   3.4,
+   4.25
+  ],
+  "stop": 4.8,
+  "cut": 5.0,
+  "reveal": [
+   5.15,
+   5.95
+  ],
+  "punch": 5.6,
+  "cta": 6.8,
+  "signature": 7.4,
+  "end": 9.4
+ }
+}
