@@ -1,0 +1,134 @@
+{
+ "base": "Eazy88_TikTok_RulesChange120",
+ "header": "EAZY88 · BACKPACKER TIPS",
+ "sections": [
+  {
+   "id": "hook",
+   "kind": "hook",
+   "cues": [
+    "n01",
+    "n02"
+   ],
+   "y": 430,
+   "title_size": 128,
+   "title": [
+    "IT'S OFFICIAL:",
+    "88 DAYS BECOMES",
+    "*120 DAYS*"
+   ],
+   "chip": {
+    "text": "2ND WHV · 417 / 462 · FROM 1 MARCH 2027",
+    "color": "muted"
+   },
+   "foot": "Home Affairs · announced 17 Nov 2026 · checked 25 Nov 2026"
+  },
+  {
+   "id": "s1",
+   "kind": "point",
+   "num": "1",
+   "cues": [
+    "n03",
+    "n03b",
+    "n03c",
+    "n04"
+   ],
+   "y": 410,
+   "title": "FROM 1 MARCH 2027:\n*120 DAYS*",
+   "items": [
+    {
+     "text": "Second visa: *120 days* of specified work (now 88)",
+     "at": "n03b",
+     "icon": "warn",
+     "icon_color": "orange"
+    },
+    {
+     "text": "Work you've already done *still counts*",
+     "at": "n04",
+     "icon": "check"
+    }
+   ],
+   "foot": "Subclass 417 and 462 visas. Source: Home Affairs, 17 Nov 2026",
+   "foot_at": "n03"
+  },
+  {
+   "id": "s2",
+   "kind": "point",
+   "num": "2",
+   "cues": [
+    "n05",
+    "n06",
+    "n06b"
+   ],
+   "y": 410,
+   "title": "INVITATION\n*TO APPLY*",
+   "items": [
+    {
+     "text": "From 1 March 2027: you need an *invitation* to apply",
+     "at": "n05",
+     "icon": "warn",
+     "icon_color": "orange"
+    },
+    {
+     "text": "Registrations open *1 December 2026*",
+     "at": "n06",
+     "icon": "check"
+    },
+    {
+     "text": "You can register *before* you finish your days",
+     "at": "n06b",
+     "icon": "check"
+    }
+   ],
+   "foot": "Registering doesn't guarantee an invitation. UK passport holders are exempt.",
+   "foot_at": "n05"
+  },
+  {
+   "id": "s3",
+   "kind": "point",
+   "num": "3",
+   "cues": [
+    "n07",
+    "n07b",
+    "n08",
+    "n09"
+   ],
+   "y": 410,
+   "title": "STILL 88 DAYS\n*UNTIL 28 FEB*",
+   "items": [
+    {
+     "text": "Finish your 88 days *and* lodge a valid application by *28 Feb 2027*",
+     "at": "n07",
+     "icon": "check"
+    },
+    {
+     "text": "Current process: *no invitation needed*",
+     "at": "n08",
+     "icon": "check"
+    },
+    {
+     "text": "Third visa: still *179 days* (6 months)",
+     "at": "n09",
+     "icon": "dot",
+     "icon_color": "orange"
+    }
+   ],
+   "foot": "Transitional arrangements. Source: Home Affairs, 17 Nov 2026",
+   "foot_at": "n07"
+  },
+  {
+   "id": "cta",
+   "kind": "cta",
+   "cues": [
+    "n10"
+   ],
+   "y": 330,
+   "glyph": "bookmark",
+   "title": [
+    "SAVE THIS",
+    "*SO YOU DON'T*",
+    "*MISS THE DATES*"
+   ],
+   "foot": "General information, not migration advice. Check immi.homeaffairs.gov.au"
+  }
+ ]
+}
