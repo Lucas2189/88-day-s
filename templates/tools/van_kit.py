@@ -132,8 +132,9 @@ class Road:
     """Outback road scene. `speed(t)` in world px/s; `sky` = [(t, top, horizon, darkness), ...];
     `sun(t, top, hz)` -> (x, y, radius, colour) or None."""
 
-    def __init__(self, dur, speed, sky, sun=None, moon=(820, 120, 40), seed=3, bush_rows=(-52, 46, 60)):
+    def __init__(self, dur, speed, sky, sun=None, moon=(820, 120, 40), seed=3, bush_rows=(-52, 46, 60), terrain="road"):
         self.dur, self.speed, self.sky_keys, self.sun, self.moon = dur, speed, sky, sun, moon
+        self.terrain = terrain   # "road" (outback road) or "beach" (sea on the horizon, sand, no road)
         n = int(round(dur * FPS))
         self.XS = np.zeros(n + 2)
         for i in range(1, n + 2):
@@ -178,28 +179,45 @@ class Road:
             for g, a in ((2.2, 40), (1.6, 70)):
                 d.ellipse((sx - rad * g, sy - rad * g, sx + rad * g, sy + rad * g), fill=col + (a,))
             d.ellipse((sx - rad, sy - rad, sx + rad, sy + rad), fill=col + (255,))
-        pts = [(x, hz - hill_profile(X * 0.12 + x / max(s, 0.2)) * max(s, 0.35)) for x in range(0, W + 9, 8)]
-        d.polygon([(0, hz + 2)] + pts + [(W, hz + 2)], fill=col_mix(C["primary"], TOK["primary_dark"], 0.35) + (255,))
-        if hz < H:   # the camera can be high enough to see only sky
-            d.rectangle((0, hz, W, H), fill=TOK["primary_dark"] + (255,))
-            d.rectangle((0, hz, W, min(H, hz + 10 * s)), fill=C["primary"] + (200,))
-        if gy - 34 * s < H:
-            d.rectangle((0, gy - 34 * s, W, max(gy - 34 * s, min(H, gy + 26 * s))), fill=TOK["n800"] + (255,))
-        d.line([(0, gy - 34 * s), (W, gy - 34 * s)], fill=C["muted"] + (90,), width=max(1, int(3 * s)))
-        per, dash = 130, 70
-        xw = math.floor((X - vx / s) / per) * per
-        while vx + (xw - X) * s < W:
-            x0 = vx + (xw - X) * s
-            d.rectangle((x0, gy - 6 * s, x0 + dash * s, gy - 1 * s), fill=C["cream"] + (220,))
-            xw += per
-        for bx, by, k in self.bushes:
-            sx = vx + (bx - X) * s
-            if -60 < sx < W + 60:
-                r = 16 * k * s
-                cy = gy + by * s
-                for ox, oy, rr in ((-1.1, 0.2, 0.8), (0, -0.25, 1.0), (1.1, 0.2, 0.75)):
-                    d.ellipse((sx + ox * r - rr * r, cy + oy * r - rr * r, sx + ox * r + rr * r, cy + oy * r + rr * r),
-                              fill=TOK["secondary_dark"] + (255,))
+        if self.terrain == "beach":
+            sea_top = hz - 46 * s
+            d.rectangle((0, sea_top, W, hz + 2), fill=TOK["n800"] + (255,))
+            for k in range(6):   # sun reflection on the water
+                yy = sea_top + (k + 0.5) * (hz - sea_top) / 6
+                w = (60 + 40 * k) * s
+                d.rectangle((790 - w / 2, yy, 790 + w / 2, yy + max(1, 3 * s)), fill=C["sunset"] + (150,))
+            if hz < H:
+                d.rectangle((0, hz, W, H), fill=C["sun"] + (255,))
+                d.rectangle((0, hz, W, min(H, hz + 14 * s)), fill=C["muted"] + (255,))   # wet sand
+                per = 90
+                xw = math.floor((X * 0.9 - vx / s) / per) * per
+                while vx + (xw - X * 0.9) * s < W:   # ripples in the sand
+                    x0 = vx + (xw - X * 0.9) * s
+                    d.arc((x0, gy + 20 * s, x0 + 50 * s, gy + 36 * s), 200, 340, fill=C["orange"] + (120,), width=max(1, int(3 * s)))
+                    xw += per
+        else:
+            pts = [(x, hz - hill_profile(X * 0.12 + x / max(s, 0.2)) * max(s, 0.35)) for x in range(0, W + 9, 8)]
+            d.polygon([(0, hz + 2)] + pts + [(W, hz + 2)], fill=col_mix(C["primary"], TOK["primary_dark"], 0.35) + (255,))
+            if hz < H:   # the camera can be high enough to see only sky
+                d.rectangle((0, hz, W, H), fill=TOK["primary_dark"] + (255,))
+                d.rectangle((0, hz, W, min(H, hz + 10 * s)), fill=C["primary"] + (200,))
+            if gy - 34 * s < H:
+                d.rectangle((0, gy - 34 * s, W, max(gy - 34 * s, min(H, gy + 26 * s))), fill=TOK["n800"] + (255,))
+            d.line([(0, gy - 34 * s), (W, gy - 34 * s)], fill=C["muted"] + (90,), width=max(1, int(3 * s)))
+            per, dash = 130, 70
+            xw = math.floor((X - vx / s) / per) * per
+            while vx + (xw - X) * s < W:
+                x0 = vx + (xw - X) * s
+                d.rectangle((x0, gy - 6 * s, x0 + dash * s, gy - 1 * s), fill=C["cream"] + (220,))
+                xw += per
+            for bx, by, k in self.bushes:
+                sx = vx + (bx - X) * s
+                if -60 < sx < W + 60:
+                    r = 16 * k * s
+                    cy = gy + by * s
+                    for ox, oy, rr in ((-1.1, 0.2, 0.8), (0, -0.25, 1.0), (1.1, 0.2, 0.75)):
+                        d.ellipse((sx + ox * r - rr * r, cy + oy * r - rr * r, sx + ox * r + rr * r, cy + oy * r + rr * r),
+                                  fill=TOK["secondary_dark"] + (255,))
         bob = bounce * (self.speed(t) / self.vmax) * math.sin(t * 31) * s
         vw, vh = VAN_W * s, VAN_H * s
         ctx = dict(t=t, X=X, s=s, vx=vx, gy=gy, top=top, hz=hz, dark=dark, vw=vw, vh=vh,
@@ -241,3 +259,36 @@ class Road:
 
 def day_sun(t, top, hz, x=800, y_off=120, rad=46):
     return x, top + y_off, rad, C["cream"]
+
+
+# ---------------------------------------------------------------- outback extras
+def roo_art(w=110, h=150, facing="right", body=None, belly=None):
+    """Sitting kangaroo (same drawing as the roof-stack clip), w x h world units."""
+    im = Image.new("RGBA", (int(w * RS), int(h * RS)), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im, "RGBA")
+    w, h, k = w * RS, h * RS, RS
+    body = (body or TOK["primary_dark"]) + (255,)
+    belly = (belly or C["sun"]) + (255,)
+    d.polygon([(w * 0.05, h * 0.98), (w * 0.35, h * 0.86), (w * 0.4, h * 0.95), (w * 0.15, h)], fill=body)
+    d.ellipse((w * 0.25, h * 0.36, w * 0.78, h * 0.98), fill=body)
+    d.ellipse((w * 0.45, h * 0.5, w * 0.7, h * 0.92), fill=belly)
+    d.ellipse((w * 0.5, h * 0.12, w * 0.9, h * 0.42), fill=body)
+    d.polygon([(w * 0.82, h * 0.24), (w, h * 0.3), (w * 0.84, h * 0.36)], fill=body)
+    for ex in (0.56, 0.68):
+        d.ellipse((w * ex, 0, w * (ex + 0.09), h * 0.22), fill=body)
+    d.ellipse((w * 0.72, h * 0.2, w * 0.77, h * 0.25), fill=C["ink_deep"] + (255,))
+    d.rounded_rectangle((w * 0.62, h * 0.55, w * 0.8, h * 0.6), 4 * k, fill=body)
+    d.rounded_rectangle((w * 0.45, h * 0.92, w * 0.95, h), 6 * k, fill=body)
+    return im if facing == "right" else ImageOps.mirror(im)
+
+
+def draw_flies(d, flies, t, cx, cy, s, n, spread=1.0):
+    """Draw the first n flies of `flies` (array of [ax, ay, fx, fy, phase]) buzzing around (cx, cy)."""
+    for ax, ay, fx, fy, ph in flies[:n]:
+        x = cx + ax * spread * s * math.sin(t * fx + ph) + 6 * s * math.sin(t * 31 + ph * 3)
+        y = cy + ay * spread * s * math.sin(t * fy + ph * 1.7) + 6 * s * math.cos(t * 27 + ph)
+        r = max(2.4, 4.4 * s)
+        d.ellipse((x - r * 1.3, y - r, x + r * 1.3, y + r), fill=C["ink_deep"] + (255,))
+        wa = 120 if int(t * 40 + ph * 10) % 2 else 60
+        d.ellipse((x - r * 1.6, y - r * 2.2, x - r * 0.1, y - r * 0.6), fill=C["cream"] + (wa,))
+        d.ellipse((x + r * 0.1, y - r * 2.2, x + r * 1.6, y - r * 0.6), fill=C["cream"] + (wa,))

@@ -10,3 +10,11 @@ Pas de tendance externe vérifiée (TikTok n'est pas consultable d'ici) : statut
 | 3 | **« Never had a problem »** (le van tombe en morceaux) | Van comme personnage ; lien avec la vidéo Car checks | Acheter un van d'occasion à un autre backpacker | Aucun | creative hypothesis → **produit** |
 | 4 | Station-service de l'outback (le prix grimpe) | Panneaux / chiffres qui montent | Prix de l'essence loin des villes | Aucun | à faire — prix illustratifs, étiquette « not real prices » |
 | 5 | Kangourous au crépuscule (la route se remplit de kangourous) | Van + faune australienne | Conduire à la tombée de la nuit | Aucun | à faire — sans statistique ni conseil de sécurité chiffré |
+
+## Ajout du 25 nov. 2026 (Lucas : « fais-moi plus de posts comme celui du bus »)
+| # | Angle | Statut |
+|---|---|---|
+| 6 | Les mouches de l'outback (« the Aussie salute ») | **produit** (`exports/2026-11-25_FliesPOV/`) |
+| 5 | Kangourous au crépuscule | **produit** (`exports/2026-11-25_RoosAtDuskPOV/`) |
+| 7 | Van 2 roues motrices sur la plage (« 4WD ONLY ») | **produit** (`exports/2026-11-25_BeachSinkPOV/`) |
+| 4 | Station-service de l'outback | toujours à faire |
