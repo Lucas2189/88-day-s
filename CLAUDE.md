@@ -7,6 +7,7 @@ Ce fichier contient les instructions **permanentes**. Elles s'appliquent à chaq
 
 - Explications, rapports et échanges avec Lucas : **français**.
 - Tout contenu public (voix off, texte à l'écran, sous-titres, légende, cover, hashtags) : **anglais naturel**.
+- Exception (Lucas, 27 nov. 2026) : les posts pour les groupes Facebook existent aussi en **espagnol** et en **français** (`exports/2026-11-27_FacebookGroups/`). Noms officiels gardés en anglais, montants en dollars australiens.
 
 ## Instructions permanentes
 

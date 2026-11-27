@@ -1,6 +1,6 @@
 # Posts pour les groupes Facebook (brouillons du 27 nov. 2026)
 
-**Statut : à publier par Lucas, à la main.** Rien n'est publié. Texte à copier-coller : `Eazy88_Facebook_Groups_Posts.txt` (anglais).
+**Statut : à publier par Lucas, à la main.** Rien n'est publié. Textes à copier-coller (posts uniquement) : `Eazy88_Facebook_Posts_EN.txt`, `Eazy88_Facebook_Posts_ES.txt`, `Eazy88_Facebook_Posts_FR.txt` (mêmes posts, mêmes faits, en anglais, espagnol et français : demande de Lucas du 27 nov.).
 
 ## Pourquoi vous devez publier vous-même dans les groupes
 Meta a supprimé la possibilité, pour toute application, de publier dans des groupes (« Groups API » et permission `publish_to_groups` dépréciées en v19.0, retrait prévu le 22 avril 2024). Aucun outil, moi compris, ne peut poster dans un groupe à votre place. Source : [Graph API v19.0 changelog](https://developers.facebook.com/docs/graph-api/changelog/version19.0).
@@ -29,7 +29,7 @@ Les posts 1 à 4 ne parlent pas de l'app : ils apportent une info utile et véri
 - Si un post est supprimé : ne pas le republier, demander à l'admin ce qui est permis.
 
 ## Quels groupes
-Ceux où vous êtes déjà membre, par type : groupes Working Holiday Australia généraux · groupes 88 jours / farm work / récolte · groupes par ville (Adélaïde d'abord) · groupes logement / colocation · groupes road trip / van. Pour les groupes francophones (PVT Australie), il faudrait une version en français : c'est une exception à la règle « contenu public en anglais », à vous de décider.
+Ceux où vous êtes déjà membre, par type : groupes Working Holiday Australia généraux · groupes 88 jours / farm work / récolte · groupes par ville (Adélaïde d'abord) · groupes logement / colocation · groupes road trip / van. Versions espagnole (groupes hispanophones : Espagne, Argentine, Chili, etc.) et française (groupes PVT Australie) : exception à la règle « contenu public en anglais », validée par Lucas le 27 nov. Les noms officiels restent en anglais (specified work, Horticulture Award, TFN, DASP…) et les montants sont en dollars australiens.
 
 ## Suivi
 Noter dans `analytics/content-tracker.csv` : groupe, date, post (n° et version), réactions et commentaires à 72 h. Les clics vers l'App Store ne sont pas mesurables sans lien de campagne App Store Connect (à créer par le développeur, voir `exports/2026-11-19_AppStoreListing/README.md`).
