@@ -15,6 +15,7 @@
  "title_px": 96,
  "punch_px": 98,
  "bubble_px": 54,
+ "loudness_fix_db": -1.2,
  "title_bottom": 633,
  "punch_bottom": 532,
  "cta_bottom": 750,

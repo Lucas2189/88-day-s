@@ -238,6 +238,23 @@ def finish(out_dir, base, silent_mp4, music, tmp):
     return mp4
 
 
+def match_loudness(mp4, tmp, target=-16.0, tol=0.5):
+    """Call after finish(). On some mixes (short bursts, silences) ffmpeg's loudnorm measures ~1 LU lower than
+    the ebur128 meter used by audio_report, so the file lands near -15 LUFS. If the QC meter is more than `tol`
+    away from `target`, re-level the normalised music by the difference (only ever by a few dB) and re-mux.
+    Expects the silent video at tmp/video.mp4 and the normalised music at tmp/music.wav, as finish() leaves them."""
+    lufs = audio_report(mp4)["lufs"]
+    if abs(lufs - target) <= tol:
+        return 0.0
+    adj = os.path.join(tmp, "music_qc.wav")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", os.path.join(tmp, "music.wav"),
+                    "-af", f"volume={target - lufs:.2f}dB", adj], check=True)
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", os.path.join(tmp, "video.mp4"), "-i", adj,
+                    "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", str(SR), "-ac", "2", "-shortest",
+                    "-movflags", "+faststart", mp4], check=True)
+    return round(target - lufs, 2)
+
+
 def contact_sheet(mp4, times, out_png, tmp, cols=6):
     ims = []
     for tt in times:

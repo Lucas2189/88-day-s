@@ -8,7 +8,6 @@ Usage (from the repository root):
 import json
 import math
 import os
-import subprocess
 import sys
 
 import numpy as np
@@ -18,7 +17,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, os.path.join(ROOT, "templates", "tools"))
 from pov_kit import (C, FPS, H, SR, TOK, W, BlendDraw, Encoder, Synth, anton, audio_report, band_mask, clamp, comp,  # noqa: E402
                      contact_sheet, ease_out_back, faded, finish, jakarta, lerp, make_background, make_cta,
-                     make_signature, make_static, probe, smooth, text_block)
+                     make_signature, make_static, match_loudness, probe, smooth, text_block)
 from render_reel import draw_rich, text_width  # noqa: E402
 from van_kit import col_mix  # noqa: E402
 
@@ -306,20 +305,6 @@ def make_music():
     return sy.master(m, reverb=0.16, fade=0.3, sub=0.4)
 
 
-def match_qc_loudness(mp4, tmp, target=-16.0):
-    """On this mix, ffmpeg's loudnorm measures ~1.2 LU lower than the ebur128 meter used for QC, so the
-    normalised file lands near -14.8 LUFS. Re-level the normalised music by the QC difference and re-mux."""
-    lufs = audio_report(mp4)["lufs"]
-    if abs(lufs - target) <= 0.5:
-        return
-    adj = os.path.join(tmp, "music_qc.wav")
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", os.path.join(tmp, "music.wav"),
-                    "-af", f"volume={target - lufs:.2f}dB", adj], check=True)
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", os.path.join(tmp, "video.mp4"), "-i", adj,
-                    "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", str(SR), "-ac", "2", "-shortest",
-                    "-movflags", "+faststart", mp4], check=True)
-
-
 def main():
     os.makedirs(OUT, exist_ok=True)
     tmp = os.path.join(OUT, "_tmp")
@@ -398,11 +383,11 @@ def main():
             frame.convert("RGB").save(os.path.join(OUT, f"{BASE}_Cover.png"))
     enc.close()
     mp4 = finish(OUT, BASE, os.path.join(tmp, "video.mp4"), make_music(), tmp)
-    match_qc_loudness(mp4, tmp)
+    loud_fix_db = match_loudness(mp4, tmp)   # loudnorm lands at -14.8 on this mix (see pov_kit.match_loudness)
     times = [0.03, 0.4, 0.9, 1.4, 1.7, 2.2, 2.7, 3.0, 3.4, 3.8, 4.2, 4.6, 5.0, 5.5, 6.2, 7.0, 7.8, 8.3]
     contact_sheet(mp4, times, os.path.join(OUT, "contact_sheet.png"), tmp)
     qc = {"probe": probe(mp4), "audio": audio_report(mp4), "title_px": title_size, "punch_px": punch_size,
-          "bubble_px": bsize, "title_bottom": title_bottom, "punch_bottom": punch_bottom, "cta_bottom": cta_bottom,
+          "bubble_px": bsize, "loudness_fix_db": loud_fix_db, "title_bottom": title_bottom, "punch_bottom": punch_bottom, "cta_bottom": cta_bottom,
           "timeline": {"bubbles": [b[0] for b in BUBBLES], "reveal": [T_REV, T_REV + REV_D], "punch": T_PUNCH,
                        "good_on_ya": GOOD[0], "cta": T_CTA, "signature": T_SIG, "end": DUR}}
     json.dump(qc, open(os.path.join(OUT, "qc.json"), "w"), indent=1)

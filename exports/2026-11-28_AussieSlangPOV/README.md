@@ -38,7 +38,7 @@ Aucune affirmation chiffrée. Glossaire (usage courant de l'anglais australien) 
 - Planche de 18 images : `drafts/2026-11-28_AussieSlangPOV/qc_contact_sheet.png` ✅ ; 1re image et 3,85 s revues en taille réelle ✅
 - Titre ≤ y 633 ; chute ≤ y 532 ; CTA ≤ y 750 ; bulles en 54 px, entre x 90 et 940 ; signature y 1296–1360 ✅
 - Rythme : le patron bouge dès la 1re image, 1re bulle à 0,3 s, 1re blague (« CHUCK A U-EY AT THE SERVO » + « ?? ») vers 1,3–1,6 s, chute à 4,35 s, CTA à 6,1 s ✅
-- Son : -16.0 LUFS, pic -7.0 dBFS, 0.0 % sous 150 Hz, dernière demi-seconde à -30.1 dBFS ✅. Le filtre de normalisation de ffmpeg mesurait cette piste 1,2 LU plus bas que notre mesure de contrôle (sortie à -14.8) : le script réajuste la musique sur -16 et la remonte avec la vidéo.
+- Son : -16.0 LUFS, pic -7.0 dBFS, 0.0 % sous 150 Hz, dernière demi-seconde à -30.1 dBFS ✅. Le filtre de normalisation de ffmpeg mesurait cette piste 1,2 LU plus bas que notre mesure de contrôle (sortie à -14.8) : `match_loudness()` (dans `templates/tools/pov_kit.py`) a baissé la musique de 1,2 dB et l'a remontée avec la vidéo.
 
 ## Points non résolus
 - **Le son n'a été vérifié que par mesure.** Laisser le label « AI-generated content » activé.
